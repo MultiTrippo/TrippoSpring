@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>
-	EDITED!! AGAIN Hello From DongGyu aaaa
+	EDITED!! AGAIN Hello From DongGyu aaaa Minji Terminal Test on minji's branch
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
