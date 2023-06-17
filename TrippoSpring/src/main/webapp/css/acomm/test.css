@@ -8,7 +8,7 @@
   background-color: #c4b0ff;
 }
   /*체크인*/
-.acomcheckin {
+.acomcheckin {{ /* 21 블록*/
   width: 470px;
   height: 54px;
   flex-grow: 0;
