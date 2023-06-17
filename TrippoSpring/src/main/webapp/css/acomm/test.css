@@ -1,0 +1,18 @@
+@charset "UTF-8";
+.acomname{
+  width: 1410px;
+  height: 191px;
+  flex-grow: 0;
+  margin: 0 0 7px;
+  border-radius: 30px;
+  background-color: #c4b0ff;
+}
+  /*체크인*/
+.acomcheckin {
+  width: 470px;
+  height: 54px;
+  flex-grow: 0;
+  margin: 10px 20px 0 0;
+  border-radius: 20px;
+  background-color: #c4b0ff;
+}
