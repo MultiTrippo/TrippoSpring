@@ -16,3 +16,12 @@
   border-radius: 20px;
   background-color: #c4b0ff;
 }
+/*체크아웃*/
+.checkout {
+  width: 491px;
+  height: 57px;
+  flex-grow: 0;
+  margin: 7px 14px 0 20px;
+  border-radius: 20px;
+  background-color: #c4b0ff;
+}
