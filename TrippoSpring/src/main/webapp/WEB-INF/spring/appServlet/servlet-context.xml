@@ -32,7 +32,7 @@
 	<context:component-scan
 		base-package="com.trippo.myapp" />
 	<context:component-scan
-		base-package="com.board" />
+		base-package="com.trippo.board" />
 
 
 
