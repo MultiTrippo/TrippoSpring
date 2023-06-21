@@ -10,17 +10,23 @@
 		<meta name="viewport" content="width=device-width", initial-scale="1">
 		
 		<!-- css 참조 -->
-		<link rel="stylesheet" type="text/css" href="css/trav_manage.css">
-		
+		<link rel="stylesheet" type="text/css" href="css/schedule/trav_manage.css">
+		<link rel="stylesheet" type="text/css" href="css/schedule/etc.css">
+		<link rel="stylesheet" type="text/css" href="css/schedule/googlemap.css" />
 		<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"> -->
 		
 		<title>Trippo 일정 관리</title>
 		
-		<script defer src="js/arcodian.js"></script>
-		<script defer src="js/googlemap.js"></script>
+		<script defer src="js/schedule/arcodian.js"></script>
+		<script defer src="js/schedule/googlemap.js"></script>
+		<script defer src="js/schedule/etcManage.js"></script>
 		  
-	    
-			
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+        
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		
+    	<!-- <script type="module" src="js/schedule/index.js"></script> -->
+		
 	</head>
 	
 	<body>
@@ -34,33 +40,56 @@
 		<div class="body">
 			<!-- save and share buttons -->
 			<div class="buttons">
+				<!-- <Text>나라 선택 : </Text>
+				<form method="post" enctype="multipart/form-data" id="country">
+					<input type="text" id="pac-input" class="controls" placeholder="장소를 입력하세요">
+					<button>검색</button>
+					<input type="submit" value="이동" onclick="moveToPlace()">
+				</form> -->
+				
 				<button class="share-button">
-					<img alt="공유하기 버튼 이미지" src="images/share.png" style="width:20px;height:20px">
+					<img alt="공유하기 버튼 이미지" src="images/schedule/share.png" style="width:20px;height:20px">
 					<span>공유하기</span>
 				</button>
 				<button class="save-button">
-					<img alt="저장하기 버튼 이미지" src="images/save.png" style="width:20px;height:20px">
+					<img alt="저장하기 버튼 이미지" src="images/schedule/save.png" style="width:20px;height:20px">
 					<span>저장하기</span>
 				</button>
 			</div>
 			
-			<!-- map and fix schedule -->	
 			<div class="mains">
-				<!-- map -->
-				<div id="map">			
-				</div>
-				<script
-			      defer
-			      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrmeYmh2NFLAC4bRU_E5zW8ZJBpUuwh-0&callback=initMap"
-			    ></script>
+				<!-- map and fix schedule -->	
+				<div id="maps">
+					<!-- map -->	
+					<input
+				      id="pac-input"
+				      class="controls"
+				      type="text"
+				      placeholder="Search Box"
+				    />
+				    <div id="map"></div>
 				
+				    <!-- 
+				      The `defer` attribute causes the callback to execute after the full HTML
+				      document has been parsed. For non-blocking uses, avoiding race conditions,
+				      and consistent behavior across browsers, consider loading using Promises.
+				      See https://developers.google.com/maps/documentation/javascript/load-maps-js-api
+				      for more information.
+				      -->
+				    <script
+				      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2dG1m3EdZfbhWhJASM8icdwIZBKpEVrs&callback=initAutocomplete&libraries=places&v=weekly"
+				      defer
+				    ></script>
+				    
+			    </div>
+			    
 				<!-- schedule -->
 				<div id="accordionContainer">
 				    <button class="accordion" onclick="toggleAccordion(0)">
-				    	<img alt="드롭다운 이미지" src="images/arrow.png" style="width:20px;height:20px;">
+				    	<img alt="드롭다운 이미지" src="images/schedule/arrow.png" style="width:20px;height:20px;">
 				    </button>
 				    <div class="panel">
-				      	<img alt="시계 아이콘 이미지" src="images/alarm.png" style="width:20px;height:20px;">
+				      	<img alt="시계 아이콘 이미지" src="images/schedule/alarm.png" style="width:20px;height:20px;">
 						<button>am</button>
 						<div class="time">
 							<div class="timeselect">
@@ -108,8 +137,15 @@
 		
 			<!-- etc. parts -->
 			<div class="etc">
-				<span>etc</span>
-			
+				<span id="etcTitle">ETC.</span>
+				<form action="schedule/etcInsert.jsp" method="post">
+					<div>
+						<input field="*{text}" type="text" id="textInput" placeholder="하고 싶은 내용을 적어주세요.">
+						<input type="button" value="추가하기" id="addButton">			
+					</div>
+					<div id="etcContainer" class="etcContainer"></div>
+				</form>
+				
 			</div>
 		
 		</div>
