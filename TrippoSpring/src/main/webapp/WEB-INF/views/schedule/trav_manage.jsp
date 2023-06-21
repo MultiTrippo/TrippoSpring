@@ -6,7 +6,6 @@
 	<head>
 		<meta charset="UTF-8">
 		
-		
 		<!-- 반응형 웹을 위한 부트스르랩 설정 -->
 		<meta name="viewport" content="width=device-width", initial-scale="1">
 		
@@ -78,7 +77,7 @@
 				      for more information.
 				      -->
 				    <script
-				      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2dG1m3EdZfbhWhJASM8icdwIZBKpEVrs&callback=initAutocomplete&libraries=places&v=weekly"
+				      src="https://maps.googleapis.com/maps/api/js?key=[APIKEYS]&callback=initAutocomplete&libraries=places&v=weekly"
 				      defer
 				    ></script>
 				    
