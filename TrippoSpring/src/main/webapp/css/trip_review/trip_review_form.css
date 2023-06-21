@@ -1,0 +1,60 @@
+@charset "UTF-8";
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 배경: 흰색 */
+#background{
+	background-color: #ff80ff;
+}
+
+/* 노란색 다이어리부분 */
+#container{
+	width: 98vw;
+	height: 98vh;
+	background-color: #FFE697; 
+	border-radius: 30px;		
+	display: flex; 
+}
+
+/* wwwh 페이지 */
+#wwwh{
+	width: 95vw; 
+	height: 95vh; 
+	background-color: #FFFFFF; 
+	border-radius: 30px; 
+	margin: 10px;	
+	margin-right: 5px;
+}
+
+.input-group-text{
+	background-color: #FFE697;
+}
+
+#title, #where, #with, #expences{
+	width: 90%;
+}
+
+#date, #depart{
+	width: 44%;
+	float: left;
+	margin-right: 2%;
+}
+#writer, #arrival{
+	width: 44%;
+	float: left;
+}
+
+
+/* 사진&글 작성 페이지 */
+#photo_text{
+	width: 48%; 
+	height: 95vh; 
+	background-color: #FFFFFF; 
+	border-radius: 30px; 		
+	margin: 10px;		
+	margin-left: 5px;
+}

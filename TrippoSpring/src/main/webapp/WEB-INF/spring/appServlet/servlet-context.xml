@@ -14,7 +14,8 @@
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
-
+	<resources mapping="/css/**" location="/css/" />
+	
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
@@ -22,6 +23,13 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.trippo.myapp" />
+	
+	<!-- 혜원: 스캔 -->
+	<context:component-scan base-package="com.tripreview.controller" />
+	<context:component-scan base-package="com.tripreview.service" />
+	<context:component-scan base-package="com.tripreview.vo" />
+	<context:component-scan base-package="com.tripreview.mapper" />
+	<!-- ======= -->
 	
 	
 	
