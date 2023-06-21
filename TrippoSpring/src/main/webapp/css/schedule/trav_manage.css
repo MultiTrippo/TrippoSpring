@@ -109,20 +109,21 @@
 	background-color: #FFE696;
 }
 
+
 .mains{
 	margin-top:30px;
 	display: flex;
 	height:600px;
 }
 
-#map{
+#maps{
 	margin-left:10px;
 	background-color: #D9D9D9;
 	flex-basis:70%;
 	height:600px;
 	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 	border-radius: 20px;
-}
+} 
 
 .schedule {
 	margin-left:20px;
@@ -163,4 +164,10 @@
   background-color: white;
   display: none;
   overflow: hidden;
+}
+
+#place-details {
+            height: 400px;
+            width: 50%;
+            overflow-y: scroll;
 }
