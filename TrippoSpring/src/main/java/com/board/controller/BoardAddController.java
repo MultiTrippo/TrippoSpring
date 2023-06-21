@@ -5,12 +5,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class BoardViewController {
+public class BoardAddController {
 
-	//@GetMapping("/boardList")
-	@RequestMapping(value="/boardList", method=RequestMethod.GET)
-	public String boardList() {
-		return "board/boardList";
+	//@GetMapping("/addPost")
+	@RequestMapping(value="/addPost", method=RequestMethod.GET)
+	public String boardAdd() {
+		//jsp
+		return "board/boardAdd"; 
 	}
 	
 }
