@@ -37,7 +37,7 @@
 			$('#btnSubmit').click(function(e){	
 				e.preventDefault();
 				
-/* 				if(!$('#review_title').val()){
+ 				if(!$('#review_title').val()){
 					alert('제목을 입력하세요.');
 					$('#review_title').focus();
 					return false;
@@ -48,7 +48,7 @@
 					alert('글쓴이를 입력하세요.');
 					$('#user_id').focus();
 					return false;
-				} */
+				} 
 				
 				wwwh_form.submit();	
 			});	
