@@ -30,12 +30,9 @@ public class TripReviewVO {
 	private int view_count;
 	private String review_title;
 	private Date created_at;
+	private String contents;
 	
-	@Override
-	public String toString() {
-		return "TripReviewVO [review_num=" + review_num + ", user_id=" + user_id + ", view_count=" + view_count
-				+ ", review_title=" + review_title + ", created_at=" + created_at + "]";
-	}
+	
 	
 	
 

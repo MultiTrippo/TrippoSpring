@@ -34,5 +34,25 @@ public class TripReviewServiceImpl implements TripReviewService {
 		System.out.println("service : 글 작성 완료");		
 		return this.mapper.insertReview(review);
 	}
-
+	
+	@Override
+	public int deleteReview(int review_num) {
+		
+		System.out.println("service: 글 삭제 완료");
+		return this.mapper.deleteReview(review_num);
+	}
+	
+	/*
+	 * @Override public int modifyReview(int review_num) {
+	 * 
+	 * System.out.println("service: 해당 글 수정하러 가기"); return
+	 * this.mapper.modifyReview(review_num); }
+	 */
+	
+	@Override
+	public int modifyReviewComplete(TripReviewVO review){
+		
+		System.out.println("service: 수정 완료");
+		return this.mapper.modifyReviewComplete(review);
+	}
 }

@@ -32,8 +32,7 @@
 <title>선택한 여행 후기 보기</title>
 
 <!-- css파일 참조 -->
-<link rel="stylesheet" type="text/css"
-	href="css/trip_review/trip_review_form.css">
+<link rel="stylesheet" type="text/css" href="css/trip_review/trip_review_form.css">
 <!-- ---------- -->
 
 <!-- javascript 기능 -->
@@ -48,15 +47,33 @@
 				e.preventDefault();			
 				location.href="${pageContext.request.contextPath}/trip_review_form";	
 			});	
-			
+						
 			$('#btnDelete').click(function(e){	
-				e.preventDefault();			
-				location.href="${pageContext.request.contextPath}/trip_review_form";	
+				e.preventDefault();		
+				
+				$('#hiddenForm').attr('action', 'deleteReview');
+				$('#hiddenForm').attr('method', 'get');				
+				hiddenForm.submit();				
 			});	
+			
+			$('#btnModify').click(function(e){	
+				e.preventDefault();		
+				
+				$('#hiddenForm').attr('action', 'modifyReview');
+				$('#hiddenForm').attr('method', 'get');				
+				hiddenForm.submit();				
+			});
 		})
+		
+	
 		
 	</script>
 <!-- ------------- -->
+
+
+<!-- TOAST UI Editor CSS -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/codemirror.min.css"/> -->
+<link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor-viewer.min.css" />
 </head>
 <body>
 	<!-- Bootstrap js -->
@@ -76,44 +93,61 @@
 
 	<div id="background">
 		<div id="container">
-		
-					<div class="input-group mb-3" id="writer">
-						<span class="input-group-text" id="basic-addon1">글번호</span> 
-						<input type="text" class="form-control" name="review_num"
-								aria-label="작성자" aria-describedby="basic-addon1" readonly
-								value="${selectedReview.review_num }">
-					</div>
+			<div id="wwwh">
+				<div class="input-group mb-3" id="writer">
+					<span class="input-group-text">글번호</span> 
+					<input type="text" class="form-control" name="review_num" readonly
+							value="${selectedReview.review_num }">
+				</div>
 
-					<div class="input-group mb-3" id="title">
-						<span class="input-group-text" id="basic-addon1">제목</span> 
-						<input type="text" class="form-control" name="review_title"
-								aria-label="제목을 입력하세요" aria-describedby="basic-addon1" readonly
-								value="${selectedReview.review_title }">
-					</div>	
-					<div class="input-group mb-3" id="writer">
-						<span class="input-group-text" id="basic-addon1">작성자</span> 
-						<input type="text" class="form-control" name="user_id"
-								aria-label="작성자" aria-describedby="basic-addon1" readonly
-								value="${selectedReview.user_id }">
-					</div>	
-					<div class="input-group mb-3" id="writer">
-						<span class="input-group-text" id="basic-addon1">작성일</span> 
-						<input type="text" class="form-control" name="created_at"
-								aria-label="작성자" aria-describedby="basic-addon1" readonly
-								value="${selectedReview.created_at }">
-					</div>
-					<div class="input-group mb-3" id="writer">
-						<span class="input-group-text" id="basic-addon1">조회수</span> 
-						<input type="text" class="form-control" name="view_count"
-								aria-label="작성자" aria-describedby="basic-addon1" readonly
-								value="${selectedReview.view_count }">
-					</div>
-					<div>
-						<button type="button" class="btn btn-outline-warning" id="btnWrite">후기 작성하기</button>
+				<div class="input-group mb-3" id="title">
+					<span class="input-group-text">제목</span> 
+					<input type="text" class="form-control" name="review_title" readonly
+							value="${selectedReview.review_title }">
+				</div>	
+				<div class="input-group mb-3" id="writer">
+					<span class="input-group-text">작성자</span> 
+					<input type="text" class="form-control" name="user_id" readonly
+							value="${selectedReview.user_id }">
+				</div>	
+				<div class="input-group mb-3" id="writer">
+					<span class="input-group-text">작성일</span> 
+					<input type="text" class="form-control" name="created_at" readonly
+							value="${selectedReview.created_at }">
+				</div>
+				<div class="input-group mb-3" id="writer">
+					<span class="input-group-text">조회수</span> 
+					<input type="text" class="form-control" name="view_count" readonly
+							value="${selectedReview.view_count }">
+				</div>
+				<div class="input-group-text">후기내용</div> 
+				<div class="form-control">					
+					<!-- NHN Cloud TOAST UI Viewer CDN -->
+					<script src="https://uicdn.toast.com/editor/latest/toastui-editor-viewer.js"></script>
+					<div id="viewer"></div>
+					<!-- TOAST UI Viewer 생성 JavaScript 코드 -->						
+					<script>
+						const viewer = new toastui.Editor({
+					        el: document.querySelector('#viewer'),
+					        height: '100%',
+					        initialValue: `${selectedReview.contents }`
+					      });					      
+					</script>
+				</div>
+				
+				
+				<div>
+					<button type="button" class="btn btn-outline-warning" id="btnWrite">후기 작성하기</button>					
+					<button type="button" class="btn btn-outline-warning" id="btnList">전체 목록으로</button>
+					<form name="hiddenForm" id="hiddenForm">
+						<input type="hidden" name="review_num" value="<c:out value='${selectedReview.review_num }' />">
 						<button type="button" class="btn btn-outline-warning" id="btnModify">후기 수정하기</button>
 						<button type="button" class="btn btn-outline-warning" id="btnDelete">후기 삭제하기</button>
-						<button type="button" class="btn btn-outline-warning" id="btnList">전체 목록으로</button>
-					</div>
+					</form>
+				</div>
+				
+				
+			</div>					
 		</div>
 	</div>
 </body>
