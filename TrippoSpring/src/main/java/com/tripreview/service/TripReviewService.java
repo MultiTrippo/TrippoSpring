@@ -11,6 +11,12 @@ public interface TripReviewService {
 	public TripReviewVO getOneReview(int review_num);
 	
 	public int insertReview(TripReviewVO review);
+	
+	public int deleteReview(int review_num);
+	
+	/* public int modifyReview(int review_num); */
+
+	public int modifyReviewComplete(TripReviewVO review);
 
 
 }
