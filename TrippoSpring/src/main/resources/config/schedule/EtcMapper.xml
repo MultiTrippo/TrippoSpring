@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.schedule.mapper.EtcMapper">
+	<select id="getEtcList" resultType="EtcVO">
+		select etc
+		from travel_sche_etc
+		where page_id = 'kyjPG'
+	</select>
+
+
+	<insert id="insertEtcList" parameterType="EtcVO" useGeneratedKeys="true" keyProperty="etc_id">
+		insert into travel_sche_etc (page_id, etc)
+		values ('kyjPG', #{etc})
+	</insert>
+	
+	<update id="updateEtcList" parameterType="EtcVO" useGeneratedKeys="true" keyProperty="etc_id">
+		update travel_sche_etc set etc=#{etc}
+		where etc_id = #[etc_id]
+	</update>
+
+	<delete id="deleteEtcList" parameterType="EtcVO">
+		delete from travel_sche_etc where etc_id = #{etc_id}
+	</delete>
+</mapper>
+
+
+

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <!DOCTYPE html>
 
 <html>
@@ -17,7 +19,7 @@
 		
 		<title>Trippo 일정 관리</title>
 		
-		<script defer src="js/schedule/arcodian.js"></script>
+<!-- 		<script defer src="js/schedule/arcodian.js"></script> -->
 		<script defer src="js/schedule/googlemap.js"></script>
 		<script defer src="js/schedule/etcManage.js"></script>
 		  
@@ -77,7 +79,7 @@
 				      for more information.
 				      -->
 				    <script
-				      src="https://maps.googleapis.com/maps/api/js?key=[APIKEYS]&callback=initAutocomplete&libraries=places&v=weekly"
+				      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1vuGjfL_JMaJSEjZVpWB5tX8EMAk88G0&callback=initAutocomplete&libraries=places&v=weekly"
 				      defer
 				    ></script>
 				    
@@ -137,14 +139,30 @@
 			<!-- etc. parts -->
 			<div class="etc">
 				<span id="etcTitle">ETC.</span>
-				<form action="schedule/etcInsert.jsp" method="post">
+				<form action="etcInsert" method="post">
 					<div>
-						<input field="*{text}" type="text" id="textInput" placeholder="하고 싶은 내용을 적어주세요.">
-						<input type="button" value="추가하기" id="addButton">			
+						<input type="hidden" name="pageId" value="${pageId}">
+						<input type="text" id="textInput" placeholder="하고 싶은 내용을 적어주세요.">
+						<button type="button" id="addButton">추가하기</button>			
 					</div>
-					<div id="etcContainer" class="etcContainer"></div>
+					
 				</form>
 		
+				<div id="etcContainer" class="etcContainer">
+					<c:import url="/etcList"></c:import>
+					
+					<c:forEach var="data" items="${getEtcList}">
+						<div class="etcDetailCon">
+							<div>
+								<span>${data.etc}</span>
+								<button class="editButton">수정</button>
+								<button class="deleteButton">삭제</button>
+							</div>
+						
+						</div>
+					
+					</c:forEach>
+				</div>
 			</div>
 		
 		</div>
