@@ -42,11 +42,11 @@
 
 <style>
     .preview-image {
-      width: 200px;
+      width: 100px;
       height: auto;
-      margin: 10px;
+      margin: 5px;
       border: 1px solid #ccc;
-      padding: 5px;
+      padding: 2px;
     }
 </style>
 

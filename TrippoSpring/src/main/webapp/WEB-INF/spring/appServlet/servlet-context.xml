@@ -18,6 +18,7 @@
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 	<resources mapping="/css/**" location="/css/" />
+
 	<resources mapping="/images/**" location="/images/" />
     <resources mapping="/inc/**" location="/inc/" />
     <resources mapping="/js/**" location="/js/" />
@@ -31,6 +32,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+<<<<<<< HEAD
 	<!-- 파일 업로드를 위한 MultipartResolver 설정 ================== -->
 	<!--주의: 빈의 id는 반드시 multipartResolver로 등록해야 한다.
 	다른 아이디를 주면 DispatcherServlet이 MultipartResolver로
@@ -44,6 +46,16 @@
 		<beans:constructor-arg index="0" value="/Users/minjikang/git/TrippoSpring/TrippoSpring/src/main/webapp/images/board/Upload"/>
 		<!-- String upDir=new String("/Users/minjikang/Desktop/backend/myjava/Upload"); 와 동일 -->
 	</beans:bean>
+=======
+	
+	<!-- 혜원: 스캔 -->
+	<context:component-scan base-package="com.tripreview.controller" />
+	<context:component-scan base-package="com.tripreview.service" />
+	<context:component-scan base-package="com.tripreview.vo" />
+	<context:component-scan base-package="com.tripreview.mapper" />
+	<!-- ======= -->
+	
+>>>>>>> 6c0615cc44a9d87db1eb55edcef141cf6f61bc99
 
 	<!-- 스캔 대상 패키지를 등록 ====================== -->
 	<context:component-scan
@@ -52,6 +64,4 @@
 		base-package="com.board" />
 	<!-- 일정관리 페이지 연결되게 패키지 경로 추가 -->
    	<context:component-scan base-package="com.schedule.model,com.schedule.controller" />
-
-
 </beans:beans>
