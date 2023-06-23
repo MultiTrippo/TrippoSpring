@@ -62,7 +62,7 @@ function date() {
 				url: 'https://apidojo-booking-v1.p.rapidapi.com/locations/auto-complete?text='+complete+'&languagecode=ko',
 				method: 'GET',
 				headers: {
-					'X-RapidAPI-Key': '1c46e5eea0mshdaee6c1bc52c600p13b95bjsn07ca45bb6b96',
+					'X-RapidAPI-Key': '',
 					'X-RapidAPI-Host': 'apidojo-booking-v1.p.rapidapi.com'
 				}
 			};

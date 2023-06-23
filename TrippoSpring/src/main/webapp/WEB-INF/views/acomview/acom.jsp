@@ -39,7 +39,7 @@
 			url: 'https://hotels-com-provider.p.rapidapi.com/v2/meta/convert/slug-id?slug=ho219115',
 			method: 'GET',
 			headers: {
-				'X-RapidAPI-Key': '1c46e5eea0mshdaee6c1bc52c600p13b95bjsn07ca45bb6b96',
+				'X-RapidAPI-Key': '',
 				'X-RapidAPI-Host': 'hotels-com-provider.p.rapidapi.com'
 			}
 		};
@@ -57,7 +57,7 @@
 				url: 'https://hotels-com-provider.p.rapidapi.com/v2/hotels/summary?domain=KR&locale=ko_KR&hotel_id=1105156',
 				method: 'GET',
 				headers: {
-					'X-RapidAPI-Key': '1c46e5eea0mshdaee6c1bc52c600p13b95bjsn07ca45bb6b96',
+					'X-RapidAPI-Key': '',
 					'X-RapidAPI-Host': 'hotels-com-provider.p.rapidapi.com'
 				}
 			};
@@ -75,7 +75,7 @@
   				url: 'https://hotels-com-provider.p.rapidapi.com/v2/hotels/summary?domain=KR&locale=ko_KR&hotel_id=1105156',
   				method: 'GET',
   				headers: {
-  					'X-RapidAPI-Key': '1c46e5eea0mshdaee6c1bc52c600p13b95bjsn07ca45bb6b96',
+  					'X-RapidAPI-Key': '',
   					'X-RapidAPI-Host': 'hotels-com-provider.p.rapidapi.com'
   				}
   			};
@@ -95,7 +95,7 @@
 					url: 'https://hotels-com-provider.p.rapidapi.com/v2/hotels/info?hotel_id='+hid+'&locale=en_GB&domain=AE',
 					method: 'GET',
 					headers: {
-						'X-RapidAPI-Key': '1c46e5eea0mshdaee6c1bc52c600p13b95bjsn07ca45bb6b96',
+						'X-RapidAPI-Key': '',
 						'X-RapidAPI-Host': 'hotels-com-provider.p.rapidapi.com'
 					}
 				};
@@ -115,7 +115,7 @@
 					url: 'https://hotels-com-provider.p.rapidapi.com/v2/hotels/summary?domain=KR&locale=ko_KR&hotel_id='+hid+'',
 					method: 'GET',
 					headers: {
-						'X-RapidAPI-Key': '1c46e5eea0mshdaee6c1bc52c600p13b95bjsn07ca45bb6b96',
+						'X-RapidAPI-Key': '',
 						'X-RapidAPI-Host': 'hotels-com-provider.p.rapidapi.com'
 					}
 				};
@@ -137,7 +137,7 @@
 					url: 'https://hotels-com-provider.p.rapidapi.com/v2/hotels/summary?domain=KR&locale=ko_KR&hotel_id='+hid+'',
 					method: 'GET',
 					headers: {
-						'X-RapidAPI-Key': '1c46e5eea0mshdaee6c1bc52c600p13b95bjsn07ca45bb6b96',
+						'X-RapidAPI-Key': '',
 						'X-RapidAPI-Host': 'hotels-com-provider.p.rapidapi.com'
 					}
 				};
@@ -158,7 +158,7 @@
 					url: 'https://hotels-com-provider.p.rapidapi.com/v2/hotels/summary?domain=KR&locale=ko_KR&hotel_id='+hid+'',
 					method: 'GET',
 					headers: {
-						'X-RapidAPI-Key': '1c46e5eea0mshdaee6c1bc52c600p13b95bjsn07ca45bb6b96',
+						'X-RapidAPI-Key': '',
 						'X-RapidAPI-Host': 'hotels-com-provider.p.rapidapi.com'
 					}
 				};
