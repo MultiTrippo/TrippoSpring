@@ -12,6 +12,7 @@
 
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <!-- jQuery UI -->
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -27,7 +28,7 @@
 	crossorigin="anonymous"></script>
 <!-- ------------ -->
 <body>
-
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 <div style="background-color:#D2EFFF">
 	<div id="flight_header" style="background-color:white">
 		<div id="container">
@@ -53,7 +54,45 @@
 	</div>
 	<br>
 	<div id="flight_body" style="background-color:white" >
-	<h1> api 적용중....</h1>
+	
+	<div id="flight-details">
+  <h3>항공권 상세 정보</h3>
+  <div id="commerce-name"></div>
+  <div id="total-price"></div>
+  <div id="provider-id"></div>
+  <div id="partner-logo"></div>
+</div>
+	<script>
+	const settings = {
+			async: true,
+			crossDomain: true,
+			url: 'https://tripadvisor16.p.rapidapi.com/api/v1/flights/searchFlights?sourceAirportCode=ICN&destinationAirportCode=CDG&date=2023-07-12&itineraryType=ROUND_TRIP&sortOrder=PRICE&numAdults=1&numSeniors=0&classOfService=ECONOMY&returnDate=2023-07-15&pageNumber=1&currencyCode=KRW',
+			method: 'GET',
+			headers: {
+				'X-RapidAPI-Key': '60c5ede577msh7e68a54b4501c1bp180965jsna4480f0218b9',
+				'X-RapidAPI-Host': 'tripadvisor16.p.rapidapi.com'
+			}
+		};
+
+		$.ajax(settings).done(function (response) {
+		
+			 var flight = response.data.flights[0];
+			  var purchaseLink = flight.purchaseLinks[0];
+
+			  console.log(response);
+			  console.log(purchaseLink.commerceName);
+			  console.log(purchaseLink.totalPrice);
+			  console.log(purchaseLink.providerId);
+			  console.log(purchaseLink.partnerSuppliedProvider.logoUrl);
+
+			  $("#partner-logo").html("<img src='" + purchaseLink.partnerSuppliedProvider.logoUrl + "'/>"+purchaseLink.providerId);
+			  $("#commerce-name").text("상품명: " + purchaseLink.commerceName);
+			  $("#total-price").text("가격: " + purchaseLink.totalPrice + "$");
+		//	  $("#provider-id").text("배급업체: " + purchaseLink.providerId);
+			  
+		});
+
+	</script>
 	</div>
 </div>
 </body>
