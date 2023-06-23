@@ -51,7 +51,7 @@
 				</div>
 				<script
 			      defer
-			      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrmeYmh2NFLAC4bRU_E5zW8ZJBpUuwh-0&callback=initMap"
+			      src="https://maps.googleapis.com/maps/api/js?key"
 			    ></script>
 				
 				<!-- schedule -->
