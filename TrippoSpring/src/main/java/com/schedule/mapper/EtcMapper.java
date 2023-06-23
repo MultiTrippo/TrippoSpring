@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.schedule.db.EtcVO;
 
+
 @Mapper
 public interface EtcMapper {
 	public List<EtcVO> getEtcList(String pageId);

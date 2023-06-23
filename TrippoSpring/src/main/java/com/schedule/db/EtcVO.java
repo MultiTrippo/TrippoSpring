@@ -3,6 +3,7 @@ package com.schedule.db;
 import lombok.Getter;
 import lombok.Setter;
 
+
 @Getter
 @Setter
 public class EtcVO {

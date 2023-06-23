@@ -2,6 +2,7 @@ package com.schedule.db;
 
 import java.util.List;
 
+
 public interface EtcService {
 	public List<EtcVO> getEtcList(String pageId);
 	public int insertEtcList(EtcVO etc);

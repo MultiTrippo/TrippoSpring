@@ -77,7 +77,6 @@ public class ScheduleController {
 			System.out.println("controller : etc 수정 실패");
 		}
 		
-		
 		return "redirect:/schedule";
 	}
 	

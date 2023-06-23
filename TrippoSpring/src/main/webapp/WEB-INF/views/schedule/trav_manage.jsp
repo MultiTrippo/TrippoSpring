@@ -79,7 +79,7 @@
 				      for more information.
 				      -->
 				    <script
-				      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1vuGjfL_JMaJSEjZVpWB5tX8EMAk88G0&callback=initAutocomplete&libraries=places&v=weekly"
+				      src="https://maps.googleapis.com/maps/api/js?key=apikey&callback=initAutocomplete&libraries=places&v=weekly"
 				      defer
 				    ></script>
 				    
@@ -166,6 +166,7 @@
 			</div>
 		
 		</div>
+		
 		
 		<!-- footer part -->
 		<div>

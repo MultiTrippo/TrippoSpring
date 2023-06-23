@@ -29,6 +29,7 @@ public class MyBatisTest
             System.out.println(" >>>>>>>>>> session 출력 : "+session+"\n");
             
         } catch (Exception e) {
+        	
             e.printStackTrace();
         }
     }
