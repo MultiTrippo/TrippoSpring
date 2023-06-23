@@ -84,7 +84,6 @@
 			  console.log(purchaseLink.totalPrice);
 			  console.log(purchaseLink.providerId);
 			  console.log(purchaseLink.partnerSuppliedProvider.logoUrl);
-
 			  $("#partner-logo").html("<img src='" + purchaseLink.partnerSuppliedProvider.logoUrl + "'/>"+purchaseLink.providerId);
 			  $("#commerce-name").text("상품명: " + purchaseLink.commerceName);
 			  $("#total-price").text("가격: " + purchaseLink.totalPrice + "$");
