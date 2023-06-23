@@ -30,6 +30,20 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
+	
+	<!-- 파일 업로드를 위한 MultipartResolver 설정 ================== -->
+	<!--주의: 빈의 id는 반드시 multipartResolver로 등록해야 한다.
+	다른 아이디를 주면 DispatcherServlet이 MultipartResolver로
+	인식하질 못한다.  -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="defaultEncoding" value="utf-8"/>
+		<beans:property name="maxUploadSize" value="-1"/> <!-- value를 -1을 주면 무제한 업로드 가능 -->
+	</beans:bean>
+	
+	<beans:bean id="upDir" class="java.lang.String">
+		<beans:constructor-arg index="0" value="/Users/minjikang/git/TrippoSpring/TrippoSpring/src/main/webapp/images/board/Upload"/>
+		<!-- String upDir=new String("/Users/minjikang/Desktop/backend/myjava/Upload"); 와 동일 -->
+	</beans:bean>
 
 	<!-- 스캔 대상 패키지를 등록 ====================== -->
 	<context:component-scan

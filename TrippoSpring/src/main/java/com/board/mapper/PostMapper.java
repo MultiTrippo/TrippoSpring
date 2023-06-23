@@ -2,8 +2,13 @@ package com.board.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
+
 import com.board.model.PostVO;
 
+@Repository
+@Mapper
 public interface PostMapper {
 	//포스트 생성 또는 수정, 삭제
     int createPost(PostVO post);

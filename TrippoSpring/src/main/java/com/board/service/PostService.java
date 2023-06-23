@@ -2,8 +2,11 @@ package com.board.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.board.model.PostVO;
 
+@Service
 public interface PostService {
 	//포스트 생성 또는 수정, 삭제
     int createPost(PostVO post);
