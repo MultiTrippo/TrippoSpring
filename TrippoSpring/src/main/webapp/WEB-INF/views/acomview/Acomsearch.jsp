@@ -115,7 +115,7 @@ function autoSet(label){
 			<div class="adult">인원수설정</div>
 			<button type="submit" class="sc button">검색버튼</button>
 		</div>
-		
+	<!-- 이제 인원수 선택 해야함 -->	
 	</form>
 </body>
 </html>
