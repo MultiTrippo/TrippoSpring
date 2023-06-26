@@ -152,8 +152,7 @@
 				<input type="hidden" id="pageId" value="<%= request.getParameter("page_id") %>">
 		
 				<div id="etcContainer" class="etcContainer">
-					
-					
+						
 					
 				</div>
 			</div>
