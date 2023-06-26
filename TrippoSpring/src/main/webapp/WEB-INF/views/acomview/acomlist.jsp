@@ -49,6 +49,7 @@ $.ajax(settings).done(function (response) {
 	str+='</ul>';
 	$('#acomlist').html(str)
 });
+//이미지,이름 외에 추가 해야함
 </script>
 
 	<div id='acomlist'>
