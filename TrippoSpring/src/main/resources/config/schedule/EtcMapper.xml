@@ -8,21 +8,21 @@
 	<select id="getEtcList" resultType="EtcVO">
 		select etc, etc_id
 		from travel_sche_etc
-		where page_id = #{pageId}
+		where page_id = #{page_id}
 	</select>
 
 	<insert id="insertEtcList" parameterType="EtcVO" useGeneratedKeys="true" keyProperty="etc_id">
 		insert into travel_sche_etc (page_id, etc)
-		values (#{pageId}, #{etc})
+		values (#{page_id}, #{etc})
 	</insert>
 	
 	<update id="updateEtcList" parameterType="EtcVO" useGeneratedKeys="true" keyProperty="etc_id">
 		update travel_sche_etc set etc=#{etc}
-		where etc_id = #{etc_id} and pageId = #{pageId}
+		where etc_id = #{etc_id} and page_id = #{page_id}
 	</update>
 
 	<delete id="deleteEtcList" parameterType="EtcVO">
-		delete from travel_sche_etc where etc_id = #{etc_id} and page_id = #{pageId}
+		delete from travel_sche_etc where etc_id = #{etc_id} and page_id = #{page_id}
 	</delete>
 </mapper>
 

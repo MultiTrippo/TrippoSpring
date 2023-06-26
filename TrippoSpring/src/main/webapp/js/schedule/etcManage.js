@@ -1,7 +1,11 @@
+    
+
 $(document).ready(function() {
     // 페이지 로드 시 ETC 목록을 가져오는 함수 호출
-    var pageId = $("#pageId").val();
+    //var pageId = $("#pageId").val();
+    var pageId = "kyjPG";
     getEtcList(pageId);
+    
 
     // Add 버튼 클릭 시 이벤트 처리
     $("#addButton").click(function() {
@@ -11,12 +15,14 @@ $(document).ready(function() {
             return;
         }
 
+       
         // AJAX를 사용하여 데이터를 서버로 전송
         $.ajax({
             url: "/etcInsert",
             type: "POST",
             data: {
-                etc: textValue
+                etc: textValue,
+                page_id : pageId
             },
             success: function() {
                 // 등록 성공 시 새로운 ETC 아이템 생성
@@ -32,20 +38,21 @@ $(document).ready(function() {
                 console.log("Failed to insert ETC data.");
             }
         });
+
+	  
+        
+       
     });
 
     // ETC 목록을 가져오는 함수
     function getEtcList(pageId) {
-    	var pageId = "kyjPG";
         $.ajax({
-            url: "/etcList",
+            url: "/etcList?page_id="+pageId,
             type: "GET",
-            data: {
-                page_id: pageId
-            },
+            dataType:'json',           
             success: function(response) {
-                var etcList = response.selectEtc;
-
+                var etcList = response;//.selectEtc;
+	 			console.log(JSON.stringify(etcList));
                 for (var i = 0; i < etcList.length; i++) {
                     var etcData = etcList[i].etc;
 
@@ -76,7 +83,8 @@ $(document).ready(function() {
                 type: "POST",
                 data: {
                     etc_id: $(this).closest(".containerDiv").index() + 1,
-                    etc: newText
+                    etc: newText,
+                    page_id : pageId
                 },
                 success: function() {
                     console.log("ETC data updated successfully.");
@@ -90,6 +98,8 @@ $(document).ready(function() {
 
     // Delete 버튼 클릭 시 이벤트 처리
     $(document).on("click", ".deleteButton", function() {
+    
+    	
         var confirmation = confirm("Are you sure you want to delete this item?");
 
         if (confirmation) {
@@ -100,7 +110,8 @@ $(document).ready(function() {
                 url: "/etcDelete",
                 type: "POST",
                 data: {
-                    etc_id: containerDiv.index() + 1
+                    etc_id: containerDiv.index() + 1,
+                    page_id: pageId
                 },
                 success: function() {
                     containerDiv.remove();
