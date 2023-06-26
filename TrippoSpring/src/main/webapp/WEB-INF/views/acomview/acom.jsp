@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   
-  
+  <!-- ------------ api key 다 지움 ----------------  --> 
   <script>
   $(function(){
 	  init();
@@ -171,7 +171,7 @@
 		}
 			//get_image3-----------------------3번째 이미지 불러옴----------------------
 			
-			// api key 다 지움
+			
 		
 	</script>
 
