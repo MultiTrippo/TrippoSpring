@@ -89,6 +89,9 @@ function autoSet(label){
 	  
 	</script>
 
+
+ 
+
 </head>
 <body>
 	<form class="searchform" action="http://localhost:9090/myapp/acomlist" method="get">
@@ -107,15 +110,37 @@ function autoSet(label){
 			<input type="text" id="check-in" name="check-in" placeholder="체크인날짜를 골라주세요"/>
 			<label for="check-out">Check-out Date:</label>
 			<input type="text" id="check-out" name="check-out"placeholder="체크아웃날짜를 골라주세요" />
+			</div>
 			<!-- ---------------------------- -->
 
 	 <!-- ---------------------------- -->
 			
-			</div>
-			<div class="adult">인원수설정</div>
-			<button type="submit" class="sc button">검색버튼</button>
+		    <div id="guest-info" style="display:none">
+
+        <label>어른:</label>
+        <button class="minus-btn" data-type="adults" type="button">-</button>
+        <span class="count adults">0</span>
+        <button class="plus-btn" data-type="adults" type="button">+</button>
+      </div>
+      <div>
+        <label>어린이:</label>
+        <button class="minus-btn" data-type="children" type="button">-</button>
+        <span class="count children">0</span>
+        <button class="plus-btn" data-type="children" type="button">+</button>
+      </div>
+      <div>
+        <label>방 개수:</label>
+        <button class="minus-btn" data-type="rooms" type="button">-</button>
+        <span class="count rooms">0</span>
+        <button class="plus-btn" data-type="rooms" type="button">+</button>
+ 
+ 	 </div>
+			
+		<button type="submit" class="sc button">검색버튼</button>
 		</div>
+		
 	<!-- api key 지웠음-->	
 	</form>
+
 </body>
 </html>
