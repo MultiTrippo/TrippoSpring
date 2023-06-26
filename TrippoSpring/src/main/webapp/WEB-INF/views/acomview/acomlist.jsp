@@ -24,7 +24,36 @@
 
 </head>
 <body>
-<div class="test"> test </div>
+<div class="test"> <h1>검색 조건에 맞는 숙소 </h1>
+<script>
+const settings = {
+	async: true,
+	crossDomain: true,
+	url: 'https://apidojo-booking-v1.p.rapidapi.com/properties/list?offset=0&arrival_date=${param.arrival_date}&departure_date=${param.departure_date}&guest_qty=${param.guest_qty}&dest_ids=${param.dest_ids}&room_qty=${param.room_qty}&search_type=${param.search_type}&children_qty=${param.children_qty}&price_filter_currencycode=KRW&languagecode=ko',
+	method: 'GET',
+	headers: {
+		,
+		'X-RapidAPI-Host': 'apidojo-booking-v1.p.rapidapi.com'
+	}
+};
 
+$.ajax(settings).done(function (response) {
+	console.log(response.result);
+	var arr=response.result;
+	var str='<ul>';
+	for(var i=0;i<arr.length;i++){
+		var obj=arr[i];
+		str+='<li>'+obj.hotel_name+'</li>'	
+		str+='<li><img src="'+obj.main_photo_url+'"></li>'	
+	}
+	str+='</ul>';
+	$('#acomlist').html(str)
+});
+</script>
+
+	<div id='acomlist'>
+	
+	</div>
+</div>
 </body>
 </html>
