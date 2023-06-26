@@ -63,14 +63,16 @@
   <div id="partner-logo"></div>
 </div>
 	<script>
+	String x_key='adsikofjdsiofajsdoifsdjoifsda';
+	String x_host='tripadvisor16.p.rapidapi.com'
 	const settings = {
 			async: true,
 			crossDomain: true,
 			url: 'https://tripadvisor16.p.rapidapi.com/api/v1/flights/searchFlights?sourceAirportCode=ICN&destinationAirportCode=CDG&date=2023-07-12&itineraryType=ROUND_TRIP&sortOrder=PRICE&numAdults=1&numSeniors=0&classOfService=ECONOMY&returnDate=2023-07-15&pageNumber=1&currencyCode=KRW',
 			method: 'GET',
 			headers: {
-				'X-RapidAPI-Key': 'asdfkjnmsaoidfjisdafjioakldsfjosdajfasdkofis',
-				'X-RapidAPI-Host': 'tripadvisor16.p.rapiddapi.com'
+				'X-RapidAPI-Key': x_key,
+				'X-RapidAPI-Host': x_host
 			}//api 재적용하기
 		};
 
