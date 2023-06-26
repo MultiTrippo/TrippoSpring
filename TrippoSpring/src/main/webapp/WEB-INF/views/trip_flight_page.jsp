@@ -12,12 +12,13 @@
 
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <!-- jQuery UI -->
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- ------ -->
 
-<title>Flight Reservation</title>
+<title>Flight Reservation_two</title>
 
 </head>
 <body>
@@ -27,7 +28,12 @@
 	crossorigin="anonymous"></script>
 <!-- ------------ -->
 <body>
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+<!-- calendar -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 
+<!-- ------------- -->
 <div style="background-color:#D2EFFF">
 	<div id="flight_header" style="background-color:white">
 		<div id="container">
@@ -35,11 +41,10 @@
 		</div>	
 		<br>
 			<div id="container_two">
-			<span class="btn-two rounded bordered" >서울</span>
-			<a href="https://kr.lovepik.com/images/png-cell-phone-icon.html"></a>
+<span class="btn-two rounded bordered" >서울</span>
 			<span class="btn-two rounded">뉴욕</span>
-			<span class="btn-two">2023.07.12.수</span>
-			<span class="btn-two">2023.07.15.토</span>
+			<span class="btn-two"><input type="text" id="datepicker" style="border:0"></span>
+			<span class="btn-two"><input type="text" id="datepicker_round" style="border:0"></span>
 				<select name="dropdown">
 		 	   	 <option value="1ea">1명</option>
 				  <option value="2ea">2명</option>
@@ -53,7 +58,52 @@
 	</div>
 	<br>
 	<div id="flight_body" style="background-color:white" >
-	<h1> api 적용중....</h1>
+	
+	<div id="flight-details">
+  <h3>항공권 상세 정보</h3>
+  <div id="commerce-name"></div>
+  <div id="total-price"></div>
+  <div id="provider-id"></div>
+  <div id="partner-logo"></div>
+</div>
+	<script>
+
+	const settings = {
+			async: true,
+			crossDomain: true,
+			url: 'https://tripadvisor16.p.rapidapi.com/api/v1/flights/searchFlights?sourceAirportCode=BOM&destinationAirportCode=DEL&date=2023-06-29&itineraryType=ONE_WAY&sortOrder=PRICE&numAdults=1&numSeniors=0&classOfService=ECONOMY&returnDate=2023-07-06&pageNumber=1&currencyCode=USD',
+			method: 'GET',
+			headers: {
+				'X-RapidAPI-Key': '',
+				'X-RapidAPI-Host': ''
+			}//api 재적용하기
+		};
+
+		$.ajax(settings).done(function (response) {
+			
+			 var flight = response.data.flights[0];
+			  var purchaseLink = flight.purchaseLinks[0];
+			  console.log(response);
+			  console.log(purchaseLink.commerceName);
+			  console.log(purchaseLink.totalPrice);
+			  console.log(purchaseLink.providerId);
+			  console.log(purchaseLink.partnerSuppliedProvider.logoUrl);
+			  $("#partner-logo").html("<img src='" + purchaseLink.partnerSuppliedProvider.logoUrl + "'/>"+purchaseLink.providerId);
+			 // $("#commerce-name").text("상품명: " + purchaseLink.commerceName);
+			  $("#total-price").text("가격: " + purchaseLink.totalPrice + "$");
+			  $("#provider-id").text("배급업체: " + purchaseLink.providerId);
+		    }
+		});
+		
+
+	</script>
+	<!-- calendar function -->
+	<script>
+	$(document).ready(function() {
+  	$("#datepicker").datepicker();
+  	$("#datepicker_round").datepicker();
+	});
+	</script>
 	</div>
 </div>
 </body>
