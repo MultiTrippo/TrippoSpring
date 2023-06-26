@@ -7,6 +7,9 @@ root-context.xml
 #servlet-context.xml
 servlet-context.xml
 
+**/appServlet/
+
+
 .settings
 .project
 .springBeans
