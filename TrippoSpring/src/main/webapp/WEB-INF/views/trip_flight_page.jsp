@@ -69,9 +69,9 @@
 			url: 'https://tripadvisor16.p.rapidapi.com/api/v1/flights/searchFlights?sourceAirportCode=ICN&destinationAirportCode=CDG&date=2023-07-12&itineraryType=ROUND_TRIP&sortOrder=PRICE&numAdults=1&numSeniors=0&classOfService=ECONOMY&returnDate=2023-07-15&pageNumber=1&currencyCode=KRW',
 			method: 'GET',
 			headers: {
-				'X-RapidAPI-Key': '60c5ede577msh7e68a54b4501c1bp180965jsna4480f0218b9',
-				'X-RapidAPI-Host': 'tripadvisor16.p.rapidapi.com'
-			}
+				'X-RapidAPI-Key': 'asdfkjnmsaoidfjisdafjioakldsfjosdajfasdkofis',
+				'X-RapidAPI-Host': 'tripadvisor16.p.rapiddapi.com'
+			}//api 재적용하기
 		};
 
 		$.ajax(settings).done(function (response) {
