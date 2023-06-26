@@ -6,23 +6,23 @@
 
 <mapper namespace="com.schedule.mapper.EtcMapper">
 	<select id="getEtcList" resultType="EtcVO">
-		select etc
+		select etc, etc_id
 		from travel_sche_etc
-		where page_id = 'kyjPG'
+		where page_id = #{pageId}
 	</select>
 
 	<insert id="insertEtcList" parameterType="EtcVO" useGeneratedKeys="true" keyProperty="etc_id">
 		insert into travel_sche_etc (page_id, etc)
-		values ('kyjPG', #{etc})
+		values (#{pageId}, #{etc})
 	</insert>
 	
 	<update id="updateEtcList" parameterType="EtcVO" useGeneratedKeys="true" keyProperty="etc_id">
 		update travel_sche_etc set etc=#{etc}
-		where etc_id = #[etc_id]
+		where etc_id = #{etc_id} and pageId = #{pageId}
 	</update>
 
 	<delete id="deleteEtcList" parameterType="EtcVO">
-		delete from travel_sche_etc where etc_id = #{etc_id}
+		delete from travel_sche_etc where etc_id = #{etc_id} and page_id = #{pageId}
 	</delete>
 </mapper>
 

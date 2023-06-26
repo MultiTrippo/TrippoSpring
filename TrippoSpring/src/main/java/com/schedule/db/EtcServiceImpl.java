@@ -9,7 +9,7 @@ import com.schedule.db.*;
 import com.schedule.mapper.EtcMapper;
 
 
-@Service("EtcService")
+@Service("etcService")
 public class EtcServiceImpl implements EtcService{
 
 	@Autowired
@@ -17,6 +17,7 @@ public class EtcServiceImpl implements EtcService{
 	
 	@Override
 	public List<EtcVO> getEtcList(String pageId){
+		System.out.println("리스트 불러오기" + pageId);
 		return this.etcMapper.getEtcList(pageId);
 	}
 	
