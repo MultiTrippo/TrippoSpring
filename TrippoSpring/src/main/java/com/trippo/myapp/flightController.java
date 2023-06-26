@@ -4,12 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class TripReviewFormController {
+public class flightController {
 
-	@GetMapping("/trip_review_form")
-	public String tripReviewForm() {
+	@GetMapping("/trip_flight_page")
+	public String tripFlightPage() {
 		
-		return "trip_review_form/trip_review_form";
+		return "/trip_flight_page";
 	}
 	
 }

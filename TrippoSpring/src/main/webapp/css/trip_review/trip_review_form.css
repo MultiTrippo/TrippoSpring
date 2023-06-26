@@ -4,26 +4,25 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'IBM Plex Sans KR', sans-serif;
 }
 
-/* 배경: 흰색 */
-#background{
-	background-color: #ff80ff;
-}
-
-/* 노란색 다이어리부분 */
+/* 연노랑배경 */
 #container{
-	width: 98vw;
-	height: 98vh;
-	background-color: #FFE697; 
-	border-radius: 30px;		
+	background-color: #FFF8D6;
+	width: calc(100% - 20%);
+	height: 100%;		
 	display: flex; 
+	flex-direction: column;
+	padding: 2rem 2%;
+	margin-left: 20%;
 }
 
-/* wwwh 페이지 */
+/* 흰색 wwwh form부분 */
 #wwwh{
-	width: 48%; 
-	height: 95vh; 
+	padding: 2rem;
+	width: 95%; 
+	height: 100%; 
 	background-color: #FFFFFF; 
 	border-radius: 30px; 
 	margin: 10px;	
@@ -34,7 +33,7 @@
 	background-color: #FFE697;
 }
 
-#title, #where, #with{
+#title, #where, #with, #expences{
 	width: 90%;
 }
 

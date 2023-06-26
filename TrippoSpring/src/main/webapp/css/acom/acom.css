@@ -38,6 +38,7 @@
 .acomimage1{/*가장큰 이미지 */
 display: inline-block;
 flex-grow: 1;
+
   width: 600px;
   height: 160px;
   margin: 14px 14px 13px 0;
@@ -54,6 +55,7 @@ flex-grow: 1;
 
 
 
+
 .acomimage2{/*두번째로 큰 이미지 */
 flex-grow: 1;
 display: inline-block;
@@ -61,6 +63,7 @@ display: inline-block;
   height: 160px;
   margin: 14px 11px 13px 14px;
   border-radius: 30px;
+<
   
 }
 .acomimage2>img{
@@ -69,6 +72,7 @@ display: inline-block;
 	  object-fit: scale-down;
 }
 
+
 .acomimage3{/*세번째로 큰 이미지 */
 flex-grow: 1;
 display: inline-block;
@@ -76,6 +80,8 @@ display: inline-block;
   height: 160px;
   
   border-radius: 30px;
+
+
 
 }
 .plusimage{/* 이미지 더보기*/
@@ -112,5 +118,6 @@ display: inline-block;
     background-color: #c4b0ff;
 }
 
-/*ㄴㄴㄴㄴ*/
+
+
 

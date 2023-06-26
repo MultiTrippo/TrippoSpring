@@ -1,0 +1,115 @@
+$(document).ready(function() {
+    // 페이지 로드 시 ETC 목록을 가져오는 함수 호출
+    var pageId = $("#pageId").val();
+    getEtcList(pageId);
+
+    // Add 버튼 클릭 시 이벤트 처리
+    $("#addButton").click(function() {
+        var textValue = $("#textInput").val().trim();
+
+        if (textValue === "") {
+            return;
+        }
+
+        // AJAX를 사용하여 데이터를 서버로 전송
+        $.ajax({
+            url: "/etcInsert",
+            type: "POST",
+            data: {
+                etc: textValue
+            },
+            success: function() {
+                // 등록 성공 시 새로운 ETC 아이템 생성
+                var newDiv = $("<div>").addClass("containerDiv");
+                var newInnerDiv = $("<div>").html("<span>" + textValue + "</span><button class='editButton'>Edit</button><button class='deleteButton'>Delete</button>");
+                newDiv.append(newInnerDiv);
+                $("#etcContainer").append(newDiv);
+
+                // 입력 필드 초기화
+                $("#textInput").val("");
+            },
+            error: function() {
+                console.log("Failed to insert ETC data.");
+            }
+        });
+    });
+
+    // ETC 목록을 가져오는 함수
+    function getEtcList(pageId) {
+    	var pageId = "kyjPG";
+        $.ajax({
+            url: "/etcList",
+            type: "GET",
+            data: {
+                page_id: pageId
+            },
+            success: function(response) {
+                var etcList = response.selectEtc;
+
+                for (var i = 0; i < etcList.length; i++) {
+                    var etcData = etcList[i].etc;
+
+                    var newDiv = $("<div>").addClass("containerDiv");
+                    var newInnerDiv = $("<div>").html("<span>" + etcData + "</span><button class='editButton'>Edit</button><button class='deleteButton'>Delete</button>");
+                    newDiv.append(newInnerDiv);
+                    $("#etcContainer").append(newDiv);
+                }
+            },
+            error: function() {
+                console.log("Failed to get ETC list.");
+            }
+        });
+    }
+
+    // Edit 버튼 클릭 시 이벤트 처리
+    $(document).on("click", ".editButton", function() {
+        var textSpan = $(this).siblings("span");
+        var textValue = textSpan.text();
+        var newText = prompt("Enter the updated text", textValue);
+
+        if (newText !== null) {
+            textSpan.text(newText);
+
+            // AJAX를 사용하여 데이터를 서버로 전송
+            $.ajax({
+                url: "/etcUpdate",
+                type: "POST",
+                data: {
+                    etc_id: $(this).closest(".containerDiv").index() + 1,
+                    etc: newText
+                },
+                success: function() {
+                    console.log("ETC data updated successfully.");
+                },
+                error: function() {
+                    console.log("Failed to update ETC data.");
+                }
+            });
+        }
+    });
+
+    // Delete 버튼 클릭 시 이벤트 처리
+    $(document).on("click", ".deleteButton", function() {
+        var confirmation = confirm("Are you sure you want to delete this item?");
+
+        if (confirmation) {
+            var containerDiv = $(this).closest(".containerDiv");
+
+            // AJAX를 사용하여 데이터를 서버로 전송
+            $.ajax({
+                url: "/etcDelete",
+                type: "POST",
+                data: {
+                    etc_id: containerDiv.index() + 1
+                },
+                success: function() {
+                    containerDiv.remove();
+                    console.log("ETC data deleted successfully.");
+                },
+                error: function() {
+                    console.log("Failed to delete ETC data.");
+                }
+            });
+        }
+    });
+});
