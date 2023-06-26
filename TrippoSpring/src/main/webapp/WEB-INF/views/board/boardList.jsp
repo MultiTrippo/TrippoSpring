@@ -6,6 +6,9 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link rel="stylesheet" href="css/board/boardList.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>자유게시판</title>
 
 <script>
@@ -51,6 +54,8 @@
 			showImage(currentImageIndex + 1);
 		}
 	}
+	
+	$('.myModal').on('shown.bs.modal', function () {   $('#myInput').trigger('focus') })
 </script>
 </head>
 
@@ -58,6 +63,7 @@
 
 <button type="button" class="btn btn-info" onclick="location.href='/addPost';">게시글 작성</button>
 <body onload="showImage(0);">
+ <%@ include file="boardShowDetails.jsp" %>
 	<h1>Photo Slideshow</h1>
 
 	<div>
@@ -89,7 +95,7 @@
 							
 								<div class="card-body">
 								    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-								    <a href="#" class="btn btn-warning">Go somewhere</a>
+								    <a href="#" class="btn btn-warning myModal">Go somewhere</a>
 								</div>
 							</div>
 						<%
