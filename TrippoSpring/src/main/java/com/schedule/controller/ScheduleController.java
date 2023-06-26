@@ -16,16 +16,16 @@ import com.schedule.db.EtcVO;
 @Controller
 public class ScheduleController {
 	
-	// Autowired : springÀÌ bean °´Ã¼¸¦ ÁÖÀÔ. °´Ã¼ »ý¼º ¶Ç´Â ÇÊ¿ä·Î ÇÒ ¶§ ÇØ´çÇÏ´Â Á¾¼Ó¼º ÀÚµ¿À¸·Î ÇØ°á
+	// Autowired : springï¿½ï¿½ bean ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ ï¿½Ê¿ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½Ó¼ï¿½ ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø°ï¿½
 	@Autowired
 	private EtcService etcservice;
 	
 	@RequestMapping(value="/schedule", method=RequestMethod.GET)
 	public String schedule(Model model) {
 		
-		return "schedule/trav_manage"; // ºä ³×ÀÓ .jsp ÆÄÀÏ À§Ä¡
+		return "schedule/trav_manage"; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ .jsp ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡
 		
-		// /WEB-INF/views/schedule/trav_manage.jsp ÇüÅÂ·Î °¡°Ô µÈ´Ù.
+		// /WEB-INF/views/schedule/trav_manage.jsp ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½È´ï¿½.
 		
 	}
 	
@@ -40,9 +40,9 @@ public class ScheduleController {
 		int n = etcservice.insertEtcList(etc);
 		System.out.println("#n : " + n);
 		if(n == 1) {
-			System.out.println("controller : etc ÀÛ¼º ¼º°ø");
+			System.out.println("controller : etc ìž…ë ¥ ì„±ê³µ");
 		} else {
-			System.out.println("controller : etc ÀÛ¼º ½ÇÆÐ");
+			System.out.println("controller : etc ìž…ë ¥ ì‹¤íŒ¨");
 		}
 		
 		return "redirect:/schedule";
@@ -56,9 +56,9 @@ public class ScheduleController {
 		int n = etcservice.deleteEtcList(etc_id);
 		System.out.println("#n : " + n);
 		if(n == 1) {
-			System.out.println("controller : etc »èÁ¦ ¼º°ø");
+			System.out.println("controller : etc ì‚­ì œ ì„±ê³µ");
 		} else {
-			System.out.println("controller : etc »èÁ¦ ½ÇÆÐ");
+			System.out.println("controller : etc ì‚­ì œ ì‹¤íŒ¨");
 		}
 		
 		
@@ -72,9 +72,9 @@ public class ScheduleController {
 		int n = etcservice.updateEtcList(etc_id);
 		System.out.println("#n : " + n);
 		if(n == 1) {
-			System.out.println("controller : etc ¼öÁ¤ ¼º°ø");
+			System.out.println("controller : etc ìˆ˜ì • ì„±ê³µ");
 		} else {
-			System.out.println("controller : etc ¼öÁ¤ ½ÇÆÐ");
+			System.out.println("controller : etc ìˆ˜ì • ì‹¤íŒ¨");
 		}
 		
 		return "redirect:/schedule";
@@ -82,10 +82,14 @@ public class ScheduleController {
 	
 	@RequestMapping(value="/etcList", method = RequestMethod.GET)
 	public String getEtcList(@RequestParam("page_id") String pageId, Model model) {
-		System.out.println("Á¶È¸ÇÏ´Â etc page_id : " + pageId);
-		
+		System.out.println("ë¦¬ìŠ¤íŠ¸ ë¶ˆëŸ¬ì˜¤ê¸° etc page_id : " + pageId);
+
 		List<EtcVO> selectEtc = etcservice.getEtcList(pageId);
-		model.addAttribute("selectEtc",selectEtc);
+		model.addAttribute("selectEtc", selectEtc);
+		
+		List<EtcVO> n = etcservice.getEtcList(pageId);
+		System.out.println("#n : " + n);
+
 		
 		return "schedule/trav_manage";
 		

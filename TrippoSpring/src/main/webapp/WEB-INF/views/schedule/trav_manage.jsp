@@ -147,21 +147,14 @@
 					</div>
 					
 				</form>
+				
+				<c:import url="/etcList"></c:import>
+				<input type="hidden" id="pageId" value="<%= request.getParameter("page_id") %>">
 		
 				<div id="etcContainer" class="etcContainer">
-					<c:import url="/etcList"></c:import>
 					
-					<c:forEach var="data" items="${getEtcList}">
-						<div class="etcDetailCon">
-							<div>
-								<span>${data.etc}</span>
-								<button class="editButton">수정</button>
-								<button class="deleteButton">삭제</button>
-							</div>
-						
-						</div>
 					
-					</c:forEach>
+					
 				</div>
 			</div>
 		

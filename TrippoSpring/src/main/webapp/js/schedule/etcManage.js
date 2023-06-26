@@ -1,98 +1,115 @@
-var addButton = document.getElementById("addButton");
-var etcContainer = document.getElementById("etcContainer");
+$(document).ready(function() {
+    // 페이지 로드 시 ETC 목록을 가져오는 함수 호출
+    var pageId = $("#pageId").val();
+    getEtcList(pageId);
 
-addButton.addEventListener("click", function(e) {
+    // Add 버튼 클릭 시 이벤트 처리
+    $("#addButton").click(function() {
+        var textValue = $("#textInput").val().trim();
 
-  var textInput = document.getElementById("textInput");
-  var textValue = textInput.value.trim();
-
-  if (textValue === "") {
-    return;
-  }
-
-  var newDiv = document.createElement("div");
-  newDiv.className = "containerDiv";
-
-  var newInnerDiv = document.createElement("div");
-  newInnerDiv.innerHTML = "<span>" + textValue + "</span><button class='editButton'>수정</button><button class='deleteButton'>삭제</button>";
-  newDiv.appendChild(newInnerDiv);
-
-  etcContainer.appendChild(newDiv);
-  
-  // AJAX를 사용하여 데이터를 서버로 전송
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST", "/etcInsert"); // etcInsert 서버 스크립트의 경로로 수정
-  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
-    
-  xhr.onreadystatechange = function() {
-  
-    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-      // 성공적으로 데이터가 처리되었을 때 수행할 작업
-      console.log("Data inserted successfully.");
-    } else {
-    	console.log("데이터 보내기 실패");
-	}
-  };
-  
-  var data = "etc=" + encodeURIComponent(textValue);
-  
-  //var data = {
- //   etc: textValue
- // };
-  
-  //xhr.send(JSON.stringify(data));
-
-  xhr.send(data);
-  
-  e.preventDefault();
-  textInput.value = "";
-  console.log("텍스트초기화");
-});
-
-etcContainer.addEventListener("click", function(event) {
-  var target = event.target;
-
-  if (target.classList.contains("editButton")) {
-    var textSpan = target.parentNode.querySelector("span");
-    var textValue = textSpan.textContent;
-    var newText = prompt("수정할 내용을 입력하세요", textValue);
-
-    if (newText !== null) {
-      textSpan.textContent = newText;
-
-      // AJAX를 사용하여 수정된 데이터를 서버로 전송
-      var xhr = new XMLHttpRequest();
-      xhr.open("POST", "/etcUpdate"); // etcUpdate 서버 스크립트의 경로로 수정
-      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
-      xhr.onreadystatechange = function() {
-        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-          // 성공적으로 데이터가 처리되었을 때 수행할 작업
-          console.log("Data updated successfully.");
+        if (textValue === "") {
+            return;
         }
-      };
-      
-      var data = "etc=" + encodeURIComponent(newText);
-      xhr.send(data);
-    }
-  } else if (target.classList.contains("deleteButton")) {
-    var containerDiv = target.parentNode.parentNode;
-    containerDiv.removeChild(target.parentNode);
 
-    // AJAX를 사용하여 데이터 삭제를 서버로 전송
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "/etcDelete"); // etcDelete 서버 스크립트의 경로로 수정
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-        // 성공적으로 데이터가 처리되었을 때 수행할 작업
-        console.log("Data deleted successfully.");
-      }
-    };
-    var data = "etc=" + encodeURIComponent(textValue);
-    xhr.send(data);
+        // AJAX를 사용하여 데이터를 서버로 전송
+        $.ajax({
+            url: "/etcInsert",
+            type: "POST",
+            data: {
+                etc: textValue
+            },
+            success: function() {
+                // 등록 성공 시 새로운 ETC 아이템 생성
+                var newDiv = $("<div>").addClass("containerDiv");
+                var newInnerDiv = $("<div>").html("<span>" + textValue + "</span><button class='editButton'>Edit</button><button class='deleteButton'>Delete</button>");
+                newDiv.append(newInnerDiv);
+                $("#etcContainer").append(newDiv);
 
-    if (containerDiv.childElementCount === 0) {
-      etcContainer.removeChild(containerDiv);
+                // 입력 필드 초기화
+                $("#textInput").val("");
+            },
+            error: function() {
+                console.log("Failed to insert ETC data.");
+            }
+        });
+    });
+
+    // ETC 목록을 가져오는 함수
+    function getEtcList(pageId) {
+    	var pageId = "kyjPG";
+        $.ajax({
+            url: "/etcList",
+            type: "GET",
+            data: {
+                page_id: pageId
+            },
+            success: function(response) {
+                var etcList = response.selectEtc;
+
+                for (var i = 0; i < etcList.length; i++) {
+                    var etcData = etcList[i].etc;
+
+                    var newDiv = $("<div>").addClass("containerDiv");
+                    var newInnerDiv = $("<div>").html("<span>" + etcData + "</span><button class='editButton'>Edit</button><button class='deleteButton'>Delete</button>");
+                    newDiv.append(newInnerDiv);
+                    $("#etcContainer").append(newDiv);
+                }
+            },
+            error: function() {
+                console.log("Failed to get ETC list.");
+            }
+        });
     }
-  }
+
+    // Edit 버튼 클릭 시 이벤트 처리
+    $(document).on("click", ".editButton", function() {
+        var textSpan = $(this).siblings("span");
+        var textValue = textSpan.text();
+        var newText = prompt("Enter the updated text", textValue);
+
+        if (newText !== null) {
+            textSpan.text(newText);
+
+            // AJAX를 사용하여 데이터를 서버로 전송
+            $.ajax({
+                url: "/etcUpdate",
+                type: "POST",
+                data: {
+                    etc_id: $(this).closest(".containerDiv").index() + 1,
+                    etc: newText
+                },
+                success: function() {
+                    console.log("ETC data updated successfully.");
+                },
+                error: function() {
+                    console.log("Failed to update ETC data.");
+                }
+            });
+        }
+    });
+
+    // Delete 버튼 클릭 시 이벤트 처리
+    $(document).on("click", ".deleteButton", function() {
+        var confirmation = confirm("Are you sure you want to delete this item?");
+
+        if (confirmation) {
+            var containerDiv = $(this).closest(".containerDiv");
+
+            // AJAX를 사용하여 데이터를 서버로 전송
+            $.ajax({
+                url: "/etcDelete",
+                type: "POST",
+                data: {
+                    etc_id: containerDiv.index() + 1
+                },
+                success: function() {
+                    containerDiv.remove();
+                    console.log("ETC data deleted successfully.");
+                },
+                error: function() {
+                    console.log("Failed to delete ETC data.");
+                }
+            });
+        }
+    });
 });
