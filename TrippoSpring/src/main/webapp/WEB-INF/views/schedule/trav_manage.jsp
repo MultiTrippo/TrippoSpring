@@ -13,7 +13,7 @@
 		
 		<!-- css 참조 -->
 		<link rel="stylesheet" type="text/css" href="css/schedule/trav_manage.css">
-		<link rel="stylesheet" type="text/css" href="css/schedule/etc.css">
+		<!-- <link rel="stylesheet" type="text/css" href="css/schedule/etc.css"> -->
 		<link rel="stylesheet" type="text/css" href="css/schedule/googlemap.css" />
 		<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"> -->
 		
@@ -141,14 +141,14 @@
 				<span id="etcTitle">ETC.</span>
 				<form action="etcInsert" method="post">
 					<div>
-						<input type="hidden" name="pageId" value="${pageId}">
+			<%-- 			<input type="hidden" name="pageId" value="<%= request.getParameter("page_id") %>"> --%>
 						<input type="text" id="textInput" placeholder="하고 싶은 내용을 적어주세요.">
 						<button type="button" id="addButton">추가하기</button>			
 					</div>
 					
 				</form>
 				
-				<c:import url="/etcList"></c:import>
+				<%-- <c:import url="/etcList"></c:import> --%>
 				<input type="hidden" id="pageId" value="<%= request.getParameter("page_id") %>">
 		
 				<div id="etcContainer" class="etcContainer">
