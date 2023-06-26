@@ -95,7 +95,7 @@ public class TripReviewFormController {
 	}
 	
 	/** 수정 완료 */
-	@RequestMapping(value = "/modifyReviewComplete", method = RequestMethod.GET)
+	@RequestMapping(value = "/modifyReviewComplete", method = RequestMethod.POST)
 	public String modifyReviewComplete(Model model, @ModelAttribute TripReviewVO review) {
 		System.out.println("reviewCompleteController "+review.getReview_title());
 		System.out.println("reviewCompleteController "+review.getUser_id());
