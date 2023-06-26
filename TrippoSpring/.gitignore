@@ -4,6 +4,9 @@ config.properties
 #root-context.xml
 root-context.xml
 
+#servlet-context.xml
+servlet-context.xml
+
 .settings
 .project
 .springBeans

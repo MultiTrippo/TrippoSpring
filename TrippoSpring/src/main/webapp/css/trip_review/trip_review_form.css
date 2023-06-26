@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+}
+
+/* 연노랑배경 */
+#container{
+	background-color: #FFF8D6;
+	width: calc(100% - 20%);
+	height: 100%;		
+	display: flex; 
+	flex-direction: column;
+	padding: 2rem 2%;
+	margin-left: 20%;
+}
+
+/* 흰색 wwwh form부분 */
+#wwwh{
+	padding: 2rem;
+	width: 95%; 
+	height: 100%; 
+	background-color: #FFFFFF; 
+	border-radius: 30px; 
+	margin: 10px;	
+	margin-right: 5px;
+}
+
+.input-group-text{
+	background-color: #FFE697;
+}
+
+#title, #where, #with, #expences{
+	width: 90%;
+}
+
+#date, #depart{
+	width: 44%;
+	float: left;
+	margin-right: 2%;
+}
+#writer, #arrival{
+	width: 44%;
+	float: left;
+}
+
+
+/* 사진&글 작성 페이지 */
+#photo_text{
+	width: 48%; 
+	height: 95vh; 
+	background-color: #FFFFFF; 
+	border-radius: 30px; 		
+	margin: 10px;		
+	margin-left: 5px;
+}

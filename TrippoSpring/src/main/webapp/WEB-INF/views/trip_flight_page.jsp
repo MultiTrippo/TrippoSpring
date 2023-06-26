@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,22 +37,22 @@
 <div style="background-color:#D2EFFF">
 	<div id="flight_header" style="background-color:white">
 		<div id="container">
-		<input type='button' class="btn-two small rounded" style="background-color:#C6D7F3;" value="¿Õº¹" > <input type='button' class="btn-two small rounded" value="Æíµµ" style="background-color:white; color:black">
+		<input type='button' class="btn-two small rounded" style="background-color:#C6D7F3;" value="ì™•ë³µ" > <input type='button' class="btn-two small rounded" value="í¸ë„" style="background-color:white; color:black">
 		</div>	
 		<br>
 			<div id="container_two">
-			<span class="btn-two rounded bordered" >¼­¿ï</span>
-			<span class="btn-two rounded">´º¿å</span>
+<span class="btn-two rounded bordered" >ì„œìš¸</span>
+			<span class="btn-two rounded">ë‰´ìš•</span>
 			<span class="btn-two"><input type="text" id="datepicker" style="border:0"></span>
 			<span class="btn-two"><input type="text" id="datepicker_round" style="border:0"></span>
 				<select name="dropdown">
-		 	   	 <option value="1ea">1¸í</option>
-				  <option value="2ea">2¸í</option>
-				  <option value="3ea">3¸í</option>
-				  <option value="4ea">4¸í</option>
-				  <option value="5ea">5¸í</option>
+		 	   	 <option value="1ea">1ëª…</option>
+				  <option value="2ea">2ëª…</option>
+				  <option value="3ea">3ëª…</option>
+				  <option value="4ea">4ëª…</option>
+				  <option value="5ea">5ëª…</option>
 				</select>
-			<span class=flight_set><button type="submit" style="background-color:#9BD4DB">°Ë»öÇÏ±â</button></span>
+			<span class=flight_set><button type="submit" style="background-color:#9BD4DB">ê²€ìƒ‰í•˜ê¸°</button></span>
 		
 			</div>
 	</div>
@@ -60,7 +60,7 @@
 	<div id="flight_body" style="background-color:white" >
 	
 	<div id="flight-details">
-  <h3>Ç×°ø±Ç »ó¼¼ Á¤º¸</h3>
+  <h3>í•­ê³µê¶Œ ìƒì„¸ ì •ë³´</h3>
   <div id="commerce-name"></div>
   <div id="total-price"></div>
   <div id="provider-id"></div>
@@ -76,7 +76,7 @@
 			headers: {
 				'X-RapidAPI-Key': '',
 				'X-RapidAPI-Host': ''
-			}//api ÀçÀû¿ëÇÏ±â
+			}//api ì¬ì ìš©í•˜ê¸°
 		};
 
 		$.ajax(settings).done(function (response) {
@@ -89,9 +89,9 @@
 			  console.log(purchaseLink.providerId);
 			  console.log(purchaseLink.partnerSuppliedProvider.logoUrl);
 			  $("#partner-logo").html("<img src='" + purchaseLink.partnerSuppliedProvider.logoUrl + "'/>"+purchaseLink.providerId);
-			 // $("#commerce-name").text("»óÇ°¸í: " + purchaseLink.commerceName);
-			  $("#total-price").text("°¡°İ: " + purchaseLink.totalPrice + "$");
-			  $("#provider-id").text("¹è±Ş¾÷Ã¼: " + purchaseLink.providerId);
+			 // $("#commerce-name").text("ìƒí’ˆëª…: " + purchaseLink.commerceName);
+			  $("#total-price").text("ê°€ê²©: " + purchaseLink.totalPrice + "$");
+			  $("#provider-id").text("ë°°ê¸‰ì—…ì²´: " + purchaseLink.providerId);
 		    }
 		});
 		

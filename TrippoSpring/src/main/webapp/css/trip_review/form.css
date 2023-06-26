@@ -1,0 +1,49 @@
+@charset "UTF-8";
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+}
+
+.sidebar{
+	width: 20%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: space-between;
+	padding: 2rem;
+	background-color: #FFE697;
+	color: #655DBB;
+	font-weight: bolder;
+	position: fixed;
+	left: 0;
+}
+
+.logo{
+	letter-spacing: 2;
+}
+
+.menus{
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.menus a{
+	display: flex;
+	align-items: center;
+	color: white;
+	text-decoration: none;
+}
+
+.menus a:hover{
+	color: blue;
+}
+
+#form-check{
+	float: left;
+	margin-right: 2em;
+}

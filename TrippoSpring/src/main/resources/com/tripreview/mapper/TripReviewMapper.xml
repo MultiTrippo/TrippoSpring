@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tripreview.mapper.TripReviewMapper">
+	<select id="getAllList" resultType="TripReviewVO" >
+  		select *
+  		from review_test
+  		order by review_num desc
+  	</select>
+  	
+  	<select id="getOneReview" parameterType="int" resultType="TripReviewVO">
+  		select * 
+  		from review_test 
+  		where review_num=#{review_num}
+  	</select>
+  	
+  	<insert id="insertReview" parameterType="TripReviewVO">
+  		insert into review_test (review_title, user_id, contents)
+  		values (#{review_title}, #{user_id}, #{contents})  	
+  	</insert>
+  	
+  	<delete id="deleteReview" parameterType="int">
+  		delete from review_test
+		where review_num = #{review_num}
+  	</delete>
+  	
+  	<update id="modifyReviewComplete" parameterType="TripReviewVO">
+  		update review_test
+ 		set review_title = #{review_title},
+ 			user_id = #{user_id}
+ 			contents = #{contents}
+ 		where review_num = #{review_num}
+  	</update>
+
+</mapper>
