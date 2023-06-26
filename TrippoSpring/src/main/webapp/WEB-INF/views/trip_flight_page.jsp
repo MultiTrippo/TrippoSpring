@@ -87,8 +87,8 @@
 			  $("#partner-logo").html("<img src='" + purchaseLink.partnerSuppliedProvider.logoUrl + "'/>"+purchaseLink.providerId);
 			  $("#commerce-name").text("상품명: " + purchaseLink.commerceName);
 			  $("#total-price").text("가격: " + purchaseLink.totalPrice + "$");
-			  $("#provider-id").text("배급업체: " + purchaseLink.providerId);
-			       
+			 // $("#provider-id").text("배급업체: " + purchaseLink.providerId);
+			     
 		});
 
 	</script>
