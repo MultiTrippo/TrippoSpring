@@ -37,13 +37,26 @@
 
 <!-- javascript 기능 -->
 	<script>
-		$(function(){
-				
+		$(function(){		
+/* 			$("#wwhere").autocomplete({  //오토 컴플릿트 시작
+				source: List,	// source는 data.js파일 내부의 List 배열
+				focus : function(event, ui) { // 방향키로 자동완성단어 선택 가능하게 만들어줌	
+					return false;
+				},
+				minLength: 1,// 최소 글자수
+				delay: 100,	//autocomplete 딜레이 시간(ms)
+				//disabled: true, //자동완성 기능 끄기
+			}); */
 			
 			$('#btnReset').click(function(e){
 				e.preventDefault();
 				
-				wwwh_form.reset();
+				if(confirm("작성된 내용을 초기화 하시겠습니까?")){					
+					//확인
+					wwwh_form.reset();
+				}else{
+					//취소
+				}				
 			})
 			
 			$('#btnList').click(function(e){	
@@ -55,22 +68,74 @@
 			$('#btnConsole').click(function(e){
 				e.preventDefault();
 				
+				let wwhen1 = $('input[name=wwhen1]').val();
+				let wwith = $('input[name=wwith]').val();
+				console.log(wwhen1);
+				console.log(wwith);
 				console.log(editor.getHTML());
 			})
 			
 			$('#btnSubmit').click(function(e){	
-				e.preventDefault();								
-										
+				e.preventDefault();	
+				
+				//valid check
+				if($('input[name=review_title]').val().trim()==""){
+					alert('제목을 입력하세요');
+					$('input[name=review_title]').focus();
+					return;
+				}
+				if($('input[name=user_id]').val().trim()==""){
+					alert('작성자를 입력하세요');
+					$('input[name=user_id]').focus();
+					return;
+				}
+				if($('input[name=wwhere]').val().trim()==""){
+					alert('여행지를 입력하세요');
+					$('input[name=wwhere]').focus();
+					return;
+				}
+				if($('input[name=wwhen1]').val().trim()==""){
+					alert('출발일을 입력하세요');
+					$('input[name=wwhen1]').focus();
+					return;
+				}
+				if($('input[name=wwhen2]').val().trim()==""){
+					alert('도착일을 입력하세요');
+					$('input[name=wwhen2]').focus();
+					return;
+				}
+				if(!$('input:radio[name=wwith]').is(":checked")){
+					alert('누구와 여행했는지 체크해주세요');
+					return;
+				}
+				if($('input[name=expence]').val().trim()==""){
+					alert('비용을 입력하세요');
+					$('input[name=expence]').focus();
+					return;
+				}				
+				
+				//submit
 				$('#wwwh_form').attr('method', 'post');
 				$('#wwwh_form').attr('action', 'reviewWrite');
 				$('input[name=contents]').attr('value', editor.getHTML());
 				/* $('input[name=contents]').attr('value', editor.getMarkdown()); */
-				
-				
+								
 				wwwh_form.submit();	
 			});
 		})
 		
+		/* 비용 입력시 자동 콤마 생성 
+		function inputNumberFormat(obj) {
+		    obj.value = comma(uncomma(obj.value));
+		}		
+		function comma(str) {
+		    str = String(str);
+		    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+		}		
+		function uncomma(str) {
+		    str = String(str);
+		    return str.replace(/[^\d]+/g, '');
+		}*/
 	</script>
 <!-- ------------- -->
 
@@ -115,7 +180,7 @@
 	</div>
 		
 	<div id="container">			
-		<div id="wwwh"> <!-- (후기번호), 제목, 작성자, (작성일), (조회수), wwhere, wwhen, wwith, expence, contents     -->	
+		<div id="wwwh"> <!-- (후기번호), 제목, 작성자, (작성일), (조회수), wwhere, wwhen1, wwhen2, wwith, expence, contents     -->	
 			<form id="wwwh_form">				
 				<div class="input-group mb-3">
 					<span class="input-group-text">제목</span> 
@@ -124,7 +189,56 @@
 				<div class="input-group mb-3">
 					<span class="input-group-text">작성자</span> 
 					<input type="text" class="form-control" placeholder="작성자" name="user_id">
-				</div>		
+				</div>	
+				<div class="input-group mb-3">
+					<span class="input-group-text">어디로</span> 
+					<input type="text" class="form-control" placeholder="여행지를 입력해주세요" name="wwhere">
+						   <!--list="cityNameList"
+							 <datalist id="cityNameList">
+								<option value="발리, 인도네시아">
+								<option value="괌, 미국">
+							</datalist> -->
+				</div>
+				<div class="input-group mb-3">
+					<span class="input-group-text">출발일</span> 
+					<input type="date" class="form-control" pattern="yyyy/MM/dd" name="wwhen1">
+				</div>
+				<div class="input-group mb-3">
+					<span class="input-group-text">도착일</span> 
+					<input type="date" class="form-control" pattern="yyyy/MM/dd" name="wwhen2">
+				</div>			
+				<div class="input-group mb-3">
+					<span class="input-group-text">누구와</span> 
+					<span class="form-control">
+						<div class="form-check form-check-inline">
+						  <input class="form-check-input" type="radio" name="wwith" id="1" value="부모님과">
+						  <label class="form-check-label" for="1">부모님과</label>
+						</div>
+						<div class="form-check form-check-inline">
+						  <input class="form-check-input" type="radio" name="wwith" id="2" value="혼자여행">
+						  <label class="form-check-label" for="2">혼자여행</label>
+						</div>
+						<div class="form-check form-check-inline">
+						  <input class="form-check-input" type="radio" name="wwith" id="3" value="친구와">
+						  <label class="form-check-label" for="3">친구와</label>
+						</div>
+						<div class="form-check form-check-inline">
+						  <input class="form-check-input" type="radio" name="wwith" id="4" value="연인과">
+						  <label class="form-check-label" for="4">연인과</label>
+						</div>
+						<div class="form-check form-check-inline">
+						  <input class="form-check-input" type="radio" name="wwith" id="5" value="아이와">
+						  <label class="form-check-label" for="5">아이와</label>
+						</div>
+					</span>
+				</div>	
+				<div class="input-group mb-3">
+					<span class="input-group-text">비용</span> 
+					<input type="number" class="form-control" placeholder="총 여행 경비를 적어주세요" name="expence"
+						   style="text-align: right">
+						   <!-- onkeyup="inputNumberFormat(this)"  -->
+					<span class="input-group-text">원</span> 
+				</div>	
 				<div class="form-control">
 					<div id="editor"></div>
 					<!-- NHN Cloud TOAST UI Editor CDN -->
@@ -141,33 +255,15 @@
 					            	console.log(blob)
 					            	/* await fetchUploadImage(blob).then((path) => {
 					            	    console.log(path);
-					            	    callback(path, blob.name);
+					            	    callback(path, blob.name); 
 					            	});
-					            	return false; */					            	
+					            	return false;	*/				            	
 					            }
 					        }
 					    });
 					</script>
 				</div>	
-				<input id="contents" type="hidden" name="contents">	
-				
-<!--			<div class="input-group mb-3">
-					<span class="input-group-text">어디로</span> 
-					<input type="text" class="form-control" placeholder="여행지를 입력해주세요" autocomplete="on" name="wwhere">
-				</div>
-				<div class="input-group mb-3">
-					<span class="input-group-text">출발일</span> 
-					<input type="date" class="form-control" name="wwhen">
-				</div>
-				<div class="input-group mb-3">
-					<span class="input-group-text">도착일</span> 
-					<input type="date" class="form-control">
-				</div>			
-				<div class="input-group mb-3">
-					<span class="input-group-text">비용</span> 
-					<input type="text" class="form-control" placeholder="총 여행 경비를 적어주세요" name="expences">
-					<span class="input-group-text">₩</span> 
-				</div>	 -->					
+				<input id="contents" type="hidden" name="contents">				
 			</form>								
 		</div>
 	</div>	

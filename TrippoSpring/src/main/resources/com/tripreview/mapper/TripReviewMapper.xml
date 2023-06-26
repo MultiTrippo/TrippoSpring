@@ -6,30 +6,35 @@
 <mapper namespace="com.tripreview.mapper.TripReviewMapper">
 	<select id="getAllList" resultType="TripReviewVO" >
   		select *
-  		from review_test
+  		from trip_review
   		order by review_num desc
   	</select>
   	
   	<select id="getOneReview" parameterType="int" resultType="TripReviewVO">
   		select * 
-  		from review_test 
+  		from trip_review 
   		where review_num=#{review_num}
   	</select>
   	
   	<insert id="insertReview" parameterType="TripReviewVO">
-  		insert into review_test (review_title, user_id, contents)
-  		values (#{review_title}, #{user_id}, #{contents})  	
+  		insert into trip_review (review_title, user_id, wwhere, wwhen1, wwhen2, wwith, expence, contents)
+  		values (#{review_title}, #{user_id}, #{wwhere}, #{wwhen1}, #{wwhen2}, #{wwith}, #{expence}, #{contents})  	
   	</insert>
   	
   	<delete id="deleteReview" parameterType="int">
-  		delete from review_test
+  		delete from trip_review
 		where review_num = #{review_num}
   	</delete>
   	
   	<update id="modifyReviewComplete" parameterType="TripReviewVO">
-  		update review_test
+  		update trip_review
  		set review_title = #{review_title},
- 			user_id = #{user_id}
+ 			user_id = #{user_id},
+ 			wwhere = #{wwhere},
+ 			wwhen1 = #{wwhen1},
+ 			wwhen2 = #{wwhen2},
+ 			wwith = #{wwith},
+ 			expence = #{expence},
  			contents = #{contents}
  		where review_num = #{review_num}
   	</update>
