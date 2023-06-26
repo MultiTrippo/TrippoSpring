@@ -135,12 +135,17 @@
 					        el: document.querySelector('#editor'),
 					        previewStyle: 'vertical',
 					        height: '700px',
-					        initialValue: "## 여행 후기를 작성해주세요"
-					        /* hooks: {
+					        initialValue: "## 여행 후기를 작성해주세요",
+					       	hooks: {
 					            addImageBlobHook(blob, callback) {
 					            	console.log(blob)
+					            	/* await fetchUploadImage(blob).then((path) => {
+					            	    console.log(path);
+					            	    callback(path, blob.name);
+					            	});
+					            	return false; */					            	
 					            }
-					        } */
+					        }
 					    });
 					</script>
 				</div>	
