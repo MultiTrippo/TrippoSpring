@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,29 +31,29 @@
 <div style="background-color:#D2EFFF">
 	<div id="flight_header" style="background-color:white">
 		<div id="container">
-		<input type='button' class="btn-two small rounded" style="background-color:#C6D7F3;" value="ΏΥΊΉ" > <input type='button' class="btn-two small rounded" value="Ζνµµ" style="background-color:white; color:black">
+		<input type='button' class="btn-two small rounded" style="background-color:#C6D7F3;" value="μ™•λ³µ" > <input type='button' class="btn-two small rounded" value="νΈλ„" style="background-color:white; color:black">
 		</div>	
 		<br>
 			<div id="container_two">
-			<span class="btn-two rounded bordered" >Ό­Ώο</span>
+			<span class="btn-two rounded bordered" >μ„μΈ</span>
 			<a href="https://kr.lovepik.com/images/png-cell-phone-icon.html"></a>
-			<span class="btn-two rounded">΄ΊΏε</span>
-			<span class="btn-two">2023.07.12.Όφ</span>
-			<span class="btn-two">2023.07.15.Εδ</span>
+			<span class="btn-two rounded">λ‰΄μ•</span>
+			<span class="btn-two">2023.07.12.μ</span>
+			<span class="btn-two">2023.07.15.ν† </span>
 				<select name="dropdown">
-		 	   	 <option value="1ea">1Έν</option>
-				  <option value="2ea">2Έν</option>
-				  <option value="3ea">3Έν</option>
-				  <option value="4ea">4Έν</option>
-				  <option value="5ea">5Έν</option>
+		 	   	 <option value="1ea">1λª…</option>
+				  <option value="2ea">2λª…</option>
+				  <option value="3ea">3λª…</option>
+				  <option value="4ea">4λª…</option>
+				  <option value="5ea">5λª…</option>
 				</select>
-			<span class=flight_set><button type="submit" style="background-color:#9BD4DB">°Λ»φΗΟ±β</button></span>
+			<span class=flight_set><button type="submit" style="background-color:#9BD4DB">κ²€μƒ‰ν•κΈ°</button></span>
 		
 			</div>
 	</div>
 	<br>
 	<div id="flight_body" style="background-color:white" >
-	<h1> api ΐϋΏλΑί....</h1>
+	<h1> api μ μ©μ¤‘....</h1>
 	</div>
 </div>
 </body>

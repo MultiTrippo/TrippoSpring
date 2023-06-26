@@ -2,11 +2,8 @@ package com.board.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import javax.inject.Inject;
 
-import com.board.mapper.PostMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.board.mapper.PostMapper;
@@ -15,13 +12,12 @@ import com.board.model.PostVO;
 @Service("postService")
 public class PostServiceImpl implements PostService {
 	
-	@Autowired
+	@Inject
 	private PostMapper postMapper;
 	
 	@Override
 	public int createPost(PostVO post) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.postMapper.createPost(post);
 	}
 
 	@Override
