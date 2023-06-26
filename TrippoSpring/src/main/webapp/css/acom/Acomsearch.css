@@ -1,0 +1,74 @@
+@charset "UTF-8";
+.searchform{
+	display:block;
+}
+.searchbox{
+	margin: 15% 20% 70% 20% ;
+	width:60%;
+	height:160px;
+	background-color:#febb02;
+	padding:5px;
+}
+
+.searchbox .locationsc{
+	
+	background-color:white;
+	display:inline-block;
+	width: 25%;
+	height:90%;
+	
+}
+.destination{
+	   align-items: center;
+    display: flex;
+    flex-grow: 1;
+    width: 50%;
+    background-color:"red"
+ 
+}
+
+.date{
+	display: inline-block;
+	background-color:white;
+	width: 20%;
+	height:90%;	
+	
+}
+
+.people{
+	display: inline-block;
+	width:30%;
+	height:90%;
+	background-color:white;
+}
+.scbut{
+	display: inline-block;
+	width:5%;
+	height:50px;
+}
+.locationsc img{
+	width:10%;
+	height:10%;
+	
+}
+#lst1{
+	position:relative;
+	width:300px;
+	margin:0px;
+	border:1px solid silver;
+	background:#efefef;
+	color:blue;
+	left:0px;
+}
+#lst2{
+	margin:0;
+	padding:2px;
+}
+#lst2 ul li{
+	list-style:none;
+}
+
+
+/*ㄴㅇㅁㄹㄴㅁㅇㄹㄴㅇㄴㄹ*/
+
+
