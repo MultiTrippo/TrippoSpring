@@ -7,6 +7,7 @@
 	<typeAliases>
 		<typeAlias type="com.board.model.PostVO" alias="Post"/>
 		<typeAlias type="com.tripreview.vo.TripReviewVO" alias="TripReviewVO"/>
+		<typeAlias type="com.schedule.db.EtcVO" alias="EtcVO"/>
 	</typeAliases>
 	
 	<!-- mapper 정의 ========================================== -->
@@ -14,5 +15,6 @@
 		<!-- SQL문을 모아놓은 파일 -->
 		<mapper resource="config/mybatis/mapper/PostMapper.xml" />
 		<mapper resource="com/tripreview/mapper/TripReviewMapper.xml" />
+		<mapper resource="config/schedule/EtcMapper.xml"></mapper>
 	</mappers>
 </configuration>
