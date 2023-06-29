@@ -6,26 +6,34 @@
     <meta charset="UTF-8">
     <title>Photo Gallery</title>
     <style>
+    	#scroll-view {
+	        width: 80%;
+	        height: auto; /* 스크롤 영역의 높이 설정 */
+	        /* overflow-y: auto; /* 수직 스크롤 적용 */ */
+	    }
         .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
 
-        .gallery-item {
-            flex: 1 0 300px;
-            max-width: 300px;
-            display: none;
-        }
-        
-        .gallery-item.show {
-            display: block;
-        }
+    .gallery-item {
+        flex-basis: calc(50% - 5px);
+        max-width: calc(50% - 5px);
+        max-height: 50%;
+        display: none;
+    }
 
-        .gallery-item img {
-            width: 100%;
-            height: auto;
-        }
+    .gallery-item.show {
+        display: block;
+        width:95%;
+    }
+
+    .gallery-item img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
 
         .post {
             display: flex;
@@ -96,18 +104,23 @@
 <body onload="putImage();">
     <h1>Photo Gallery</h1>
 
-    <div class="gallery">
-        <%-- 필요한 만큼 사진 갤러리 아이템 추가 (차후에 db에서 이미지 개수 받아서 수정 예정)--%>
-        <%
-		for (int i = 0; i < 9; i++) {
-		%>
-		<%-- 사진 갤러리 부분 --%>
-        <div class="gallery-item">
-            <img src="" id="gallery-img<%=i%>" alt="GalleryImage">
-        </div>
-		<%
-		}
-		%>
+    <div id="scroll-view">
+    	<div class="gallery">
+	        <%-- 필요한 만큼 사진 갤러리 아이템 추가 (차후에 db에서 이미지 개수 받아서 수정 예정)--%>
+	        <%
+			for (int i = 0; i < 9; i++) {
+			%>
+				<%-- 사진 갤러리 부분 --%>
+		        <div class="gallery-item">
+		            <img class="gallery-img" src="" id="gallery-img<%=i%>" alt="GalleryImage">
+		        </div>
+		        <% if ((i + 1) % 2 == 0) { %>
+		           <!--  <div style="clear: both;"></div> -->
+		        <% } %>
+			<%
+			}
+			%>
+    	</div>
     </div>
 	<div id="show-more-button">
         <button class="btn btn-primary" onclick="showMore()">더보기</button>
