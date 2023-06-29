@@ -1,6 +1,8 @@
 package com.board.controller;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,9 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -32,7 +35,7 @@ public class BoardAddController {
 	
 	//@GetMapping("/addPost")
 	//@RequestMapping(value="/addPost", method=RequestMethod.GET)
-	@GetMapping("/addPost")
+	@RequestMapping(value="/addPost", method=RequestMethod.GET)
 	public String boardAdd() {
 		return "board/boardAdd"; 
 	}
@@ -43,6 +46,25 @@ public class BoardAddController {
 		
 		int n=pService.createPost(post);
 		return"redirect:boardList";
+	}
+	
+	@RequestMapping("/addPost")
+	public String callJson(HttpServletRequest request) {
+		String filePath="/Users/minjikang/git/TrippoSpring/TrippoSpring/src/main/webapp/resources/board/cityInfo.json";
+		String jsonString = "";
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(filePath));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                jsonString += line;
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        request.setAttribute("cityInfo", jsonString);
+		return "board/boardAdd";
 	}
 	
 	

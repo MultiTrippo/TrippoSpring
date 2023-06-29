@@ -1,4 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="com.google.gson.Gson" %>
+<%@ page import="com.google.gson.JsonArray" %>
+<%@ page import="com.google.gson.JsonElement" %>
+<%@ page import="com.google.gson.JsonObject" %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -85,12 +92,32 @@
 
         <br><br>
         <label for="country">Country:</label>
+        
         <select id="country" name="country" onchange="updateCityDropdown()">
+        	<c:import var="dataJson" url="/Users/minjikang/git/TrippoSpring/TrippoSpring/src/main/webapp/resources/board/cityInfo.json" />
+			<%
+			  String jsonString = (String) pageContext.getAttribute("cityInfo");
+			
+			  Gson gson = new Gson();
+			  JsonElement jsonElement = gson.fromJson(jsonString, JsonElement.class);
+			  JsonArray jsonArray = jsonElement.getAsJsonArray();
+			
+			  JsonObject jsonObject1 = jsonArray.get(0).getAsJsonObject();
+			  String country1 = jsonObject1.get("나라").getAsString();
+			  String city1 = jsonObject1.get("도시명").getAsString();
+			
+			  JsonObject jsonObject2 = jsonArray.get(1).getAsJsonObject();
+			  String country2 = jsonObject2.get("나라").getAsString();
+			  String city2 = jsonObject2.get("도시명").getAsString();
+			
+			  // 필요한 작업 수행
+			%>
             <option value="USA">USA</option>
             <option value="Canada">Canada</option>
             <option value="UK">UK</option>
             <!-- Add more country options here -->
         </select>
+        
         <br><br>
         <label for="city">City:</label>
         <select id="city" name="city"></select>
