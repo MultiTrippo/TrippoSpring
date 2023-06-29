@@ -193,7 +193,7 @@
 				<div class="input-group mb-3">
 					<span class="input-group-text">어디로</span> 
 					<input type="text" class="form-control" placeholder="여행지를 입력해주세요" name="wwhere">
-						   <!--list="cityNameList"
+						   <!-- list="cityNameList"
 							 <datalist id="cityNameList">
 								<option value="발리, 인도네시아">
 								<option value="괌, 미국">
@@ -249,6 +249,7 @@
 					        el: document.querySelector('#editor'),
 					        previewStyle: 'vertical',
 					        height: '700px',
+					        initialEditType: 'wysiwyg',
 					        initialValue: "## 여행 후기를 작성해주세요",
 					       	hooks: {
 					            addImageBlobHook(blob, callback) {

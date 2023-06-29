@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tripreview.mapper.TripReviewMapper;
+import com.tripreview.vo.ReviewPagingVO;
 import com.tripreview.vo.TripReviewVO;
 
 @Service("tripReviewService")
@@ -20,6 +21,12 @@ public class TripReviewServiceImpl implements TripReviewService {
 	public List<TripReviewVO> getAllList() {
 		
 		return this.mapper.getAllList();
+	}
+	
+	@Override
+	public List<TripReviewVO> getAllListWithPaging(ReviewPagingVO paging){
+		
+		return this.mapper.getAllListWithPaging(paging);
 	}
 	
 	@Override
@@ -54,5 +61,12 @@ public class TripReviewServiceImpl implements TripReviewService {
 		
 		System.out.println("service: 수정 완료");
 		return this.mapper.modifyReviewComplete(review);
+	}
+	
+	@Override
+	public List<TripReviewVO> searchByCityName(String cityName){
+		
+		System.out.println("service: searchByCityName(cityName)");
+		return this.mapper.searchByCityName(cityName);
 	}
 }

@@ -80,4 +80,11 @@
 	background-color: #F2BE22;
 }
 
+.paginationDiv{
+	margin: 10;
+	padding: 10;
+	align-content: center;
+	justify-content: center;
+	vertical-align: center;
+}
 
