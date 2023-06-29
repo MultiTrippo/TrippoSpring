@@ -24,32 +24,77 @@
 
 </head>
 <body>
-<div class="test"> <h1>검색 조건에 맞는 숙소 </h1>
+<div class="test"> <h1>* * * 님에게 딱 맞는 숙소 </h1>
 <script>
+$(function() {
+	acom();
+	//hotelid();
+})
+
+
+function acom(){
 const settings = {
 	async: true,
 	crossDomain: true,
 	url: 'https://apidojo-booking-v1.p.rapidapi.com/properties/list?offset=0&arrival_date=${param.arrival_date}&departure_date=${param.departure_date}&guest_qty=${param.guest_qty}&dest_ids=${param.dest_ids}&room_qty=${param.room_qty}&search_type=${param.search_type}&children_qty=${param.children_qty}&price_filter_currencycode=KRW&languagecode=ko',
 	method: 'GET',
 	headers: {
-		,
+			 :
 		'X-RapidAPI-Host': 'apidojo-booking-v1.p.rapidapi.com'
 	}
 };
 
 $.ajax(settings).done(function (response) {
 	console.log(response.result);
+	
+	var hotel_id= $('#hotel_id').val();
+	
 	var arr=response.result;
-	var str='<ul>';
-	for(var i=0;i<arr.length;i++){
-		var obj=arr[i];
-		str+='<li>'+obj.hotel_name+'</li>'	
-		str+='<li><img src="'+obj.main_photo_url+'"></li>'	
+	
+	//var str='<form action="http://localhost:9090/myapp/acom" method="get">';
+	if(!arr){
+		alert('검색 결과 없습니다.');
+		history.back();	
+		return;
 	}
-	str+='</ul>';
+	var str='';
+	for(var i=0;i<arr.length;i++){
+		var obj=arr[i]
+		str+='<div class="listform">'
+		str+='<input type="hidden" name="hotel_id" id="hotel_id">'
+		str+='<p class="hotel_photo"><img src="'+obj.main_photo_url+'"></p>'	
+		str+='<h2 class="hotel_name">'+obj.hotel_name+'</h2>'	
+		str+='<h4 class="hotel_address">'+obj.address_trans+'</h4>'
+		str+='<button class="gobt" onclick="goDetail(\''+obj.hotel_id+'\')"> 자세히 </button>'
+		str+='<p class="hotel_in">체크인: '+obj.checkin.from+'~ / 체크아웃:~'+obj.checkout.until+'</p>'
+		str+='<p class="hotel_min">최저가:'+obj.min_total_price+'~</p>'
+		str+='<br>'
+		str+='<p class="hotel_review">이용자 평점:'+obj.review_score+' / '+obj.review_score_word+'</p>'
+		str+='<p class="hotel_dis">모바일 결제시 '+obj.mobile_discount_percentage+'할인!!</p>'
+		
+		str+='</div>'
+		
+	}
+	//str+='</form>';
 	$('#acomlist').html(str)
 });
-//이미지,이름 외에 추가 해야함
+
+}//------------function acom() =------------
+
+/* 
+} */
+
+function hotelid(hotel_id){
+	$('#hotel_id').val(hotel_id);
+	
+	$.ajax(settings).done(function (response) {
+		console.log("hotel="+hotel_id);
+	} );
+}
+function goDetail(hotel_id, adate, ddate){
+	alert(adate+"/"+ddate)
+	location.href="acom?hotel_id="+hotel_id
+}
 </script>
 
 	<div id='acomlist'>

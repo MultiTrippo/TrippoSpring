@@ -85,7 +85,7 @@
 							dest_id : city.dest_id,
 							dest_type : city.dest_type
 						}
-						console.dir(obj);
+						//console.dir(obj);
 						//console.log(city.label)
 						/*str += "<li><a href='#' onclick='autoSet(" + obj
 								+ ")'>" + city.label + "</a></li>";*/
@@ -226,7 +226,7 @@
 				<button class="scbut" type="submit">검색</button>
 			</div>
 
-			<!-- 6.26( 리스트 이미지, 이름까지 만듬...ㄴㅇ)-->
+		
 		</div>
 	</form>
 <!-- ----------------------------------------------- -->

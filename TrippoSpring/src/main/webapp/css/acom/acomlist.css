@@ -1,5 +1,56 @@
 @charset "UTF-8";
-.test{
-	width:500px;
-	height:500px;
-}/*ㅁㄴㄴㄴㄴㅇ*/
+.listform{
+	width:60%;
+	height: 200px;
+	margin:0 auto;
+	border: 2px solid #FFE697;
+	
+}
+.hotel_name{
+	
+font-family: BlinkMacSystemFont,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+    font-weight: 600;
+    line-height: 1.6;
+    color: #0072c1;
+	    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.hotel_photo{
+	margin: 7px 10px 7px 5px;
+    float: left;
+    width: 175px;
+    height: 175px;
+    padding: 5px;
+    border: 2px solid #C5D7F2;
+  	display:flex;
+}
+.hotel_in{
+		display:inline-block;
+	 
+}
+.hotel_min{
+	 	display:inline-block;
+	 			float:right;
+		margin-right:150px;
+}
+.hotel_review{
+		display:inline-block;
+
+}
+.hotel_dis{
+		display:inline-block;
+		float:right;
+		margin-right:150px;
+}
+.gobt{
+	display: inline-block;
+	float:right;
+	margin-right: 50px; 
+	margin-bottom:65px;
+
+	width:100px;
+	height:70px;
+	background-color:#FFE697;
+	border: 2px solid #C5D7F2;
+}
