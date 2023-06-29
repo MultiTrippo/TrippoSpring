@@ -22,6 +22,7 @@
 <!-- 		<script defer src="js/schedule/arcodian.js"></script> -->
 		<script defer src="js/schedule/googlemap.js"></script>
 		<script defer src="js/schedule/etcManage.js"></script>
+		<script defer src="js/schedule/mapPinAdd.js"></script>
 		  
         <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
         
@@ -79,15 +80,21 @@
 				      for more information.
 				      -->
 				    <script
-				      src="https://maps.googleapis.com/maps/api/js?key=apikey&callback=initAutocomplete&libraries=places&v=weekly"
+				      src="https://maps.googleapis.com/maps/api/js?key=apikey&callback=initAutocomplete&libraries=places,visualization&v=weekly"
 				      defer
 				    ></script>
 				    
 			    </div>
-			    
+
 				<!-- schedule -->
 				<div id="accordionContainer">
-				    <button class="accordion" onclick="toggleAccordion(0)">
+					<div class="schedule">
+					</div>
+					
+					<!-- <button onclick="pinAddBtn()"> 맵에 핀 추가 </button> -->
+								
+				
+				   <!--  <button class="accordion" onclick="toggleAccordion(0)">
 				    	<img alt="드롭다운 이미지" src="images/schedule/arrow.png" style="width:20px;height:20px;">
 				    </button>
 				    <div class="panel">
@@ -98,14 +105,15 @@
 								<div class="time-selected-vaule">시간 선택</div>
 							</div>
 							
-							<ul class="time-selected-options">
-								
+							<ul class="time-selected-options">								
 							</ul>
-						</div>
+						</div> -->
 				    </div>
+				    
+				    
 			  </div>
 				
-			  <button onclick="addAccordion()">+</button>
+			 <!--  <button onclick="addAccordion()">+</button> -->
 				
 				
 				<!-- <div class="schedule">

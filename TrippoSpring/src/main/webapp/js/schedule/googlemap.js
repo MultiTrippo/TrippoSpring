@@ -4,16 +4,22 @@
 // This example requires the Places library. Include the libraries=places
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+var data = {lat: null, lng: null}
+
 function initAutocomplete() {
+  // 맵 생성 후 처음 나오는 화면 센터로 찍음
   const map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 37.5400456, lng: 126.9921017 },
     zoom: 13,
     mapTypeId: "roadmap",
   });
+  
   // Create the search box and link it to the UI element.
   const input = document.getElementById("pac-input");
   const searchBox = new google.maps.places.SearchBox(input);
 
+ 
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
   // Bias the SearchBox results towards current map's viewport.
   map.addListener("bounds_changed", () => {
@@ -72,6 +78,33 @@ function initAutocomplete() {
     });
     map.fitBounds(bounds);
   });
+  
+  map.addListener("click", (event) => {
+  	data.lat = event.latLng.lat();
+  	data.lng = event.latLng.lng();
+  	
+  	markers.push(
+  		new google.maps.Marker({
+  			map,
+  			position: event.latLng,
+		})
+	);
+  
+    console.log("클릭");
+    console.log(event.latLng.lat());
+    console.log(event.latLng.lng());
+  });
 }
 
 window.initAutocomplete = initAutocomplete;
+
+document.getElementById("pinAddBtn").addEventListener("click", () => {
+	if(data.lat && data.lng) {
+		markers.push(
+			new google.maps.Marker({
+				map,
+				position: {lat: data.lat, lng: data.lng },
+			})
+		);
+	}
+});
