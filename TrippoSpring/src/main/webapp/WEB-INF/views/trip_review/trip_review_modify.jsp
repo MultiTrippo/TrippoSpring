@@ -212,12 +212,14 @@
 					<!-- NHN Cloud TOAST UI Editor CDN -->
 					<script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
 					<!-- TOAST UI Editor 생성 JavaScript 코드 -->						
-					<script>
+					<script>					
 						const editor = new toastui.Editor({
 					        el: document.querySelector('#editor'),
 					        previewStyle: 'vertical',
 					        height: '700px',
+					        initialEditType: 'wysiwyg',
 					        initialValue: `${selectedReview.contents }`
+					        /* initialValue: editor.setHTML(htmlString) */
 					    });
 					</script>
 				</div>	

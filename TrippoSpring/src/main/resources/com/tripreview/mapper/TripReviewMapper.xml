@@ -4,10 +4,19 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.tripreview.mapper.TripReviewMapper">
+	<!-- public List<TripReviewVO> getAllList() -->
 	<select id="getAllList" resultType="TripReviewVO" >
   		select *
   		from trip_review
   		order by review_num desc
+  	</select>
+  	
+  	<!-- List<TripReviewVO> getAllListWithPaging(Criteria criteria) -->
+  	<select id="getAllListWithPaging" resultType="TripReviewVO">
+  		select *
+		from trip_review
+		order by review_num desc
+		limit 0, 3;
   	</select>
   	
   	<select id="getOneReview" parameterType="int" resultType="TripReviewVO">

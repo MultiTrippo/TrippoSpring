@@ -2,11 +2,14 @@ package com.tripreview.service;
 
 import java.util.List;
 
+import com.tripreview.vo.ReviewPagingVO;
 import com.tripreview.vo.TripReviewVO;
 
 public interface TripReviewService {
 	
 	public List<TripReviewVO> getAllList();
+	
+	public List<TripReviewVO> getAllListWithPaging(ReviewPagingVO paging);
 	
 	public TripReviewVO getOneReview(int review_num);
 	
@@ -18,5 +21,6 @@ public interface TripReviewService {
 
 	public int modifyReviewComplete(TripReviewVO review);
 
-
+	public List<TripReviewVO> searchByCityName(String cityName);
+	
 }

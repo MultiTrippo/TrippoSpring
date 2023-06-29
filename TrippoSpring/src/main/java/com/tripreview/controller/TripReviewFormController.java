@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tripreview.service.TripReviewService;
 import com.tripreview.vo.TripReviewVO;
@@ -54,6 +53,17 @@ public class TripReviewFormController {
 		
 		return "trip_review/trip_review_list"; 
 	}
+	
+//	/** 모든 후기 리스트 보기 + 페이징 처리 */
+//	@RequestMapping(value = "/trip_review_list", method = RequestMethod.GET)
+//	public String getAllListWithPaging(Model model){
+//		
+//				
+//		List<TripReviewVO> list = service.getAllList();
+//		model.addAttribute("getAllList", list);
+//		
+//		return "trip_review/trip_review_list"; 
+//	}
 	
 	/** 선택한 후기 한개 조회하기 */
 	@RequestMapping(value = "/viewOneReview", method = RequestMethod.GET)
