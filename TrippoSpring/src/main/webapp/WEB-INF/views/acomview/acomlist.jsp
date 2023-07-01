@@ -12,7 +12,7 @@
 		<link rel="stylesheet" type="text/css" href="css/acom/acomlist.css">
 		
 		 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"> 
-<title>숙소 리스트 페이지</title>
+<title>Trippo 숙소 검색결과</title>
 <!-- jquery cdn  -->
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 
@@ -39,7 +39,7 @@ const settings = {
 	url: 'https://apidojo-booking-v1.p.rapidapi.com/properties/list?offset=0&arrival_date=${param.arrival_date}&departure_date=${param.departure_date}&guest_qty=${param.guest_qty}&dest_ids=${param.dest_ids}&room_qty=${param.room_qty}&search_type=${param.search_type}&children_qty=${param.children_qty}&price_filter_currencycode=KRW&languagecode=ko',
 	method: 'GET',
 	headers: {
-			 :
+		'X-RapidAPI-Key': 'ee70f5ae22msh3ce1b4738341c57p159089jsn5590e47837fd ',
 		'X-RapidAPI-Host': 'apidojo-booking-v1.p.rapidapi.com'
 	}
 };
@@ -65,7 +65,7 @@ $.ajax(settings).done(function (response) {
 		str+='<p class="hotel_photo"><img src="'+obj.main_photo_url+'"></p>'	
 		str+='<h2 class="hotel_name">'+obj.hotel_name+'</h2>'	
 		str+='<h4 class="hotel_address">'+obj.address_trans+'</h4>'
-		str+='<button class="gobt" onclick="goDetail(\''+obj.hotel_id+'\')"> 자세히 </button>'
+		str+='<button class="gobt" onclick="goDetail(\''+obj.hotel_id+'\','+obj.review_score+')"> 자세히 </button>'
 		str+='<p class="hotel_in">체크인: '+obj.checkin.from+'~ / 체크아웃:~'+obj.checkout.until+'</p>'
 		str+='<p class="hotel_min">최저가:'+obj.min_total_price+'~</p>'
 		str+='<br>'
@@ -91,9 +91,9 @@ function hotelid(hotel_id){
 		console.log("hotel="+hotel_id);
 	} );
 }
-function goDetail(hotel_id, adate, ddate){
-	alert(adate+"/"+ddate)
-	location.href="acom?hotel_id="+hotel_id
+function goDetail(hotel_id, score){
+	
+	location.href="acom?hotel_id="+hotel_id+"&score="+score;
 }
 </script>
 
