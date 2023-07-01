@@ -13,7 +13,7 @@
 
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-<title>숙소 검색 페이지</title>
+<title>Trippo 숙소검색</title>
 <!-- jquery cdn  -->
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 
@@ -69,7 +69,7 @@
 					+ complete + '&languagecode=ko',
 			method : 'GET',
 			headers : {
-				,
+				'X-RapidAPI-Key' : 'ee70f5ae22msh3ce1b4738341c57p159089jsn5590e47837fd ',
 				'X-RapidAPI-Host' : 'apidojo-booking-v1.p.rapidapi.com'
 			}
 		};
@@ -179,7 +179,7 @@
 		<div class="searchbox">
 			<div class="locationsc">
 				<!-- 목적지 선택  -->
-				<img class="iconimg" src="image/acomimage/airicon.png" alt="Trripo">
+				<img class="iconimg" src="/images/acomimage/airicon.jpg" alt="Trripo">
 				<input name="dest" class="destination" placeholder="어디로 여행하세요?"
 					data-destination="1" autocomplete="on" id="Ra9" onchange="auto()">
 				<div id="lst1" class="listbox" style="display: none">

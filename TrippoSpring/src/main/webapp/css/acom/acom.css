@@ -1,4 +1,7 @@
 @charset "UTF-8";
+*{
+	
+}
 .scrollable-container {
   overflow: auto;
 }
@@ -8,11 +11,11 @@
   margin: 0 0 7px;
   border-radius: 30px;
   background-color: #c4b0ff;
- 
+ padding: 0 10px;
 }
 .acomcheckin {
     display: inline-block;
-    width: 570px;
+    width: 420px;
     height: 40px;
     flex-grow: 1;
     margin: 0 25px 0 0;
@@ -23,7 +26,7 @@
 }
 .acomcheckout {
     display: inline-block;
-    width: 570px;
+    width: 420px;
     height: 40px;
     flex-grow: 1;
     margin: 0 30px 0 30px;
@@ -34,7 +37,7 @@
 }
 .people {/*인원수*/
 	display: inline-block;
-    width: 530px;
+    width: 370px;
     height: 40px;
     flex-grow: 1;
     margin: 0 0 0 25px;
@@ -47,7 +50,7 @@
 
 display: inline-block;
 flex-grow: 1;
-  width: 500px;
+  width: 420px;
   height: 160px;
   border-radius: 30px;
  background-size:100% 100%;
@@ -61,7 +64,7 @@ flex-grow: 1;
 .acomimage2{/*두번째로 큰 이미지 */
 flex-grow: 1;
 display: inline-block;
-  width: 345px;
+  width: 350px;
   height: 160px;
 background-size:100% 100%;
   border-radius: 30px;
@@ -72,16 +75,7 @@ background-size:100% 100%;
 .acomimage3{/*세번째로 큰 이미지 */
 flex-grow: 1;
 display: inline-block;
-  width: 345px;
-  height: 160px; 
-  border-radius: 30px;
-background-size:100% 100%;
-margin: 5px 10px 5px 5px;
-}
-.acomimage4{/*세번째로 큰 이미지 */
-flex-grow: 1;
-display: inline-block;
-  width: 345px;
+  width: 320px;
   height: 160px; 
   border-radius: 30px;
 background-size:100% 100%;
@@ -95,23 +89,30 @@ display: inline-block;
 	width:160px;
 	height: 160px;
  	border-radius: 30px;
-    background-color: #c4b0ff;
+    background-image: url("/images/acomimage/purple.jpg");
+	background-size: 100% 100%;
+	margin: 5px 0 5px 5px;
+
 }
 .roomservice {/*숙소 내 인기시설 */
 display: inline-block;
-  width: 1000px;
+  width: 780px;
   height: 160px;
-  margin: 13px 12px 13px 0;
+  margin: 13px 10px 0 0;
   border-radius: 30px;
   background-color: #c4b0ff;
+
 }
 .review {/*사용자 평점*/
 display: inline-block;
   width: 173px;
   height: 160px;
-  margin: 14px 11px 13px 12px;
+  margin: 13px 0 13px 0;
   border-radius: 30px;
   background-color: #c4b0ff;
+	line-height:160px;
+	text-align:center;
+	
 }
 .location {/*구글 지도로 보기*/
 display: inline-block;
@@ -120,9 +121,64 @@ display: inline-block;
   margin: 14px 0 12px 11px;
   border-radius: 30px;
     background-color: #c4b0ff;
+    	line-height:160px;
+	text-align:center;
 }
 
 .nav{
 	background-color:#c4b0ff
 }
-
+ *{			
+ 			box-sizing:border-box;
+            margin: 0;
+            padding: 0;
+        }
+        #con{
+        width:100%;
+        border:1px solid red;
+        padding:0 10px;
+       }
+        .container{
+            width:100%;
+            background-color: #c4b0ff;
+        }
+        ul.tab{
+			color:white;
+	}
+        ul.tab li{
+            list-style-type: none;
+            width: 100px;
+            height: 40px;
+            float:left;
+           
+        }
+        ul.tab li a{
+            text-decoration: none;
+            text-align: center;
+            display: block;
+            outline:none;
+            color:white;
+            line-height: 40px;
+        }
+        ul.tab li a.selected{
+            cursor:pointer;
+          
+            color:black;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        ul.panel{
+            clear: both;
+            border: 1px solid silver;
+            border-top:none;
+        }
+        ul.panel li{
+            list-style-type: none;
+            padding:10px;
+            text-indent: 1em;
+            color:#333;
+        }
+        .like{
+        font-size:20px;
+        font-weight: bold;
+        }
