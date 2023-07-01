@@ -59,43 +59,49 @@
 	<br>
 	<div id="flight_body" style="background-color:white" >
 	
-	<div id="flight-details">
+<div id="flight-details">
   <h3>항공권 상세 정보</h3>
-  <div id="commerce-name"></div>
-  <div id="total-price"></div>
-  <div id="provider-id"></div>
-  <div id="partner-logo"></div>
+  <p></p>
 </div>
 	<script>
 
 	const settings = {
 			async: true,
 			crossDomain: true,
-			url: 'https://tripadvisor16.p.rapidapi.com/api/v1/flights/searchFlights?sourceAirportCode=BOM&destinationAirportCode=DEL&date=2023-06-29&itineraryType=ONE_WAY&sortOrder=PRICE&numAdults=1&numSeniors=0&classOfService=ECONOMY&returnDate=2023-07-06&pageNumber=1&currencyCode=USD',
+			url: 'https://tripadvisor16.p.rapidapi.com/api/v1/flights/searchFlights?sourceAirportCode=BOM&destinationAirportCode=DEL&date=2023-07-03&itineraryType=ROUND_TRIP&sortOrder=PRICE&numAdults=1&numSeniors=0&classOfService=BUSINESS&returnDate=2023-07-13&pageNumber=1&currencyCode=USD',
 			method: 'GET',
 			headers: {
-				'X-RapidAPI-Key': '',
-				'X-RapidAPI-Host': ''
-			}//api 재적용하기
+				'X-RapidAPI-Key': '60c5ede577msh7e68a54b4501c1bp180965jsna4480f0218b9',
+				'X-RapidAPI-Host': 'tripadvisor16.p.rapidapi.com'
+			}//api재적용
 		};
 
-		$.ajax(settings).done(function (response) {
-			
-			 var flight = response.data.flights[0];
-			  var purchaseLink = flight.purchaseLinks[0];
-			  console.log(response);
-			  console.log(purchaseLink.commerceName);
-			  console.log(purchaseLink.totalPrice);
-			  console.log(purchaseLink.providerId);
-			  console.log(purchaseLink.partnerSuppliedProvider.logoUrl);
-			  $("#partner-logo").html("<img src='" + purchaseLink.partnerSuppliedProvider.logoUrl + "'/>"+purchaseLink.providerId);
-			 // $("#commerce-name").text("상품명: " + purchaseLink.commerceName);
-			  $("#total-price").text("가격: " + purchaseLink.totalPrice + "$");
-			  $("#provider-id").text("배급업체: " + purchaseLink.providerId);
-		    }
-		});
+	$.ajax(settings).done(function (response) {
+		var result = "";
+		result += "상품명: " + "<strong>" + response.data.flights[0].purchaseLinks[0].commerceName + "</strong><br>";
+		result += "가격: " + "<strong>" + response.data.flights[0].purchaseLinks[0].totalPrice + "$ </strong><br>";
+		result += "배급업체: " + "<strong>" + response.data.flights[0].purchaseLinks[0].providerId + " </strong><br>";
 		
-
+		result += "좌석등급: " + response.data.flights[0].segments[0].legs[0].classOfService + "<br>";
+		result += "항공편 번호: " + response.data.flights[0].segments[0].legs[0].flightNumber + "<br>";
+		result += "항공사 이름: " + response.data.flights[0].segments[0].legs[0].operatingCarrier.displayName + "<br>";
+		result += "항공사 이미지: " + "<img src='" + response.data.flights[0].segments[0].legs[0].operatingCarrier.logoUrl + "'/><br>";
+		result += "출발 시간: " + response.data.flights[0].segments[0].legs[0].departureDateTime + "<br>";
+		result += "출발 공항: " + response.data.flights[0].segments[0].legs[0].originStationCode + "<br>";
+		result += "도착 시간: " + response.data.flights[0].segments[0].legs[0].arrivalDateTime + "<br>";
+		result += "도착 공항: " + response.data.flights[0].segments[0].legs[0].destinationStationCode + "<br>";
+		
+		//result += "좌석등급 (왕복): " + response.data.flights[0].segments[0].legs[1].classOfService + "<br>";
+		//result += "항공편 번호 (왕복): " + response.data.flights[0].segments[0].legs[1].flightNumber + "<br>";
+		//result += "항공사 이름 (왕복): " + response.data.flights[0].segments[0].legs[1].operatingCarrier.displayName + "<br>";
+		//result += "항공사 이미지 (왕복): " + "<img src='" + response.data.flights[0].segments[0].legs[1].operatingCarrier.logoUrl + "'/><br>";
+		//result += "출발 시간 (왕복): " + response.data.flights[0].segments[0].legs[1].departureDateTime + "<br>";
+		//result += "도착 시간 (왕복): " + response.data.flights[0].segments[0].legs[1].arrivalDateTime + "<br>";
+		//result += "출발 공항 (왕복): " + response.data.flights[0].segments[0].legs[1].originStationCode + "<br>";
+		//result += "도착 공항 (왕복): " + response.data.flights[0].segments[0].legs[1].destinationStationCode + "<br>";
+		
+		$("p").append(result);
+	});
 	</script>
 	<!-- calendar function -->
 	<script>
