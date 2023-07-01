@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.schedule.mapper.FixMapper">
+	<select id="getFixList" resultType="FixVO">
+		select fix_id, lat, lng, p_name, p_memo, p_color
+		from travel_sche_fix
+		where page_id = #{page_id}
+	</select>
+	
+	<insert id="insertFixList" parameterType="FixVO" useGeneratedKeys="true" keyProperty="fix_id">
+		insert into travel_sche_fix (page_id, p_name)
+		values (#{page_id}, #{p_name})
+	</insert>
+	
+	<update id="updateFixList" parameterType="FixVO" useGeneratedKeys="true" keyProperty="fix_id">
+		update travel_sche_fix set p_name=#{p_name}, lat=#{lat}, lng=#{lng}, p_memo=#{p_memo}, p_color=#{p_color}
+		where fix_id = #{fix_id} and page_id = #{page_id}
+	</update>
+	
+	<delete id="deleteFixList" parameterType="FixVO">
+		delete from travel_sche_fix where fix_id = #{fix_id} and page_id = #{page_id}
+	</delete>
+
+</mapper>
+

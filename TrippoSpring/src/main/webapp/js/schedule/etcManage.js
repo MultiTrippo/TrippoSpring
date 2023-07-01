@@ -39,8 +39,6 @@ $(document).ready(function() {
             }
         });
 
-	  
-        
        
     });
 
@@ -55,8 +53,10 @@ $(document).ready(function() {
 	 			console.log(JSON.stringify(etcList));
                 for (var i = 0; i < etcList.length; i++) {
                     var etcData = etcList[i].etc;
+                    var etcNo = etcList[i].etc_id;
 
                     var newDiv = $("<div>").addClass("containerDiv");
+                    newDiv.attr("data-etcId", etcNo);// etcid 속성으
                     var newInnerDiv = $("<div>").html("<span>" + etcData + "</span><button class='editButton'>Edit</button><button class='deleteButton'>Delete</button>");
                     newDiv.append(newInnerDiv);
                     $("#etcContainer").append(newDiv);
@@ -76,13 +76,17 @@ $(document).ready(function() {
 
         if (newText !== null) {
             textSpan.text(newText);
+            
+             // 등록할 때 설정한 데이터 속성으로부터 etc_id 가져오기
+            var containerDiv = $(this).closest(".containerDiv");
+            var etcId = containerDiv.data("etcId");
 
             // AJAX를 사용하여 데이터를 서버로 전송
             $.ajax({
                 url: "/etcUpdate",
                 type: "POST",
                 data: {
-                    etc_id: $(this).closest(".containerDiv").index() + 1,
+                    etc_id: etcId,
                     etc: newText,
                     page_id : pageId
                 },
@@ -104,13 +108,14 @@ $(document).ready(function() {
 
         if (confirmation) {
             var containerDiv = $(this).closest(".containerDiv");
+			var etcId = containerDiv.data("etcId");  // 등록할 때 설정한 데이터 속성으로부터 etc_id 가져오기
 
             // AJAX를 사용하여 데이터를 서버로 전송
             $.ajax({
                 url: "/etcDelete",
                 type: "POST",
                 data: {
-                    etc_id: containerDiv.index() + 1,
+                    etc_id: etcId,
                     page_id: pageId
                 },
                 success: function() {
