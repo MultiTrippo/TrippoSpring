@@ -84,7 +84,7 @@
 				      for more information.
 				      -->
 				    <script
-				      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCI8VeMMLZiRhyxdDuNUg7S-duYiLQp548&callback=initAutocomplete&libraries=places,visualization&v=weekly"
+				      src="https://maps.googleapis.com/maps/api/js?key=apikey&callback=initAutocomplete&libraries=places,visualization&v=weekly"
 				      defer
 				    ></script>
 				    
