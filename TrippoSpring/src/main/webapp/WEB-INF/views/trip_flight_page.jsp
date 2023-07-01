@@ -71,8 +71,8 @@
 			url: 'https://tripadvisor16.p.rapidapi.com/api/v1/flights/searchFlights?sourceAirportCode=BOM&destinationAirportCode=DEL&date=2023-07-03&itineraryType=ROUND_TRIP&sortOrder=PRICE&numAdults=1&numSeniors=0&classOfService=BUSINESS&returnDate=2023-07-13&pageNumber=1&currencyCode=USD',
 			method: 'GET',
 			headers: {
-				'X-RapidAPI-Key': '60c5ede577msh7e68a54b4501c1bp180965jsna4480f0218b9',
-				'X-RapidAPI-Host': 'tripadvisor16.p.rapidapi.com'
+				'X-RapidAPI-Key': '',
+				'X-RapidAPI-Host': ''
 			}//api재적용
 		};
 
