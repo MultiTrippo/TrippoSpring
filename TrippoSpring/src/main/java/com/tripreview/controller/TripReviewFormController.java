@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.tripreview.service.TripReviewService;
+import com.tripreview.vo.Criteria;
+import com.tripreview.vo.ReviewPagingVO;
 import com.tripreview.vo.TripReviewVO;
 
 @Controller
@@ -44,26 +46,50 @@ public class TripReviewFormController {
 		return "redirect:trip_review_list";
 	}
 	
-	/** 모든 후기 리스트 보기 */
-	@RequestMapping(value = "/trip_review_list", method = RequestMethod.GET)
-	public String getAllList(Model model){
-				
-		List<TripReviewVO> list = service.getAllList();
-		model.addAttribute("getAllList", list);
-		
-		return "trip_review/trip_review_list"; 
-	}
-	
-//	/** 모든 후기 리스트 보기 + 페이징 처리 */
+//	/** 모든 후기 리스트 보기 */
 //	@RequestMapping(value = "/trip_review_list", method = RequestMethod.GET)
-//	public String getAllListWithPaging(Model model){
-//		
+//	public String getAllList(Model model){
 //				
 //		List<TripReviewVO> list = service.getAllList();
 //		model.addAttribute("getAllList", list);
 //		
 //		return "trip_review/trip_review_list"; 
 //	}
+	
+	/** 모든 후기 리스트 보기 + 페이징 처리 */
+	@RequestMapping(value = "/trip_review_list", method = RequestMethod.GET)
+	public String getAllListWithPaging(Model model, @RequestParam(defaultValue = "1") int viewPage){
+													//view의 url에서 ?이후 queryName과 변수명이 일치하는것으로 RequestParam 들어온다
+		System.out.println("controller의 page: " + viewPage); 
+		
+		//Criteria
+		Criteria cri = new Criteria();
+		cri.setCurrPage(viewPage);
+		
+		//총 리뷰의 수
+		int totalReviews = service.getTotalReviewsCnt();
+		
+		//페이징VO
+		ReviewPagingVO pagingVO = new ReviewPagingVO();
+		pagingVO.setCri(cri);
+		pagingVO.setTotalReviews(totalReviews);
+		
+		List<TripReviewVO> list = service.getAllListWithPaging(cri);
+
+		model.addAttribute("getAllListWithPaging", list);
+		model.addAttribute("pagingVO", pagingVO);
+		
+		return "trip_review/trip_review_list"; 
+	}
+	
+	/** 검색어로 후기 조회하기 (+ 페이징 처리) */
+	@RequestMapping(value = "/searchReview", method = RequestMethod.GET)
+	public String searchReviewsByKeyword(@RequestParam("keyword") String keyword, Model model) {
+
+		System.out.println("keyword: "+keyword);
+		
+		return "trip_review/trip_review_search";
+	}
 	
 	/** 선택한 후기 한개 조회하기 */
 	@RequestMapping(value = "/viewOneReview", method = RequestMethod.GET)
@@ -76,7 +102,6 @@ public class TripReviewFormController {
 		
 		return "trip_review/trip_review_view";
 	}
-	
 	
 	/** 선택한 후기 한개 삭제하기 */
 	@RequestMapping(value = "/deleteReview", method = RequestMethod.GET)

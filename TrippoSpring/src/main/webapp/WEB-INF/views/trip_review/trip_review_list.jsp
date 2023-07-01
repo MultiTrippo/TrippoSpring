@@ -7,6 +7,11 @@
 <head>
 <meta charset="UTF-8">
 
+<!-- css파일 참조 -->
+	<link rel="stylesheet" type="text/css" href="css/trip_review/trip_review_form.css">
+	<link rel="stylesheet" type="text/css" href="css/trip_review/form.css">
+<!-- ---------- -->
+
 <!-- Bootstrap css -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link
@@ -28,10 +33,7 @@
 
 <title>여행 후기 목록</title>
 
-<!-- css파일 참조 -->
-	<link rel="stylesheet" type="text/css" href="css/trip_review/trip_review_form.css">
-	<link rel="stylesheet" type="text/css" href="css/trip_review/form.css">
-<!-- ---------- -->
+
 
 <!-- javascript 기능 -->
 <script>
@@ -40,6 +42,24 @@
 			e.preventDefault();
 			location.href = "${pageContext.request.contextPath}/trip_review_form";
 		});
+		
+		$('#btnCityListSearch').click(function(e){
+			e.preventDefault();
+			
+			//valid check
+			if($('input[name=keyword]').val().trim()==""){
+				alert('검색어를 입력하세요');
+				$('input[name=keyword]').focus();
+				return;
+			}
+			
+			//submit
+			$('#search_form').attr('method', 'get');
+			$('#search_form').attr('action', 'searchReview');
+							
+			search_form.submit();
+			
+		})
 	})
 </script>
 <!-- ------------- -->
@@ -54,7 +74,9 @@
 	<div class="sidebar">
 		<h1 class="logo">여행후기 목록</h1>
 		<div class="searchbar">
-			<input type="text" placeholder="검색할 여행지를 입력하세요">
+			<form name="search_form">
+				<input name="keyword" type="text" placeholder="검색할 여행지를 입력하세요">
+			</form>	
 			<button class="btnCityListSearch">
 				<ion-icon name="search-outline"></ion-icon>
 			</button>
@@ -80,7 +102,7 @@
 					</tr>
 				</thead>
 				<tbody>
-	 				<c:forEach items="${getAllList }" var="list">
+	 				<c:forEach items="${getAllListWithPaging }" var="list">
 						<tr>
 							<th scope="row">${list.review_num }</th>
 							<td>
@@ -96,23 +118,28 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="paginationDiv">
+		<div id="paginationDiv">
 			<div>
-			  <ul class="pagination">
-			    <li class="page-item">
-			      <a class="page-link" href="#" aria-label="Previous">
-			        <span aria-hidden="true">&laquo;</span>
-			      </a>
-			    </li>
-			    <li class="page-item"><a class="page-link" href="#">1</a></li>
-			    <li class="page-item"><a class="page-link" href="#">2</a></li>
-			    <li class="page-item"><a class="page-link" href="#">3</a></li>
-			    <li class="page-item">
-			      <a class="page-link" href="#" aria-label="Next">
-			        <span aria-hidden="true">&raquo;</span>
-			      </a>
-			    </li>
-			  </ul>
+			  <ul class="pagination" id="pagination">
+				<c:if test="${pagingVO.prev }">			    
+					<li class="page-item">
+					  <a class="page-link" href='<c:url value="/trip_review_list?viewPage=${pagingVO.firstBlock-1}"/>' aria-label="Previous">
+					    <span aria-hidden="true">&laquo;</span>
+					  </a>
+					</li>
+			    </c:if>	
+			    <c:forEach begin="${pagingVO.firstBlock }" end="${pagingVO.lastBlock }" var="page">
+			    	<li class="page-item ${pagingVO.cri.currPage == page? 'active':'' }">
+			    		<a class="page-link" href='<c:url value="/trip_review_list?viewPage=${page }"/>'>${page }</a></li>
+			    </c:forEach>
+			    <c:if test="${pagingVO.next && pagingVO.lastBlock>0 }">
+				    <li class="page-item">
+				      <a class="page-link" href='<c:url value="/trip_review_list?viewPage=${pagingVO.lastBlock+1 }"/>' aria-label="Next">
+				        <span aria-hidden="true">&raquo;</span>
+				      </a>
+				    </li>
+				</c:if>
+			  	</ul>
 			</div>
 		</div>
 	</div>

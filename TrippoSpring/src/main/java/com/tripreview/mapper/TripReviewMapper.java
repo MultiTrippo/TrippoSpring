@@ -2,16 +2,20 @@ package com.tripreview.mapper;
 
 import java.util.List;
 
-import com.tripreview.vo.ReviewPagingVO;
+import com.tripreview.vo.Criteria;
 import com.tripreview.vo.TripReviewVO;
 
 public interface TripReviewMapper {
 	
 	public List<TripReviewVO> getAllList();
 
-	public List<TripReviewVO> getAllListWithPaging(ReviewPagingVO paging);
+	public List<TripReviewVO> getAllListWithPaging(Criteria cri);
+	
+	public int getTotalReviewsCnt();
 	
 	public TripReviewVO getOneReview(int review_num);	
+	
+	public List<TripReviewVO> searchReviewsByKeyword(String keyword);
 	
 	public int insertReview(TripReviewVO review);
 	
@@ -21,7 +25,6 @@ public interface TripReviewMapper {
 
 	public int modifyReviewComplete(TripReviewVO review);
 	
-	public List<TripReviewVO> searchByCityName(String cityName);
 	
 	
 }

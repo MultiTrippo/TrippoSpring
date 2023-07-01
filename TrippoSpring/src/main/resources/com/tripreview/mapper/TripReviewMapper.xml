@@ -12,17 +12,37 @@
   	</select>
   	
   	<!-- List<TripReviewVO> getAllListWithPaging(Criteria criteria) -->
+  	<!-- amount는 이미 정해진값이라 들어올 수 있고, mybatis에서는 #{변수명}에 get변수명에 의해 반환된 값이 들어온다 -->
   	<select id="getAllListWithPaging" resultType="TripReviewVO">
   		select *
 		from trip_review
 		order by review_num desc
-		limit 0, 3;
+		limit #{colsNum}, #{amount}
+  	</select>
+  	
+  	<!-- public int getTotalReviewsCnt() -->
+  	<select id="getTotalReviewsCnt" resultType="int">
+  		select count(*)
+		from trip_review
+<!-- 		<if test="keyword != null">
+            where wwhere like concat('%', #{keyword}, '%')        
+        </if> -->
   	</select>
   	
   	<select id="getOneReview" parameterType="int" resultType="TripReviewVO">
   		select * 
   		from trip_review 
   		where review_num=#{review_num}
+  	</select>
+  	
+  	<!--  -->
+  	<select id="searchReviewsByKeyword" parameterType="String" resultType="TripReviewVO">
+  		select *
+		from trip_review
+		where wwhere
+		LIKE concat('%', #{keyword}, '%')
+		order by review_num desc
+		limit #{colsNum}, #{amount}
   	</select>
   	
   	<insert id="insertReview" parameterType="TripReviewVO">

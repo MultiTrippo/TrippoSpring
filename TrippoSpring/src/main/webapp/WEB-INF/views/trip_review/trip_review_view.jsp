@@ -54,9 +54,14 @@
 			$('#btnDelete').click(function(e){	
 				e.preventDefault();		
 				
-				$('#hiddenForm').attr('action', 'deleteReview');
-				$('#hiddenForm').attr('method', 'get');				
-				hiddenForm.submit();				
+				if(confirm("정말 삭제하시겠습니까?")){					
+					//확인
+					$('#hiddenForm').attr('action', 'deleteReview');
+					$('#hiddenForm').attr('method', 'get');				
+					hiddenForm.submit();
+				}else{
+					//취소
+				}								
 			});	
 			
 			$('#btnModify').click(function(e){	
