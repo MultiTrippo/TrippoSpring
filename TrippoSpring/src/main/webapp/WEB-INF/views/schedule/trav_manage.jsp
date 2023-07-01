@@ -13,18 +13,22 @@
 		
 		<!-- css 참조 -->
 		<link rel="stylesheet" type="text/css" href="css/schedule/trav_manage.css">
-		<!-- <link rel="stylesheet" type="text/css" href="css/schedule/etc.css"> -->
+		 <link rel="stylesheet" type="text/css" href="css/schedule/acordian.css">
 		<link rel="stylesheet" type="text/css" href="css/schedule/googlemap.css" />
 		<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"> -->
 		
+		 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.css"/>
+		
 		<title>Trippo 일정 관리</title>
 		
-<!-- 		<script defer src="js/schedule/arcodian.js"></script> -->
+ 		<script defer src="js/schedule/acordian.js"></script> 
 		<script defer src="js/schedule/googlemap.js"></script>
 		<script defer src="js/schedule/etcManage.js"></script>
 		<script defer src="js/schedule/mapPinAdd.js"></script>
 		  
         <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+        
+        <script src="https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.js"></script>    
         
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		
@@ -87,60 +91,33 @@
 			    </div>
 
 				<!-- schedule -->
+				<div class="schedule">
 				<div id="accordionContainer">
-					<div class="schedule">
+					
+						<!-- <button id="pinAddBtn"> 맵에 핀 추가 </button> -->
+						<form action="fixInsert" method="post">
+							<div class="addAccordian">
+								
+								<input type="text" id="fixTitle" placeholder="하고 싶은 내용을 적어주세요.">
+								<button type="button" id="fixAddBtn">추가</button>
+							</div>
+						</form>
+						
+						
+						
+						<div id="fixContainer"></div>
+					
 					</div>
 					
-					<!-- <button onclick="pinAddBtn()"> 맵에 핀 추가 </button> -->
 								
 				
-				   <!--  <button class="accordion" onclick="toggleAccordion(0)">
-				    	<img alt="드롭다운 이미지" src="images/schedule/arrow.png" style="width:20px;height:20px;">
-				    </button>
-				    <div class="panel">
-				      	<img alt="시계 아이콘 이미지" src="images/schedule/alarm.png" style="width:20px;height:20px;">
-						<button>am</button>
-						<div class="time">
-							<div class="timeselect">
-								<div class="time-selected-vaule">시간 선택</div>
-							</div>
-							
-							<ul class="time-selected-options">								
-							</ul>
-						</div> -->
+				  
 				    </div>
 				    
 				    
 			  </div>
 				
-			 <!--  <button onclick="addAccordion()">+</button> -->
-				
-				
-				<!-- <div class="schedule">
-					<div>
-						<h2>1st - 2023.07.12</h2>
-					</div>
-				
-					<div>
-						<img>
-						<span>예시 : 도쿄 밥집</span>
-						<button class="dropdown-toggle" type="button">
-							<img alt="드롭다운 이미지" src="images/arrow.png" style="width:20px;height:20px;">
-						</button>
-					</div>
-					
-					<div class="dropdown-content">
-						<div>
-							<img alt="시계 아이콘 이미지" src="images/alarm.png" style="width:20px;height:20px;">
-							<button>am</button>
-							<button>시간</button>
-						</div>
-						<div>
-							<textarea></textarea>
-						</div>
-					</div>
-				
-				</div> -->
+			
 
 			</div>
 		
