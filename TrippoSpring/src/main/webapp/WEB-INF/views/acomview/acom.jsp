@@ -196,12 +196,14 @@
 						let photo=arr[i].photos; 
 						let faciArr=arr[i].facilities;
 						
-						console.log("===photo" + photo[0].url_640x200);
+						console.log("===photo====" + photo[0].url_640x200);
 					
 						switch(i){
 						case 0:{ 
-							$('#roomimage1').attr('src', photo[0].url_640x200);
-							$('.room1').html(des);
+							//$('#roomimage1').attr('src', photo[0].url_640x200);
+							let img1='<img class="img1" src="'+photo[0].url_max300+'">';
+							$('.room1').html(img1);
+							$('.room1').append(des);
 							$.each(faciArr, function(j, faci){
 								if(j<9){
 									$('.room1').append("<li>"+faci.name+"</li>");
@@ -210,7 +212,9 @@
 							
 						}break;
 						case 1:{
-							$('.room2').html(des);
+							let img2='<img class="img2" src="'+photo[0].url_max300+'">';
+							$('.room2').html(img2);
+							$('.room2').append(des);
 							$.each(faciArr, function(j, faci){
 								if(j<8){
 									$('.room2').append("<li>"+faci.name+"</li>");
@@ -218,7 +222,9 @@
 							})
 						}break;
 						case 2: {
-							$('.room3').html(des);
+							let img3='<img class="img3" src="'+photo[0].url_max300+'">';
+							$('.room3').html(img3);
+							$('.room3').append(des);
 							$.each(faciArr, function(j, faci){
 								if(j<8){
 									$('.room3').append("<li>"+faci.name+"</li>");
@@ -264,7 +270,7 @@
 	</div>
 	<div style="display:flex">
 	<div class="acomimage1">           <!-- 1번 가장 큰 이미지 불러오기 -->
-	 <img class="img1">
+	 <!--  <img class="img1">-->
 	</div>
 	<div class="acomimage2">
 	<img class="img2">
