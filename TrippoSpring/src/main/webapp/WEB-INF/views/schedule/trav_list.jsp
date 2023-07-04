@@ -14,6 +14,9 @@
 	<link rel="stylesheet"
 		href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<link rel="stylesheet" type="text/css" href="css/schedule/trav_list.css" />
+	
+	<!-- 글꼴 -->
+	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
 		
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script defer src="js/schedule/scheduleList.js"></script>
@@ -22,6 +25,8 @@
 
 </head>
 <body>
+	<%@ include file="/inc/top.jspf" %> 
+
 	<div id="inputSchedule">
 		<form  action="ScheduleInsert" method="post">
 			<input type="text" id="ScheduleInput" placeholder="  여행 제목을 입력해주세요.">

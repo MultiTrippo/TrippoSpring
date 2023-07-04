@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+*{
+	font-family: 'IBM Plex Sans KR', sans-serif;
+}
+
 body {
 	background: linear-gradient(45deg, #49a09d, #5f2c82);
 }
