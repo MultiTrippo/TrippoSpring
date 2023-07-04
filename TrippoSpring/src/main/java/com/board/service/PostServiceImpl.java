@@ -52,8 +52,7 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	public List<PostVO> getFilteredPosts(String category, String country, String city) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.postMapper.getFilteredPosts(category, country, city);
 	}
 
 	@Override
