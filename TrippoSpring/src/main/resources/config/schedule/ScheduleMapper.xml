@@ -12,7 +12,7 @@
  		where id=#{id}
  	</select>
  	
- 	<insert id="insertSchedule" parameterType="ScheduleListVO" useGeneratedKeys="true" keyProperty="page_id">
+ 	<insert id="insertSchedule" parameterType="ScheduleListVO" useGeneratedKeys="true" keyProperty="page_id">	
  		insert into travel_schedule (page_id, id, trav_date, trav_title)
  		values (#{page_id}, #{id}, date_format(now(), '%Y-%m-%d'), #{trav_title})
  	</insert>

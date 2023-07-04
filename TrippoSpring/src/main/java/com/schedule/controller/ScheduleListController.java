@@ -6,14 +6,20 @@ import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.schedule.db.ScheduleListVO;
 import com.schedule.service.ScheduleService;
 
+import lombok.extern.log4j.Log4j;
+
 @Controller
+@Log4j
 public class ScheduleListController {
 	@Autowired
 	private ScheduleService service; 
@@ -29,8 +35,9 @@ public class ScheduleListController {
 		return "schedule/trav_list";
 	}
 	
-	@RequestMapping(value="ScheduleInsert", method=RequestMethod.POST)
-	public String insertSchedule(Model model, @RequestParam("id") String id, ScheduleListVO s) {
+	@PostMapping(value="ScheduleInsert", produces = "application/json")
+	@ResponseBody
+	public ModelMap insertSchedule(Model model, @RequestParam("id") String id, ScheduleListVO s) {
 		System.out.println("#Schedule List controller getId : " + s.getId());
 		System.out.println("#controller getTrav_title : " + s.getTrav_title());
 		
@@ -41,14 +48,17 @@ public class ScheduleListController {
 		int se = service.insertSchedule(s);
 		System.out.println("se :" + se);
 		System.out.println("pageId: " + pageId);
+		
 		if(se == 1) {
 			System.out.println("controller : Schedule 입력 성공");
 		} else {
 			System.out.println("controller : Schedule 입력 실패");
 		}
 		
+		ModelMap map = new ModelMap();
+		map.put("page_id", s.getPage_id());
 		
-		return "redirect:/scheduleList";
+		return map;
 	}
 	
 	private String generateRandomPageId() {
@@ -65,8 +75,9 @@ public class ScheduleListController {
 		return sb.toString();
 	}
 	
-	@RequestMapping(value="/scheduleUpdate", method= RequestMethod.POST)
-	public String updateSchedule(@RequestParam("page_id") String pageId, @RequestParam("id") String id, ScheduleListVO s) {
+	@PostMapping(value="/scheduleUpdate", produces = "application/json")
+	@ResponseBody
+	public ModelMap updateSchedule(@RequestParam("page_id") String pageId, @RequestParam("id") String id, ScheduleListVO s) {
 		System.out.println("#List Controller page_id" + s.getPage_id());
 		System.out.println("#List Controller id" + s.getId());
 		
@@ -79,12 +90,14 @@ public class ScheduleListController {
 			System.out.println("controller : Schedule 수정 실패");
 		}
 		
-		
-		return "redirect:/scheduleList";
+		ModelMap map = new ModelMap();
+		map.put("page_id", s.getPage_id());
+		return map;
 	}
 	
-	@RequestMapping(value="/scheduleDelete", method= RequestMethod.POST)
-	public String deleteSchedule(@RequestParam("page_id") String pageId, @RequestParam("id") String id, ScheduleListVO s) {
+	@PostMapping(value="/scheduleDelete", produces = "application/json")
+	@ResponseBody
+	public ModelMap deleteSchedule(@RequestParam("page_id") String pageId, @RequestParam("id") String id, ScheduleListVO s) {
 		System.out.println("#List Controller page_id : " + s.getPage_id());
 		
 		int se = service.deleteSchedule(s);
@@ -96,8 +109,9 @@ public class ScheduleListController {
 			System.out.println("controller : Schedule 삭제 실패");
 		}
 		
-		
-		return "redirect:/scheduleList";
+		ModelMap map = new ModelMap();
+		map.put("page_id", s.getPage_id());
+		return map;
 	}
 	
 }
