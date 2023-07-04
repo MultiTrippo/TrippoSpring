@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.member.mapper.MemberMapper">
+	
+	<select id="idCheck" parameterType="MemberVO" resultType="int">
+		select count(*)
+		from user
+		where id = #{id}
+	</select>
+	
+	<select id="emailCheck" parameterType="MemberVO" resultType="int">
+		select count(*)
+		from user
+		where email = #{email}
+	</select>
+
+	<insert id="signUpComplete" parameterType="MemberVO">
+		insert into user
+		( id, name, password, phone, birth, gender, email )
+		values ( #{id}, #{name}, #{password}, #{phone}, #{birth}, #{gender}, #{email} )
+	</insert>
+	
+	<select id="loginComplete" parameterType="MemberVO" resultType="MemberVO">
+		select id, password
+		from user
+		where id = #{id} and password = #{password}
+	</select>
+</mapper>

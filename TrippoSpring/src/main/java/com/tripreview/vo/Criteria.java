@@ -6,35 +6,34 @@ import lombok.Data;
 public class Criteria {
 	
 	private int currPage;
-	private int amount = 10;
+	private int amount;
+	private int colsNum;		
 	
-	//currPage	(currPage-1)*amount		amount
-	//1페이지일때 	0번째컬럼(1번째글)부터, 		3개씩보여주기
-	//2페이지일때 	3번째컬럼(4번째글)부터, 		3개씩보여주기
-	//3페이지일때 	6번째컬럼(7번째글)부터, 		3개씩보여주기	
-		
-	public int getColsNum() {
-		
-		return (currPage-1) * amount;
+	private String keyword;
+	
+	public Criteria() {
+		this(1, 10);		
+		this.colsNum = 0;
 	}
 	
-	public void setCurrPage(int currPage) {
-		
-		if(currPage<=0) {
-			this.currPage = 1;
-		}else {
-			this.currPage = currPage;
-		}
+	public Criteria(int currPage, int amount) {
+		this.currPage = currPage;
+		this.amount = amount;
+		this.colsNum = (currPage-1) * amount;
 	}
 	
-	public void setAmount(int amount) {
-		
-		if(this.amount != amount) {
-			this.amount = this.amount;
-		}else {
-			this.amount = amount;
-		}
+	public void setCurrPage(int currPage) {		
+		this.colsNum = (currPage-1) * amount;
+		this.currPage = currPage;
 	}
 	
+	public void setAmount(int amount) {		
+		this.colsNum = (currPage-1) * amount;
+		this.amount = amount;
+	}
 	
+	public void setColsNum(int colsNum) {
+		this.colsNum = colsNum;
+	}
+		
 }

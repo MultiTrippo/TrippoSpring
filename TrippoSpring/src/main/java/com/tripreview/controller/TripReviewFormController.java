@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -57,39 +58,45 @@ public class TripReviewFormController {
 //	}
 	
 	/** 모든 후기 리스트 보기 + 페이징 처리 */
-	@RequestMapping(value = "/trip_review_list", method = RequestMethod.GET)
-	public String getAllListWithPaging(Model model, @RequestParam(defaultValue = "1") int viewPage){
-													//view의 url에서 ?이후 queryName과 변수명이 일치하는것으로 RequestParam 들어온다
-		System.out.println("controller의 page: " + viewPage); 
+	@GetMapping("/trip_review_list")
+	public String getAllListWithPaging(Model model, Criteria cri){
 		
-		//Criteria
-		Criteria cri = new Criteria();
-		cri.setCurrPage(viewPage);
+		System.out.println("cri"+ cri); //기본생성자		
 		
-		//총 리뷰의 수
-		int totalReviews = service.getTotalReviewsCnt();
-		
-		//페이징VO
-		ReviewPagingVO pagingVO = new ReviewPagingVO();
-		pagingVO.setCri(cri);
-		pagingVO.setTotalReviews(totalReviews);
-		
+		System.out.println("cri.getCurrPage(): "+cri.getCurrPage());
+		System.out.println("cri.getAmount(): "+cri.getAmount()); 
+		System.out.println("cri.getColsNum(): "+cri.getColsNum()); 
+			
 		List<TripReviewVO> list = service.getAllListWithPaging(cri);
-
 		model.addAttribute("getAllListWithPaging", list);
+		
+		int totalReviews = service.getTotalReviewsCnt(cri);
+		ReviewPagingVO pagingVO = new ReviewPagingVO(cri, totalReviews);		
 		model.addAttribute("pagingVO", pagingVO);
 		
 		return "trip_review/trip_review_list"; 
 	}
 	
-	/** 검색어로 후기 조회하기 (+ 페이징 처리) */
-	@RequestMapping(value = "/searchReview", method = RequestMethod.GET)
-	public String searchReviewsByKeyword(@RequestParam("keyword") String keyword, Model model) {
-
-		System.out.println("keyword: "+keyword);
+	/** 검색어로 후기 조회하기 + 페이징 처리 */
+	@GetMapping("/trip_review_search")
+	public String searchKeywordWithPaging(Model model, Criteria cri){
 		
-		return "trip_review/trip_review_search";
+		System.out.println("cri"+ cri); //기본생성자		
+		
+		System.out.println("cri.getCurrPage(): "+cri.getCurrPage());
+		System.out.println("cri.getAmount(): "+cri.getAmount()); 
+		System.out.println("cri.getColsNum(): "+cri.getColsNum()); 
+			
+		List<TripReviewVO> list = service.getAllListWithPaging(cri);
+		model.addAttribute("getAllListWithPaging", list);
+		
+		int totalReviews = service.getTotalReviewsCnt(cri);
+		ReviewPagingVO pagingVO = new ReviewPagingVO(cri, totalReviews);		
+		model.addAttribute("pagingVO", pagingVO);
+		
+		return "trip_review/trip_review_search"; 
 	}
+
 	
 	/** 선택한 후기 한개 조회하기 */
 	@RequestMapping(value = "/viewOneReview", method = RequestMethod.GET)

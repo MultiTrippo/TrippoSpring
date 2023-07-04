@@ -34,22 +34,7 @@ a:visited{
 	letter-spacing: 2;
 }
 
-.menus{
-	display: flex;
-	flex-direction: column;
-	gap: 2rem;
-}
 
-.menus a{
-	display: flex;
-	align-items: center;
-	color: white;
-	text-decoration: none;
-}
-
-.menus a:hover{
-	color: blue;
-}
 
 /* list의 검색창 */
 .searchbar{
@@ -88,6 +73,8 @@ a:visited{
 	background-color: #f7d56c;
 }
 
+
+/* 페이지네이션 */
 #paginationDiv{
 	display: flex;
   	justify-content: center;
@@ -121,3 +108,24 @@ a:visited{
   border-color: #ccc;
 }
 
+/* 버튼 */
+.customBtn{
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 1rem 1.5rem;
+	background: #F7FFE5;
+	color: #606C5D;
+	border: none;
+	border-radius: 10px;
+	box-shadow: rgba(99,99,99,0.2) 0px 2px 8px 0px;
+	cursor: pointer;	
+	font-size: 1.5rem;
+	margin: 0.5rem;
+}
+
+.customBtn:hover{
+	background-color: #C4D7B2;
+}

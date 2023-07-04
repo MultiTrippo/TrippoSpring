@@ -15,22 +15,23 @@ public class ReviewPagingVO{
 	private boolean prev; //==
 	private boolean next; //==
 	
-
-    public void setTotalReviews(int totalReviews) {
-        this.totalReviews = totalReviews;
-        calcPages();
-    }
-	public void calcPages() {
+	public ReviewPagingVO(Criteria cri, int totalReviews) {
 		
-		lastBlock = (int) (Math.ceil(cri.getCurrPage() / (double) paginationSize) * paginationSize);		
-		firstBlock = (lastBlock - paginationSize) + 1;
+		this.cri = cri;
+		this.totalReviews = totalReviews;
+		
+		this.lastBlock = (int) (Math.ceil(cri.getCurrPage() / (double) paginationSize) * paginationSize);		
+		this.firstBlock = (lastBlock - paginationSize) + 1;
+	        
+		int tempEndPage = (int) (Math.ceil(totalReviews / (double) cri.getAmount()));    
+		this.lastBlock = (tempEndPage < lastBlock)? tempEndPage : lastBlock;
+		
+		this.prev = (this.firstBlock > 1); 
+        this.next = (this.lastBlock < tempEndPage);
+				
         
-        int tempEndPage = (int) (Math.ceil(totalReviews / (double) cri.getAmount()));    
-        if(lastBlock > tempEndPage) {
-        	lastBlock = tempEndPage;
-        }
         
-        prev = (firstBlock==1)? false : true;    
-        next = (lastBlock*cri.getAmount() >= totalReviews)? false : true;
-	}
+      }
+
+
 }

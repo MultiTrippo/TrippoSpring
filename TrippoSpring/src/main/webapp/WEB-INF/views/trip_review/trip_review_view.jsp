@@ -59,6 +59,7 @@
 					$('#hiddenForm').attr('action', 'deleteReview');
 					$('#hiddenForm').attr('method', 'get');				
 					hiddenForm.submit();
+					alert("삭제가 완료 되었습니다");
 				}else{
 					//취소
 				}								
@@ -69,7 +70,7 @@
 				
 				$('#hiddenForm').attr('action', 'modifyReview');
 				$('#hiddenForm').attr('method', 'get');				
-				hiddenForm.submit();				
+				hiddenForm.submit();	
 			});
 		})
 		
@@ -106,16 +107,17 @@
 	<div class="sidebar">
 		<h1 class="logo">${selectedReview.user_id }님의 후기</h1>			
 		<div>
-			<button type="button" class="btn btn-outline-warning" id="btnWrite">후기 작성하기</button>					
-			<button type="button" class="btn btn-outline-warning" id="btnList">전체 목록으로</button>
+			<button type="button" class="customBtn" id="btnWrite">
+				<ion-icon name="create"></ion-icon>후기 작성하기</button>					
+			<button type="button" class="customBtn" id="btnList">
+				<ion-icon name="receipt"></ion-icon>글목록으로</button>
 			<form name="hiddenForm" id="hiddenForm">
 				<input type="hidden" name="review_num" value="<c:out value='${selectedReview.review_num }' />">
-				<button type="button" class="btn btn-outline-warning" id="btnModify">후기 수정하기</button>
-				<button type="button" class="btn btn-outline-warning" id="btnDelete">후기 삭제하기</button>
+				<button type="button" class="customBtn" id="btnModify">
+					<ion-icon name="cut"></ion-icon>후기 수정하기</button>
+				<button type="button" class="customBtn" id="btnDelete">
+					<ion-icon name="trash"></ion-icon>후기 삭제하기</button>
 			</form>
-		</div>	
-		<div class="menus">
-			<a href="#"><ion-icon name="heart"></ion-icon>Home</a>
 		</div>
 	</div>
 	<div id="container">
