@@ -1,0 +1,86 @@
+@charset "UTF-8";
+
+#etcTitle {
+	font-weight: bold;
+	font-size: 30px;
+}
+
+#EtcDiv {
+	margin-top : 15px;
+}
+
+#textInput {
+	border-style: none;
+	border-radius: 10px;
+	height: 35px;
+	width: 300px;
+	
+}
+
+#addButton {
+	background-color : #4A757B;
+	height : 35px;
+	width: 100px;
+	color: white;
+	border-style: none;
+	border-radius: 10px;
+	font-size: 15px;
+}
+
+#etcContainer {
+	margin-top:10px;
+	overflow-y : auto; /* 스크롤바 생성 */
+	max-height: 200px; /* 스크롤바를 위해 높이 제한*/
+}
+
+/* 스크롤바의 너비 */
+#etcContainer::-webkit-scrollbar {
+	width: 5px; 
+}
+
+/* 스크롤바 길이와 색상 */
+#etcContainer::-webkit-scrollbar-thumb {
+	height: 5px;
+	background :  #4A757B;
+	border-radius: 10px;
+}
+
+/* 스크롤바 뒷 배경 색상 */
+#etcContainer::-webkit-scrollbar-track {
+	background : none;
+}
+
+.editButton {
+	background: #5987E1;
+	border-style: none;
+	border-radius: 5px;
+	margin-left: 20px;
+	padding: 5px;
+}
+
+.deleteButton {
+	background : #E16559;
+	border-style: none;
+	border-radius: 5px;
+	margin-left: 5px;
+	padding: 5px;
+}
+
+.rowDiv {
+	display: flex;
+}
+
+.containerDiv {
+	width:33%;
+	margin-top : 10px;
+	margin-right: 30px;
+	
+}
+
+#etcText {
+	width: 30%;
+}
+
+#buttons {
+	 float:right;
+}

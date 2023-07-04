@@ -12,12 +12,15 @@
 	</select>
 	
 	<insert id="insertFixList" parameterType="FixVO" useGeneratedKeys="true" keyProperty="fix_id">
+		<selectKey keyProperty="fix_id" resultType="int" order="AFTER">
+			select last_insert_id()
+		</selectKey>
 		insert into travel_sche_fix (page_id, p_name)
 		values (#{page_id}, #{p_name})
 	</insert>
 	
 	<update id="updateFixList" parameterType="FixVO" useGeneratedKeys="true" keyProperty="fix_id">
-		update travel_sche_fix set p_name=#{p_name}, lat=#{lat}, lng=#{lng}, p_memo=#{p_memo}, p_color=#{p_color}
+		update travel_sche_fix set p_memo=#{p_memo}
 		where fix_id = #{fix_id} and page_id = #{page_id}
 	</update>
 	

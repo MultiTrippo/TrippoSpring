@@ -7,12 +7,12 @@ import lombok.Setter;
 @Getter
 @Setter
 public class EtcVO {
-	private int etc_id; // int·Î ÇÏ¸é ¿¡·¯°¡ ³ª±â ¶§¹®¿¡ 
+	private int etc_id; // intï¿½ï¿½ ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	private String page_id;
 	private String etc;
 	
 	@Override
 	public String toString() {
-		return "EtcVO [etc_id=" + etc_id + ", page_id : " + page_id + ", etc" + etc + "]";
+		return "EtcVO [etc_id : " + etc_id + ", page_id : " + page_id + ", etc : " + etc + "]";
 	}
 }
