@@ -6,15 +6,16 @@
     <meta charset="UTF-8">
     <title>Photo Gallery</title>
     <style>
-    	#scroll-view {
-	        width: 80%;
-	        height: auto; /* 스크롤 영역의 높이 설정 */
-	        /* overflow-y: auto; /* 수직 스크롤 적용 */ */
-	    }
-        .gallery {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
+   	#scroll-view {
+        width: 50%;
+        height: auto; /* 스크롤 영역의 높이 설정 */
+        overflow-y: auto; /* 수직 스크롤 적용 */
+        margin:10px;
+    }
+       .gallery {
+       display: flex;
+       flex-wrap: wrap;
+       gap: 10px;
     }
 
     .gallery-item {
