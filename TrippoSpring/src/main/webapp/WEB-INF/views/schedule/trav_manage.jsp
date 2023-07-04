@@ -13,8 +13,9 @@
 		
 		<!-- css 참조 -->
 		<link rel="stylesheet" type="text/css" href="css/schedule/trav_manage.css">
-		 <link rel="stylesheet" type="text/css" href="css/schedule/acordian.css">
+		<link rel="stylesheet" type="text/css" href="css/schedule/acordian.css">
 		<link rel="stylesheet" type="text/css" href="css/schedule/googlemap.css" />
+		<link rel="stylesheet" type="text/css" href="css/schedule/etc.css" />
 		<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"> -->
 		
 		 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.css"/>
@@ -32,7 +33,24 @@
         
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		
-    	<!-- <script type="module" src="js/schedule/index.js"></script> -->
+    	<script type="text/javascript">
+	    	function clip(){
+	
+	    		var url = '';
+	    		var textarea = document.createElement("textarea");
+	    		document.body.appendChild(textarea);
+	    		url = window.document.location.href;
+	    		textarea.value = url;
+	    		textarea.select();
+	    		document.execCommand("copy");
+	    		document.body.removeChild(textarea);
+	    		alert("URL이 복사되었습니다.")
+	    	}
+	    	
+	    	function saveAlert() {
+	    		alert("저장하기 완료")
+	    	}
+    	</script>
 		
 	</head>
 	
@@ -43,23 +61,18 @@
 		
 		</div>
 		
+	
 		<!-- main part -->
 		<div class="body">
 			<!-- save and share buttons -->
 			<div class="buttons">
-				<!-- <Text>나라 선택 : </Text>
-				<form method="post" enctype="multipart/form-data" id="country">
-					<input type="text" id="pac-input" class="controls" placeholder="장소를 입력하세요">
-					<button>검색</button>
-					<input type="submit" value="이동" onclick="moveToPlace()">
-				</form> -->
-				
+		
 				<button class="share-button">
-					<img alt="공유하기 버튼 이미지" src="images/schedule/share.png" style="width:20px;height:20px">
+					<img alt="공유하기 버튼 이미지" src="images/schedule/share.png" style="width:20px;height:20px" onclick="clip(); return false;">
 					<span>공유하기</span>
 				</button>
 				<button class="save-button">
-					<img alt="저장하기 버튼 이미지" src="images/schedule/save.png" style="width:20px;height:20px">
+					<img alt="저장하기 버튼 이미지" src="images/schedule/save.png" style="width:20px;height:20px" onclick="saveAlert(); return false;">
 					<span>저장하기</span>
 				</button>
 			</div>
@@ -84,7 +97,7 @@
 				      for more information.
 				      -->
 				    <script
-				      src="https://maps.googleapis.com/maps/api/js?key=apikey&callback=initAutocomplete&libraries=places,visualization&v=weekly"
+				      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBzMHaefU9ZZCbSDZs3gMGI_pGrvPtnLA&callback=initAutocomplete&libraries=places,visualization&v=weekly"
 				      defer
 				    ></script>
 				    
@@ -98,7 +111,7 @@
 						<form action="fixInsert" method="post">
 							<div class="addAccordian">
 								
-								<input type="text" id="fixTitle" placeholder="하고 싶은 내용을 적어주세요.">
+								<input type="text" id="fixTitle" placeholder="   하고 싶은 내용을 적어주세요.">
 								<button type="button" id="fixAddBtn">추가</button>
 							</div>
 						</form>
@@ -125,19 +138,17 @@
 			<div class="etc">
 				<span id="etcTitle">ETC.</span>
 				<form action="etcInsert" method="post">
-					<div>
-			<%-- 			<input type="hidden" name="pageId" value="<%= request.getParameter("page_id") %>"> --%>
-						<input type="text" id="textInput" placeholder="하고 싶은 내용을 적어주세요.">
+					<div id="EtcDiv">
+			
+						<input type="text" id="textInput" placeholder="   하고 싶은 내용을 적어주세요.">
 						<button type="button" id="addButton">추가하기</button>			
 					</div>
 					
 				</form>
 				
-				<%-- <c:import url="/etcList"></c:import> --%>
 				<input type="hidden" id="pageId" value="<%= request.getParameter("page_id") %>">
 		
 				<div id="etcContainer" class="etcContainer">
-						
 					
 				</div>
 			</div>

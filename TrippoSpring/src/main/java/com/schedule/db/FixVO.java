@@ -16,7 +16,7 @@ public class FixVO {
 	
 	@Override
 	public String toString() {
-		return "FixVO [fix_id = " + fix_id + ", page_id : " + page_id + ", lat =  " + lat + ", lng = " 
-				+ lng + ", p_name = " + p_name + ", p_memo =" + p_memo + ", p_color =" + "p_color";  
+		return "FixVO [fix_id : " + fix_id + ", page_id : " + page_id + ", lat :  " + lat + ", lng : " 
+				+ lng + ", p_name : " + p_name + ", p_memo : " + p_memo + ", p_color : " + "p_color";  
 	}
 }

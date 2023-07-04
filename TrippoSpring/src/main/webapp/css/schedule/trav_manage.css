@@ -135,6 +135,7 @@
 }
 
 .etc {
+	padding: 30px;
 	margin-top:20px;
 	margin-left:10px;
 	height:300px;
@@ -157,7 +158,7 @@
     }
 
 .active, .accordion:hover {
-  background-color: #ccc;
+  background-color: #F4F7D9;
 }
 
 .panel {

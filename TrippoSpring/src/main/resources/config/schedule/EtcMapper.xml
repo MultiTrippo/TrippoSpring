@@ -12,6 +12,9 @@
 	</select>
 
 	<insert id="insertEtcList" parameterType="EtcVO" useGeneratedKeys="true" keyProperty="etc_id">
+		<selectKey keyProperty="etc_id" resultType="int" order="AFTER">
+			select last_insert_id()
+		</selectKey> 
 		insert into travel_sche_etc (page_id, etc)
 		values (#{page_id}, #{etc})
 	</insert>

@@ -1,0 +1,90 @@
+@charset "UTF-8";
+
+#accordionContainer {
+	padding : 20px;
+	
+}
+
+#fixContainer {
+	overflow-y : auto; /* 스크롤바 생성 */
+	max-height: 500px; /* 스크롤바를 위해 높이 제한*/
+}
+
+#fixContainer::-webkit-scrollbar {
+		width: 5px; 
+}
+
+#fixContainer::-webkit-scrollbar-thumb {
+	height: 5px;
+	background :  #F2FF68;
+	border-radius: 10px;
+}
+	
+#fixContainer::-webkit-scrollbar-track{
+	background : none;
+}
+
+#fixTitle {
+	border-style : none;
+	border-radius: 10px;
+	height: 35px;
+	width: 300px;
+}
+
+#fixAddBtn {
+	background: #DCDFBB;
+	border-style : none;
+	border-radius: 10px;
+	height: 35px;
+	width: 70px;
+}
+
+.content{
+	height: 120px;
+}
+
+
+
+.accordion {
+	width: 500px;
+	background: #FCFEE6;
+}
+
+textarea {
+	margin-left:15px;
+	margin-top: 10px;
+	height: 50px;
+	width : 500px;
+	border-style: none;
+	border-radius: 10px;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.delete {
+	border-style: none;
+	border-radius: 10px;
+	background: #FF7575;
+	width: 100px;
+	height: 30px;
+	color: white;
+	float: right;
+	margin-top:10px;
+	margin-right: 10px;
+}
+
+.save {
+	border-style: none;
+	border-radius: 10px;
+	background: #83D7FF;
+	width: 100px;
+	height: 30px;
+	color: white;
+	float: right;
+	margin-top:10px;
+	margin-right: 10px;
+}
