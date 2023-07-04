@@ -94,6 +94,7 @@
 				$('#wwwh_form').attr('action', 'modifyReviewComplete');
 				$('input[name=contents]').attr('value', editor.getHTML());
 				wwwh_form.submit();	
+				alert("수정이 완료 되었습니다");
 			});	
 			
 			$('#btnList').click(function(e){	
@@ -135,12 +136,12 @@
 	<div class="sidebar">
 		<h1 class="logo">글 수정 도구</h1>
 		<div>
-			<button type="button" class="btn btn-outline-warning" id="btnModifyComplete">수정완료</button>
-			<button type="reset" class="btn btn-outline-warning" id="btnReset">다시쓰기</button>
-			<button type="button" class="btn btn-outline-warning" id="btnList">글목록</button>
-		</div>
-		<div class="menus">
-			<a href="#"><ion-icon name="heart"></ion-icon>Home</a>
+			<button type="button" class="customBtn" id="btnModifyComplete">
+				<ion-icon name="checkbox"></ion-icon>수정 완료</button>
+			<button type="reset" class="customBtn" id="btnReset">
+				<ion-icon name="refresh-circle"></ion-icon>다시 쓰기</button>
+			<button type="button" class="customBtn" id="btnList">
+				<ion-icon name="receipt"></ion-icon>글목록으로</button>
 		</div>
 	</div>		
 	<div id="container">		
@@ -157,7 +158,101 @@
 				</div>	
 				<div class="input-group mb-3">
 					<span class="input-group-text">어디로</span> 
-					<input type="text" class="form-control" value="<c:out value="${selectedReview.wwhere }"/>" autocomplete="on" name="wwhere">
+					<input type="text" list="city" class="form-control" value="<c:out value="${selectedReview.wwhere }"/>" autocomplete="on" name="wwhere">
+						<datalist id="city">
+							<option value="방콕, 태국">
+							<option value="부다페스트, 헝가리">
+							<option value="싱가포르, 싱가포르">
+							<option value="헬싱키, 핀란드">
+							<option value="뭄바이, 인도">
+							<option value="델리, 인도">
+							<option value="프놈펜, 캄보디아">
+							<option value="발리, 인도네시아">
+							<option value="자카르타, 인도네시아">
+							<option value="마닐라, 필리핀">
+							<option value="카사블랑카, 모로코">
+							<option value="키예프, 우크라이나">
+							<option value="리옹, 프랑스">
+							<option value="파리, 프랑스">
+							<option value="마르세유, 프랑스">
+							<option value="바르샤바, 폴란드">
+							<option value="이스탄불, 터키">
+							<option value="나이로비, 케냐">
+							<option value="하바나, 쿠바">
+							<option value="유후인, 일본">
+							<option value="도쿄, 일본">
+							<option value="교토, 일본">
+							<option value="오사카, 일본">
+							<option value="베이징, 중국">
+							<option value="상하이, 중국">
+							<option value="홍콩, 중국">
+							<option value="오스틴, 미국">
+							<option value="뉴욕, 미국">
+							<option value="디트로이트, 미국">
+							<option value="로스엔젤레스, 미국">
+							<option value="라스베가스, 미국">
+							<option value="마이애미, 미국">
+							<option value="보스턴, 미국">
+							<option value="샌프란시스코, 미국">
+							<option value="시애틀, 미국">
+							<option value="시카고, 미국">
+							<option value="애틀란타, 미국">
+							<option value="워싱턴DC, 미국">
+							<option value="필라델피아, 미국">
+							<option value="퀘백, 캐나다">
+							<option value="몬트리올, 캐나다">
+							<option value="밴쿠버, 캐나다">
+							<option value="오타와, 캐나다">
+							<option value="토론토, 캐나다">
+							<option value="산티아고, 칠레">
+							<option value="프라하, 체코">
+							<option value="베른, 스위스">
+							<option value="취리히, 스위스">
+							<option value="제네바, 스위스">
+							<option value="발렌시아, 스페인">
+							<option value="마드리드, 스페인">
+							<option value="바르셀로나, 스페인">
+							<option value="리스본, 포르투갈">
+							<option value="울란바토르, 몽골">
+							<option value="하노이, 베트남">
+							<option value="브라질리아, 브라질">
+							<option value="상파울루, 브라질">
+							<option value="맨체스터, 영국">
+							<option value="더블린, 아일랜드">
+							<option value="아테네, 그리스">
+							<option value="케이프타운, 남아프리카공화국">
+							<option value="암스테르담, 네덜란드">
+							<option value="카트만두, 네팔">
+							<option value="오슬로, 노르웨이">
+							<option value="오클랜드, 뉴질랜드">
+							<option value="타이베이, 대만">
+							<option value="코펜하겐, 덴마크">
+							<option value="뒤셀도르프, 독일">					
+							<option value="드레스덴, 독일">
+							<option value="뮌헨, 독일">
+							<option value="베를린, 독일">
+							<option value="함부르크, 독일">
+							<option value="모스크바, 러시아">
+							<option value="블라디보스톡, 러시아">
+							<option value="쿠알라룸푸르, 말레이시아">
+							<option value="멕시코시티, 멕시코">
+							<option value="칸쿤, 멕시코">
+							<option value="스톡홀름, 스웨덴">
+							<option value="두바이, 아랍에미레이트">
+							<option value="런던, 영국">
+							<option value="버밍엄, 영국">
+							<option value="에든버러, 영국">
+							<option value="옥스포드, 영국">
+							<option value="케임브릿지, 영국">
+							<option value="멜버른, 호주">
+							<option value="브리즈번, 호주">
+							<option value="시드니, 호주">
+							<option value="캔버라, 호주">
+							<option value="카이로, 이집트">
+							<option value="로마, 이탈리아">
+							<option value="밀라노, 이탈리아">
+						</datalist>
+				
 				</div>
 				<div class="input-group mb-3">
 					<span class="input-group-text">출발일</span> 
