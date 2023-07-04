@@ -29,6 +29,7 @@
 	  service();
 	  policy();
 	  room();
+	  img();
   })
   
   function detail(){
@@ -38,7 +39,7 @@
 			url: 'https://apidojo-booking-v1.p.rapidapi.com/properties/detail?hotel_id=${hotel_id}&search_id=123%3CREQUIRED%3E&departure_date=${acom.departure_date}&arrival_date=${acom.arrival_date}&rec_guest_qty=${acom.guest_qty}&rec_room_qty=${acom.room_qty}&languagecode=ko&currency_code=KRW',
 			method: 'GET',
 			headers: {
-				'X-RapidAPI-Key': 'ee70f5ae22msh3ce1b4738341c57p159089jsn5590e47837fd ',
+				'X-RapidAPI-Key' : 'bd1514d8fcmshc56f5e0cee38c07p131386jsn6498ffd0e6fd',
 				'X-RapidAPI-Host': 'apidojo-booking-v1.p.rapidapi.com'
 			}
 		};
@@ -76,7 +77,7 @@
 					url: 'https://apidojo-booking-v1.p.rapidapi.com/properties/get-hotel-photos?hotel_ids=${hotel_id}&languagecode=ko',
 					method: 'GET',
 					headers: {
-						'X-RapidAPI-Key' : 'ee70f5ae22msh3ce1b4738341c57p159089jsn5590e47837fd ',
+						'X-RapidAPI-Key' : 'bd1514d8fcmshc56f5e0cee38c07p131386jsn6498ffd0e6fd',
 						'X-RapidAPI-Host': 'apidojo-booking-v1.p.rapidapi.com'
 					}
 				};
@@ -103,7 +104,7 @@
 				url: 'https://apidojo-booking-v1.p.rapidapi.com/properties/get-facilities?hotel_ids=${hotel_id}&languagecode=ko',
 				method: 'GET',
 				headers: {
-					'X-RapidAPI-Key' : 'ee70f5ae22msh3ce1b4738341c57p159089jsn5590e47837fd ',
+					'X-RapidAPI-Key' : 'bd1514d8fcmshc56f5e0cee38c07p131386jsn6498ffd0e6fd',
 					'X-RapidAPI-Host': 'apidojo-booking-v1.p.rapidapi.com'
 				}
 			};
@@ -146,7 +147,7 @@
 				url: 'https://apidojo-booking-v1.p.rapidapi.com/properties/get-description?hotel_ids=${hotel_id}&languagecode=ko',
 				method: 'GET',
 				headers: {
-					'X-RapidAPI-Key' : 'ee70f5ae22msh3ce1b4738341c57p159089jsn5590e47837fd ',
+					'X-RapidAPI-Key' : 'bd1514d8fcmshc56f5e0cee38c07p131386jsn6498ffd0e6fd',
 					'X-RapidAPI-Host': 'apidojo-booking-v1.p.rapidapi.com'
 				}
 			};
@@ -174,18 +175,79 @@
 				url: 'https://apidojo-booking-v1.p.rapidapi.com/properties/v2/get-rooms?hotel_id=${hotel_id}&departure_date=${acom.departure_date}&arrival_date=${acom.arrival_date}&rec_guest_qty=${acom.guest_qty}&rec_room_qty=${acom.room_qty}&currency_code=KRW&languagecode=ko',
 				method: 'GET',
 				headers: {
-					'X-RapidAPI-Key' : 'ee70f5ae22msh3ce1b4738341c57p159089jsn5590e47837fd ',
+					'X-RapidAPI-Key' : 'bd1514d8fcmshc56f5e0cee38c07p131386jsn6498ffd0e6fd',
 					'X-RapidAPI-Host': 'apidojo-booking-v1.p.rapidapi.com'
 				}
 			};
 
-			$.ajax(settings).done(function (response) {
+	/* 		$.ajax(settings).done(function (response) {
 				console.log(response);
-			});
+				}); */
+			
+			$.ajax(settings).done(function (response) {
+				console.log(response[0].rooms);
+				});
+				
+		    $.ajax(settings).done(function (response) {
+					var str=response[0].rooms;
+					var arr=(Object.values(str));
+					for(let i=0;i<3;i++){
+						let des=arr[i].description;
+						let photo=arr[i].photos; 
+						let faciArr=arr[i].facilities;
+						
+						console.log("===photo====" + photo[0].url_640x200);
+					
+						switch(i){
+						case 0:{ 
+							//$('#roomimage1').attr('src', photo[0].url_640x200);
+							let img1='<img class="img1" src="'+photo[0].url_max300+'">';
+							$('.room1').html(img1);
+							$('.room1').append(des);
+							$.each(faciArr, function(j, faci){
+								if(j<9){
+									$('.room1').append("<li>"+faci.name+"</li>");
+								}
+							})
+							
+						}break;
+						case 1:{
+							let img2='<img class="img2" src="'+photo[0].url_max300+'">';
+							$('.room2').html(img2);
+							$('.room2').append(des);
+							$.each(faciArr, function(j, faci){
+								if(j<8){
+									$('.room2').append("<li>"+faci.name+"</li>");
+								}
+							})
+						}break;
+						case 2: {
+							let img3='<img class="img3" src="'+photo[0].url_max300+'">';
+							$('.room3').html(img3);
+							$('.room3').append(des);
+							$.each(faciArr, function(j, faci){
+								if(j<8){
+									$('.room3').append("<li>"+faci.name+"</li>");
+								}
+							})
+						
+						}break;
+					}
+				}
+				
+			});//$
 	   }//room()-------------
 
-
+	//이미지 창 연결하기
 	
+	
+	function img(){
+	const button = document.getElementById('plusimage');
+
+		button.addEventListener('click', function() {
+  		window.open('imgpopup.jsp', '_blank');
+		});
+	   } // img()-----------
 	
    </script>
 
@@ -208,13 +270,13 @@
 	</div>
 	<div style="display:flex">
 	<div class="acomimage1">           <!-- 1번 가장 큰 이미지 불러오기 -->
-	 <img class="img1">
+	 <!--  <img class="img1">-->
 	</div>
 	<div class="acomimage2">
 	<img class="img2">
 	</div>
 	<div class="acomimage3"><img class="img3"></div>
-	<button class="plusimage">더보기
+	<button id="plusimage">이미지 더보기
 	</button>
 	</div>
 	<div style="display:flex">
@@ -255,7 +317,7 @@
     </script>
 	<!-- 네비게이션 바 연습 -->
 <div class="container" id="con">	
-<ul class="tab">
+<ul class="tab" style="background-color:white">
   <li>
     <a href="#roominfo" class="selected">객실 선택</a>
   </li>
@@ -270,11 +332,26 @@
     
   </li>
 </ul>
-	<ul class="panel">
-	<li id="roominfo" > </li>
-	<li id="acominfo"> </li>
-	<li id="facil"> </li>
-	<li id="acompoli"> </li>
+	<ul class="panel" style="background-color:#c4b0ff">
+	<li id="roominfo" >
+		<div class="infoo">
+			<div class="room1" style="background-color:white"> 
+			<img id="roomimage1">
+			
+			</div>
+			
+			<div class="room2" style="background-color:white">
+			<img id="roomimage2">
+			</div>
+			
+			<div class="room3" style="background-color:white">
+			<img id="roomimage3">
+			</div>
+		</div>
+	 </li>
+	<li id="acominfo" style="background-color:white"> </li>
+	<li id="facil" style="background-color:white"> </li>
+	<li id="acompoli" style="background-color:white"> </li>
 	</ul>
 	</div>
 	
