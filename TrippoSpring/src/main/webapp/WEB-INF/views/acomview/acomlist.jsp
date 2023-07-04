@@ -39,7 +39,7 @@ const settings = {
 	url: 'https://apidojo-booking-v1.p.rapidapi.com/properties/list?offset=0&arrival_date=${param.arrival_date}&departure_date=${param.departure_date}&guest_qty=${param.guest_qty}&dest_ids=${param.dest_ids}&room_qty=${param.room_qty}&search_type=${param.search_type}&children_qty=${param.children_qty}&price_filter_currencycode=KRW&languagecode=ko',
 	method: 'GET',
 	headers: {
-		'X-RapidAPI-Key': 'ee70f5ae22msh3ce1b4738341c57p159089jsn5590e47837fd ',
+		'X-RapidAPI-Key' : 'bd1514d8fcmshc56f5e0cee38c07p131386jsn6498ffd0e6fd',
 		'X-RapidAPI-Host': 'apidojo-booking-v1.p.rapidapi.com'
 	}
 };
