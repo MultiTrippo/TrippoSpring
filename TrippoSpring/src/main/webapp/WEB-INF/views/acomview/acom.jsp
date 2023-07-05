@@ -17,8 +17,18 @@
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 
 <!-- 참조 ( self ) -->
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  
   
  
   <script>
@@ -241,13 +251,13 @@
 	//이미지 창 연결하기
 	
 	
-	function img(){
+/* 	function img(){
 	const button = document.getElementById('plusimage');
 
 		button.addEventListener('click', function() {
-  		window.open('imgpopup.jsp', '_blank');
+  		window.open('imgpopup?hotel_id=${hotel_id}', '_blank');
 		});
-	   } // img()-----------
+	   } // img()----------- */
 	
    </script>
 
@@ -276,7 +286,7 @@
 	<img class="img2">
 	</div>
 	<div class="acomimage3"><img class="img3"></div>
-	<button id="plusimage">이미지 더보기
+	<button id="plusimage" data-target="#myModal" data-toggle="modal">이미지 더보기
 	</button>
 	</div>
 	<div style="display:flex">
@@ -360,7 +370,8 @@
 
 	
 	
-	
+	<!--  -->
+	<%@ include file="/WEB-INF/views/acomview/imgpopup.jsp" %>
 	
 </body>
 </html>
