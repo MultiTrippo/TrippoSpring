@@ -18,13 +18,19 @@
 }
 
 #addButton {
-	background-color : #4A757B;
+	background-color : #FFD990;
 	height : 35px;
 	width: 100px;
-	color: white;
 	border-style: none;
 	border-radius: 10px;
 	font-size: 15px;
+	box-shadow: 3px 3px 3px rgb(109, 109, 109);
+	transition: 0.3s;
+}
+
+#addButton:hover {
+	box-shadow: none;
+  	transition: 0.3s;
 }
 
 #etcContainer {
@@ -41,7 +47,7 @@
 /* 스크롤바 길이와 색상 */
 #etcContainer::-webkit-scrollbar-thumb {
 	height: 5px;
-	background :  #4A757B;
+	background :  #FFC85C;
 	border-radius: 10px;
 }
 
@@ -56,6 +62,14 @@
 	border-radius: 5px;
 	margin-left: 20px;
 	padding: 5px;
+	color:white;
+	box-shadow: 3px 3px 3px rgb(109, 109, 109);
+	transition: 0.3s;
+}
+
+.editButton:hover {
+	box-shadow: none;
+  	transition: 0.3s;
 }
 
 .deleteButton {
@@ -64,6 +78,14 @@
 	border-radius: 5px;
 	margin-left: 5px;
 	padding: 5px;
+	color:white;
+	box-shadow: 3px 3px 3px rgb(109, 109, 109);
+	transition: 0.3s;
+}
+
+.deleteButton:hover {
+	box-shadow: none;
+  	transition: 0.3s;
 }
 
 .rowDiv {

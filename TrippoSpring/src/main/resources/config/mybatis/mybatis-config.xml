@@ -9,7 +9,7 @@
 		<typeAlias type="com.tripreview.vo.TripReviewVO" alias="TripReviewVO"/>
 		<typeAlias type="com.schedule.db.EtcVO" alias="EtcVO"/>
 		
-		
+		<typeAlias type="com.schedule.db.ScheduleListVO" alias="ScheduleListVO" />
 		<typeAlias type="com.schedule.db.FixVO" alias="FixVO"/>
 	</typeAliases>
 	
@@ -20,5 +20,6 @@
 		<mapper resource="com/tripreview/mapper/TripReviewMapper.xml" />
 		<mapper resource="config/schedule/EtcMapper.xml"></mapper>
 		<mapper resource="config/schedule/FixMapper.xml"></mapper>
+		<mapper resource="config/schedule/ScheduleMapper.xml"></mapper>
 	</mappers>
 </configuration>

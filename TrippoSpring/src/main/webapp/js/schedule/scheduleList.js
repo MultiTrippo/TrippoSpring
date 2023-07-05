@@ -1,5 +1,6 @@
 // 아이디 가져오기
-var id = "kyjManage";
+var id = "${id}";
+console.log("console id : " +id);
 
 function reload(){
 	setTimeout(function(){
@@ -8,6 +9,8 @@ function reload(){
 }
 // 처음 로딩 시 가져오게 하기 위해        
 $(document).ready(function() {
+	
+
     // 수정하기 이벤트
     $(document).on('click', '#editButton', function() {
         var title = $(this).closest("tr").find("#title");
