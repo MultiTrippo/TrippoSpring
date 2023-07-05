@@ -1,6 +1,7 @@
 package com.board.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,7 @@ public interface PostService {
     PostVO getPostById(int postId);
     List<PostVO> getAllPosts();
     List<PostVO> getNextCategoryPost(String category, int postId);
-    List<PostVO> getFilteredPosts(String category, String country, String city);
+    List<PostVO> getFilteredPosts(Map<String, String> map);
     
     int getNumAllPosts();
     int getNumFilteredPosts(String category, String country, String city);

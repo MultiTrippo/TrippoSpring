@@ -2,6 +2,7 @@
 
 body {
     margin: 2em;
+    background: linear-gradient(to bottom, #fddfdf, #ffffd8, #e0fefe);
 }
 
 .preview-image {

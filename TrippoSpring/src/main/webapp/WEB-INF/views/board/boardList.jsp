@@ -6,103 +6,159 @@
   <meta charset="UTF-8">
   <title>자유게시판</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/board/boardList.css">
+  <link rel="stylesheet" type="text/css" href="./../../../css/board/boardList.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
   <script>
-    var images = [
-      "https://www.theluxeinsider.com/wp-content/uploads/2020/10/IthaaUnderseaRestaurant.jpg",
-      "https://i.insider.com/5805e479dd0895c84b8b46da?width=1000&format=jpeg&auto=webp",
-      "https://www.fodors.com/wp-content/uploads/2021/09/shutterstock_724425730.jpg",
-      "https://i.ytimg.com/vi/amKiW5ExPys/maxresdefault.jpg",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHxuEofzOcjqyGZjYY-EiNYalUMBtx_XrbtqEoOlbe_kpvrgoddJHqtl-_EkZA8wW1nLg&usqp=CAU",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSq0QitN7LXOqSWQD0MVLotoD4t_XyaLNi0nEqDX4A3LQWlXvL64Ey-nfx0K1ZrJOfBcg&usqp=CAU",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5K1QtFVZSu7sRFWrotIPOAt83FGtOLzttlw&usqp=CAU",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOYKv3AxhH1JuW27bkYwtR68ZDe9tV3KP4bGUe8xk0QJqSbakTX4wcXJzLdiFJKdkBX4s&usqp=CAU",
-      "https://i.insider.com/57d04c58b996eb93008b6683?width=600&format=jpeg&auto=webp"
-      // Add more image URLs as needed
-    ];
+  	/* Food --------------------------------------- */
+    var currentFoodIdx = 0;
+    var foodListJson = '${foodListJson}'; // JSON 형태의 문자열로 가져오기
+    var foodList = JSON.parse(foodListJson); // JSON 문자열을 JavaScript 객체로 변환
 
-    var currentImageIndex = 0;
+    function showFood(index) {
+      currentFoodIdx = index;
 
-    function showImage(index) {
-      currentImageIndex = index;
       for (var i = 0; i < 5; i++) {
-        index = index % images.length;
-        var testElement = document.getElementById("test" + i);
-        testElement.innerText = currentImageIndex;
-        var imgElement = document.getElementById("slideshow-image" + i);
-        imgElement.src = images[index++];
+        index = index % foodList.length;
+        var imgElement = document.getElementById("food_slideshow-image" + i);
+        var titleElement = document.getElementById("food_card-title" + i);
+        var writerElement = document.getElementById("food_card-writer" + i);
+        var contentElement = document.getElementById("food_card-text" + i);
+        var ImageUrl = foodList[index].imgUrls;
+        var urlList = ImageUrl.split(',');
+        if (urlList.length > 1) {
+        	ImageUrl=urlList[0];
+        }
+        imgElement.src = "${request.contextPath}/images/board/Upload/" + ImageUrl;
+        titleElement.innerText = foodList[index].title;
+        writerElement.innerText = "[" + foodList[index].writer + "]"; 
+        contentElement.innerText = foodList[index++].content;
       }
     }
-
-    function previousImage() {
-      if (currentImageIndex === 0) {
-        showImage(images.length - 1);
+    
+    function previousFood() {
+      if (currentFoodIdx === 0) {
+        showFood(foodList.length - 1);
       } else {
-        showImage(currentImageIndex - 1);
+        showFood(currentFoodIdx - 1);
       }
     }
 
-    function nextImage() {
-      if (currentImageIndex === images.length - 1) {
-        showImage(0);
+    function nextFood() {
+      if (currentFoodIdx === foodList.length - 1) {
+        showFood(0);
       } else {
-        showImage(currentImageIndex + 1);
+        showFood(currentFoodIdx + 1);
+      }
+    }
+    /* -------------------------------------------------- */
+    
+    /* Attraction --------------------------------------- */
+    var currentAttrIdx = 0;
+    var AttrListJson = '${AttrListJson}'; // JSON 형태의 문자열로 가져오기
+    var AttrList = JSON.parse(AttrListJson); // JSON 문자열을 JavaScript 객체로 변환
+
+    function showAttr(index) {
+      currentAttrIdx = index;
+
+      for (var i = 0; i < 5; i++) {
+        index = index % AttrList.length;
+        var imgElement = document.getElementById("attr_slideshow-image" + i);
+        var titleElement = document.getElementById("attr_card-title" + i);
+        var writerElement = document.getElementById("attr_card-writer" + i);
+        var contentElement = document.getElementById("attr_card-text" + i);
+        var ImageUrl = AttrList[index].imgUrls;
+        var urlList = ImageUrl.split(',');
+        if (urlList.length > 1) {
+        	ImageUrl=urlList[0];
+        }
+        imgElement.src = "${request.contextPath}/images/board/Upload/" + ImageUrl;
+        titleElement.innerText = AttrList[index].title;
+        writerElement.innerText = "[" + AttrList[index].writer + "]"; 
+        contentElement.innerText = AttrList[index++].content;
       }
     }
 
+    function previousAttr() {
+      if (currentAttrIdx === 0) {
+        showAttr(AttrList.length - 1);
+      } else {
+    	  showAttr(currentAttrIdx - 1);
+      }
+    }
+
+    function nextAttr() {
+      if (currentAttrIdx === AttrList.length - 1) {
+    	  showAttr(0);
+      } else {
+    	  showAttr(currentAttrIdx + 1);
+      }
+    }
+    /* -------------------------------------------------- */
+    
+    /* Photoshot --------------------------------------- */
+    var currentPhotoSpotIdx = 0;
+	var PhotoSpotListJson = '${PhotoSpotListJson}'; // JSON 형태의 문자열로 가져오기
+	var PhotoSpotList = JSON.parse(PhotoSpotListJson); // JSON 문자열을 JavaScript 객체로 변환
+	
+	function showPhotoSpot(index) {
+	  currentPhotoSpotIdx = index;
+	
+	  for (var i = 0; i < 5; i++) {
+	    index = index % PhotoSpotList.length;
+	    var imgElement = document.getElementById("photospot_slideshow-image" + i);
+	    var titleElement = document.getElementById("photospot_card-title" + i);
+	    var writerElement = document.getElementById("photospot_card-writer" + i);
+	    var contentElement = document.getElementById("photospot_card-text" + i);
+	    var ImageUrl = PhotoSpotList[index].imgUrls;
+	    var urlList = ImageUrl.split(',');
+	    if (urlList.length > 1) {
+	    	ImageUrl=urlList[0];
+	    }
+	    imgElement.src = "${request.contextPath}/images/board/Upload/" + ImageUrl;
+	    titleElement.innerText = PhotoSpotList[index].title;
+	    writerElement.innerText = "[" + PhotoSpotList[index].writer + "]"; 
+	    contentElement.innerText = PhotoSpotList[index++].content;
+	  }
+	}
+	
+	function previousPhotoSpot() {
+	  if (currentPhotoSpotIdx === 0) {
+	    showPhotoSpot(PhotoSpotList.length - 1);
+	  } else {
+		  showPhotoSpot(currentPhotoSpotIdx - 1);
+	  }
+	}
+	
+	function nextPhotoSpot() {
+	  if (currentPhotoSpotIdx === PhotoSpotList.length - 1) {
+		  showPhotoSpot(0);
+	  } else {
+		  showPhotoSpot(currentPhotoSpotIdx + 1);
+	  }
+	}
+    /* -------------------------------------------------- */
+    
     window.onload = function() {
-      showImage(0);
-    };
+          showFood(0);
+          showAttr(0);
+          showPhotoSpot(0);
+      };
   </script>
 
-  <style>
-    .modal {
-      display: none;
-      /* position: fixed; */
-      z-index: 1;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 50%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.4);
-    }
-
-    .modal-content {
-      background-color: #fefefe;
-      margin: 15% auto;
-      padding: 20px;
-      border: 1px solid #888;
-      width: 500px !important; 
-    }
-
-    .close {
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-    }
-
-    .close:hover,
-    .close:focus {
-      color: black;
-      text-decoration: none;
-      cursor: pointer;
-    }
-  </style>
 </head>
+
 <body>
-  <button type="button" class="btn btn-info" onclick="location.href='/addPost';">게시글 작성</button>
+  <div id="page-wrap">
+  	<button type="button" class="btn btn-info" onclick="location.href='/addPost';">게시글 작성</button>
   <h1>Photo Slideshow</h1>
 
   <div>
     <h1>Board Title</h1>
   </div>
 
-  <button id="modalButton" class="btn btn-primary">게시글 작성하기</button>
+  <button id="modalButton" class="btn btn-light">게시글 작성하기</button>
 
   <div id="myModal" class="modal">
     <div class="modal-content">
@@ -110,55 +166,91 @@
       <jsp:include page="boardAdd.jsp" />
     </div>
   </div>
+ 
 
-  <c:forEach items="${foodList}" var="post">
-    <div class="post-wrapper">
-      <!-- 게시물 내용 표시 -->
-      <h1>${post.content}</h1>
-      <h1>HELLO</h1>
-      <!-- 게시물 이미지 표시 -->
-      <%-- <img src="${request.contextPath}/images/board/Upload/${post.imgUrls[0]}"> --%>
-    </div>
-  </c:forEach>
-
+	
   <div id="wrap">
+	<!-- 맛집 ================================================ -->
     <div id="food">
-      <span class="title">맛집 정보</span>
+      <h1 class="section-title">-------- 맛집 추천 --------</h1>
       <div id="slideshow-container">
-        <button class="btn btn-primary" onclick="previousImage()">◀</button>
+        <button class="slide-btn btn btn-light" onclick="previousFood()">◀</button>
         <div class="contents-container">
-          <c:forEach var="i" begin="0" end="4">
-            <div class="post-wrapper text-white bg-info" style="max-width: 18rem;">
-              <img id="slideshow-image${i}" class="card-img-top img-wrapper" src="" alt="Slideshow Image" />
-              <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-warning myModal">Go somewhere</a>
-              </div>
-            </div>
-          </c:forEach>
-        </div>
-        <button class="btn btn-primary" onclick="nextImage()">▶</button>
+          <%
+			for (int i = 0; i < 5; i++) {
+			%>
+				<div class="post-wrapper" style="max-width: 18rem; ">
+					<img id="food_slideshow-image<%=i%>" class="card-img-top img-wrapper" src="" alt="Slideshow Image" />
+				
+					<div class="card-body">
+					    <h5 id="food_card-title<%=i%>" class="food_card-title card-title"></h5>
+					    <p id="food_card-writer<%=i%>" class="card-writer"></p>
+					    <p id="food_card-text<%=i%>" class="food_card-text"></p>
+					    <a href="#" class="btn btn-warning detail-btn ">게시글 보기</a>
+					</div>
+				</div>
+			<%
+			}
+			%>
+		</div>
+        <button class="slide-btn btn btn-light" onclick="nextFood()">▶</button>
       </div>
     </div>
-
-    <div id="photographySpot">
-      <h1>인생 사진 스팟</h1>
+    <!-- ===================================================== -->
+    
+    
+    <!-- 관광지 ================================================ -->
+    <div id="attraction">
+	  <h1 class="section-title">-------- 관광지 추천 --------</h1>
+	  <div id="slideshow-container">
+	    <button class="slide-btn btn btn-light" onclick="previousAttr()">◀</button>
+	    <div class="contents-container">
+	      <% for (int i = 0; i < 5; i++) { %>
+	        <div class="post-wrapper" style="max-width: 18rem;">
+	          <img id="attr_slideshow-image<%=i%>" class="card-img-top img-wrapper" src="" alt="Slideshow Image" />
+	          <div class="card-body">
+	            <h5 id="attr_card-title<%=i%>" class="attr_card-title card-title"></h5>
+	            <p id="attr_card-writer<%=i%>" class="card-writer"></p>
+	            <p id="attr_card-text<%=i%>" class="attr_card-text"></p>
+	            <a href="#" class="btn btn-warning detail-btn">게시글 보기</a>
+	          </div>
+	        </div>
+	      <% } %>
+	    </div>
+	    <button class="slide-btn btn btn-light" onclick="nextAttr()">▶</button>
+	  </div>
+	</div>
+    <!-- ===================================================== -->
+    
+    <!-- 포토스팟 ================================================ -->
+    <div id="photospot">
+      <h1 class="section-title">-------- 포토스팟 추천 --------</h1>
       <div id="slideshow-container">
-        <button class="btn btn-primary" onclick="previousImage()">◀</button>
+        <button class="slide-btn btn btn-light" onclick="previousPhotoSpot()">◀</button>
         <div class="contents-container">
-          <c:forEach var="i" begin="0" end="4">
-            <div class="post-wrapper text-white bg-info" style="max-width: 18rem;">
-              <img id="slideshow-image${i}" class="card-img-top img-wrapper" src="" alt="Slideshow Image" />
-              <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-warning myModal">Go somewhere</a>
-              </div>
-            </div>
-          </c:forEach>
-        </div>
-        <button class="btn btn-primary" onclick="nextImage()">▶</button>
+          <%
+			for (int i = 0; i < 5; i++) {
+			%>
+				<div class="post-wrapper" style="max-width: 18rem; ">
+					<img id="photospot_slideshow-image<%=i%>" class="card-img-top img-wrapper" src="" alt="Slideshow Image" />
+				
+					<div class="card-body">
+					    <h5 id="photospot_card-title<%=i%>" class="photospot_card-title card-title"></h5>
+					    <p id="photospot_card-writer<%=i%>" class="card-writer"></p>
+					    <p id="photospot_card-text<%=i%>" class="photospot_card-text"></p>
+					    <a href="#" class="btn btn-warning detail-btn">게시글 보기</a>
+					</div>
+				</div>
+			<%
+			}
+			%>
+		</div>
+        <button class="slide-btn btn btn-light" onclick="nextPhotoSpot()">▶</button>
       </div>
     </div>
+    <!-- ===================================================== -->
+    
+  </div>
   </div>
 
   <script>
@@ -180,5 +272,6 @@
       }
     };
   </script>
+ 
 </body>
 </html>

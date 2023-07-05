@@ -2,69 +2,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <meta charset="UTF-8">
     <title>Photo Gallery</title>
-    <style>
-   	#scroll-view {
-        width: 50%;
-        height: auto; /* 스크롤 영역의 높이 설정 */
-        overflow-y: auto; /* 수직 스크롤 적용 */
-        margin:10px;
-    }
-       .gallery {
-       display: flex;
-       flex-wrap: wrap;
-       gap: 10px;
-    }
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+  	<link rel="stylesheet" type="text/css" href="./../../../css/board/boardShow.css">
 
-    .gallery-item {
-        flex-basis: calc(50% - 5px);
-        max-width: calc(50% - 5px);
-        max-height: 50%;
-        display: none;
-    }
-
-    .gallery-item.show {
-        display: block;
-        width:95%;
-    }
-
-    .gallery-item img {
-        width: 100%;
-        height: auto;
-        object-fit: cover;
-    }
-
-        .post {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .post .post-image {
-            flex: 0 0 200px;
-            max-width: 200px;
-        }
-
-        .post .post-image img {
-            width: 100%;
-            height: auto;
-        }
-
-        .comments {
-            margin-top: 20px;
-        }
-
-        .comment {
-            margin-bottom: 10px;
-        }
-
-        .show-more {
-            margin-top: 10px;
-        }
-    </style>
-    
     <script>
     var images = [
         "https://www.theluxeinsider.com/wp-content/uploads/2020/10/IthaaUnderseaRestaurant.jpg",

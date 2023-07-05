@@ -1,6 +1,7 @@
 package com.board.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -51,9 +52,10 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public List<PostVO> getFilteredPosts(String category, String country, String city) {
-		return this.postMapper.getFilteredPosts(category, country, city);
+	public List<PostVO> getFilteredPosts(Map<String, String> map) {
+		return this.postMapper.getFilteredPosts(map);
 	}
+
 
 	@Override
 	public int getNumAllPosts() {
