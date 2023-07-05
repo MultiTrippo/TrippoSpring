@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.member.vo.MemberVO;
 import com.schedule.db.ScheduleListVO;
 import com.schedule.service.ScheduleService;
 
@@ -28,11 +29,12 @@ public class ScheduleListController {
 	
 	@RequestMapping(value="/scheduleList", method = RequestMethod.GET)
 	public String getAllScheduleList(Model model, HttpSession session) {
-		String id=(String)session.getAttribute("id");
+		MemberVO mvo= (MemberVO)session.getAttribute("loginUser");
+		model.addAttribute("id", mvo.getId());
 		
-		System.out.println(id);
+		System.out.println("id" + mvo.getId());
 		
-		List<ScheduleListVO> list = service.getAllScheduleList(id);
+		List<ScheduleListVO> list = service.getAllScheduleList(mvo.getId());
 		model.addAttribute("getAllScheduleList", list);
 		
 		System.out.println("getList : =" + list);

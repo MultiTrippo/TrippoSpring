@@ -5,12 +5,15 @@
     
 	<configuration>
 		<typeAliases>
+			<typeAlias type="com.board.model.PostVO" alias="PostVO"/>
 			<typeAlias type="com.tripreview.vo.TripReviewVO" alias="TripReviewVO" />
 			<typeAlias type="com.schedule.db.EtcVO" alias="EtcVO"/>
 			<typeAlias type="com.schedule.db.FixVO" alias="FixVO"/>
 			<typeAlias type="com.schedule.db.ScheduleListVO" alias="ScheduleListVO" />
+			<typeAlias type="com.member.vo.MemberVO" alias="MemberVO" />
 		</typeAliases>
 		<mappers>
+			<mapper resource="config/mybatis/mapper/PostMapper.xml" />
 			<mapper resource="config/schedule/EtcMapper.xml"></mapper>
 			<mapper resource="config/schedule/FixMapper.xml"></mapper>
 			<mapper resource="config/schedule/ScheduleMapper.xml"></mapper>
