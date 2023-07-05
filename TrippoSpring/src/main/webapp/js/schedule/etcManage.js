@@ -27,7 +27,9 @@ $(document).ready(function() {
                 // 등록 성공 시 새로운 ETC 아이템 생성
                 var etcDiv =  document.createElement("div");
                 etcDiv.className  = "containerDiv";
-                etcDiv.setAttribute("data-etcId", res.etcId);
+                console.log(res);
+                console.log(res.etc_id);
+                etcDiv.setAttribute("data-etcId", res.etc_id);
                 
                 etcDiv.innerHTML = `
                 	<div class="etcDiv">
@@ -112,7 +114,7 @@ $(document).ready(function() {
              // 등록할 때 설정한 데이터 속성으로부터 etc_id 가져오기
             var containerDiv = $(this).closest(".containerDiv");
             var etcId = containerDiv.attr("data-etcId");
-
+	
             // AJAX를 사용하여 데이터를 서버로 전송
             $.ajax({
                 url: "/etcUpdate",
