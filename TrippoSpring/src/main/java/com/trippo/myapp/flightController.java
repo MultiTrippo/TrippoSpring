@@ -11,5 +11,9 @@ public class flightController {
 		
 		return "/trip_flight_page";
 	}
-	
+	@GetMapping("/trip_flight_first")
+	public String tripFlightFirst() {
+		
+		return "/trip_flight_first";
+	}
 }
