@@ -1,0 +1,60 @@
+@charset "UTF-8";
+
+#scroll-view {
+	width: 50%;
+	height: auto; /* 스크롤 영역의 높이 설정 */
+	overflow-y: auto; /* 수직 스크롤 적용 */
+	margin: 10px;
+}
+
+.gallery {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.gallery-item {
+	flex-basis: calc(50% - 5px);
+	max-width: calc(50% - 5px);
+	max-height: 50%;
+	display: none;
+}
+
+.gallery-item.show {
+	display: block;
+	width: 95%;
+}
+
+.gallery-item img {
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+}
+
+.post {
+	display: flex;
+	gap: 10px;
+	margin-bottom: 20px;
+}
+
+.post .post-image {
+	flex: 0 0 200px;
+	max-width: 200px;
+}
+
+.post .post-image img {
+	width: 100%;
+	height: auto;
+}
+
+.comments {
+	margin-top: 20px;
+}
+
+.comment {
+	margin-bottom: 10px;
+}
+
+.show-more {
+	margin-top: 10px;
+}

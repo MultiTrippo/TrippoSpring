@@ -17,9 +17,9 @@ public class BoardShowController {
 	@Autowired
 	private PostService pService;
 	
-	@RequestMapping(value="/showDetails", method=RequestMethod.GET)
+	@RequestMapping(value="/boardShow", method=RequestMethod.GET)
 	public String boardShow() {
-		return "board/boardShowDetails";
+		return "board/boardShow";
 	}
 	
 }

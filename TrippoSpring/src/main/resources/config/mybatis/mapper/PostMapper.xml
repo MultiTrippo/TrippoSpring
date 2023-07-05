@@ -11,16 +11,16 @@
 		VALUES (#{writer}, NOW(), #{country}, #{city}, #{category}, #{title}, #{content}, #{imgUrls})
 	</insert>
 	
-	<select id="getFilteredPosts">
+	<select id="getFilteredPosts" resultType="PostVO">
 		SELECT * FROM board_post
 		<where>
-			<if test="category != null">
+			<if test="category != null and category != ''">
 				AND category = #{category}
 			</if>
-			<if test="country != null">
+			<if test="country != null and country != ''">
 				AND country = #{country}
 			</if>
-			<if test="city != null">
+			<if test="city != null and city != ''">
 				AND city = #{city}
 			</if>
 		</where>
