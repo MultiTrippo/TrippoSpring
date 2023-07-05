@@ -3,6 +3,8 @@ package com.schedule.controller;
 import java.util.List;
 import java.util.Random;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,7 +27,10 @@ public class ScheduleListController {
 	private ScheduleService service; 
 	
 	@RequestMapping(value="/scheduleList", method = RequestMethod.GET)
-	public String getAllScheduleList(Model model, @RequestParam("id") String id) {
+	public String getAllScheduleList(Model model, HttpSession session) {
+		String id=(String)session.getAttribute("id");
+		
+		System.out.println(id);
 		
 		List<ScheduleListVO> list = service.getAllScheduleList(id);
 		model.addAttribute("getAllScheduleList", list);
