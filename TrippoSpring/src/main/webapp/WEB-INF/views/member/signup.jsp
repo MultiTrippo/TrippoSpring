@@ -166,12 +166,13 @@
 
 </head>
 <body>
+<%@ include file="/inc/top.jspf" %> 
 	 
 <div class="wrapper">
 	<div class="form-box">
 		<div class="register-container" id="register">
 			<div>				
-				<header>회원가입</header>
+				<header class="signupHeader">회원가입</header>
 			</div>
 			<div>
 				<form name="signUpForm" id="signUpForm">
