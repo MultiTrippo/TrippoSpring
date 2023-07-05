@@ -102,5 +102,13 @@ public class MemberController {
 		}
 		
 	}
+	
+	/** 로그아웃 버튼 클릭 */
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(HttpSession session) {
+		session.invalidate();
+		
+		return "redirect:login";
+	}
 
 }

@@ -1,0 +1,245 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'IBM Plex Sans KR', sans-serif;
+}
+
+/* 배경 */
+body {
+	background-color: #FDE2F3;
+}
+
+.wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+}
+
+/* 찐보라 박스 */
+.reviewTwoParts {
+	border-radius: 2rem;
+	background-color: #C9A7EB;
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 90%;
+	height: 110vh;
+	padding: 10px 10px 20px 10px;
+	min-height: 110vh;
+	margin-bottom: 2rem;
+}
+
+/* 왼쪽 사이드바 */
+.reviewSidebar {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+	text-align: center;
+	background: rgba(255, 255, 255, 0.5);
+	border-radius: 2rem 0 0 2rem;
+	height: 110vh;
+	width: 20%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	padding: 1rem;
+}
+
+.reviewSidebarTitle {
+	letter-spacing: 2;
+}
+
+/* 검색창 */
+.searchbar {
+	width: 100%;
+	height: 3em;
+	display: flex;
+	justify-content: space-between;
+	border: none;
+	background-color: white;
+	border-radius: 20px;
+	padding: 0.5rem 1rem;
+	position: relative;
+}
+
+.searchbar input {
+	width: 90%;
+	border: none;
+}
+
+.btnCityListSearch {
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 100%;
+	padding: 0 5%;
+	border: none;
+	background-color: #FFF8D6;
+	color: #655DBB;
+	font-size: 16px;
+	border-radius: 20px;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+	cursor: pointer;
+}
+
+.btnCityListSearch:hover {
+	background-color: #f7d56c;
+}
+
+/* 버튼들 */
+.BtnsOnSidebar {
+	display: flex;
+	align-items: center;
+}
+
+.customBtn {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 1rem 1.5rem;
+	background: #F7FFE5;
+	color: #606C5D;
+	border: none;
+	border-radius: 10px;
+	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+	cursor: pointer;
+	font-size: 1.5rem;
+	margin: 0.5rem;
+}
+
+.customBtn:hover {
+	background-color: #C4D7B2;
+}
+
+/* ---------------------------------- */
+/* 오른쪽 컨테이너 */
+#containerOnTheRight {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+	text-align: center;
+	border-radius: 2rem;
+	height: 110vh;
+	width: 80%;
+	position: absolute;
+	right: 0;
+	top: 0;
+	padding: 1rem;
+}
+
+/* 속지 */
+#insideReviewBoard {
+	background: rgba(255, 255, 255, 0.5);
+	height: 100vh;
+	width: 95%;
+	border-radius: 2rem;
+	align-items: center;
+	justify-content: space-evenly;
+	text-align: center;
+}
+
+#wwwh {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 3rem 1rem 1rem 1rem;
+}
+
+/* 테이블 */
+.custom-table {
+	min-width: 90%;
+}
+
+.custom-table thead tr, .custom-table thead th {
+	border-top: none;
+	border-bottom: none !important;
+}
+
+.custom-table tbody th, .custom-table tbody td {
+	color: #2b2b9d;
+	font-weight: 400;
+	padding-bottom: 13px;
+	padding-top: 13px;
+	font-weight: 300;
+	border: none;
+}
+
+.custom-table tbody th small, .custom-table tbody td small {
+	color: #2b2b9d;
+	font-weight: 300;
+}
+
+ a:link{
+	color: black; 
+}
+
+.custom-table tbody tr a:visited{
+	color: black; 	
+}
+
+.custom-table tbody tr {
+	-webkit-transition: .3s all ease;
+	-o-transition: .3s all ease;
+	transition: .3s all ease;
+}
+
+.custom-table tbody tr:hover, .custom-table tbody tr:focus {
+	background: rgba(255, 255, 255, 0.8);
+}
+
+.custom-table .td-box-wrap {
+	padding: 0;
+}
+
+.custom-table .box {
+	background: #fff;
+	border-radius: 4px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.custom-table .box td, .custom-table .box th {
+	border: none !important;
+}
+
+
+
+/* 페이지네이션 */
+#paginationDiv{
+	margin-top: 1.5rem;
+}
+
+.pagination {
+	display: inline-block;
+}
+
+.pagination a {
+	color: black;
+	float: left;
+	padding: 8px 16px;
+	text-decoration: none;
+	transition: background-color .3s;
+	border: 1px solid #ddd;
+}
+
+.pagination a.active {
+	background-color: #f1f1f1;
+	color: #555;
+	font-weight:bold;
+	border: 1px solid #ccc;
+}
+
+.pagination a:hover:not(.active) {
+	background-color: #ddd;
+}

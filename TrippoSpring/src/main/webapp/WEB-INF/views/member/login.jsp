@@ -58,12 +58,12 @@
 
 </head>
 <body>
-
+<%@ include file="/inc/top.jspf" %> 
 <div class="wrapper">
 	<div class="purple-box">
 		<div class="login-container">
 			<div>				
-				<header>로그인</header>
+				<header class="loginHeader">로그인</header>
 			</div>
 			<div>
 				<c:if test="${result == 0 }">
