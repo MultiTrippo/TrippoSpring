@@ -5,6 +5,14 @@
 <head>
 <meta charset="UTF-8">
 
+<style>
+body{
+	background-image: url('${pageContext.request.contextPath}/images/acomimage/back.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+</style>
+
 <!-- 반응형 웹을 위한 부트스르랩 설정 -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -177,7 +185,7 @@
 </head>
 <body>
 	<%@ include file="/inc/top.jspf" %>
-	<div class="page" style="background-image:url('${pageContext.request.contextPath}/images/acomimage/back.jpg')">
+	<%-- <div class="page" style="background-image:url('${pageContext.request.contextPath}/images/acomimage/back.jpg')"> --%>
 	<h1 class="trippo"> Trippo가 회원님에게 맞는 숙소를 찾아드립니다</h1>
 	<form  class="searchform" action="${pageContext.request.contextPath}/acomlist"
 		method="get">
@@ -237,7 +245,7 @@
 		</div>
 		
 	</form>
-	</div>
+	<!-- </div> -->
 <!-- ----------------------------------------------- -->
 <!-- -----------------------------------------------  -->
 </body>
