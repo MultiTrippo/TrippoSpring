@@ -6,32 +6,31 @@
 	top: 0;
 	height: 130px;
 	z-index: 1;
-	display:flex;
-	align-items:center;
-	justify-content: center;
-	margin:10px;
+	width: 1260px;
+	margin: 0 auto;
 }
 
 .navbar{
-	width: 100%;
-	height: 120px;
-	max-width: 1200px;
+	width: 1260px;
+	height: 130px;
+	margin: 0 auto;
 	display: flex;
 	align-items: center;
-	align-content:center;
-	justify-content: center;
+	justify-content: space-between;
 	flex-direction: row;
-	flex-wrap: wrap;
 }
 
 /* 트리포 로고 */
 .logoimg_div{
+	position: relative;
     width: 100px;
     height: 130px;
     overflow: hidden;
+    margin:0 auto; 
     background: none;
 }
 .logoimg{
+	position: absolute;
 	top: 0;
 	left: 0;
     width: 100%;
@@ -42,29 +41,24 @@
 /* 메뉴 링크들 */
 .bar_div{
 	background-color: #C9A7EB;
-	width: 65%;
-	height: 60px;
+	width: 800px;
+	height: 70px;
 	border-radius: 30px;
+	margin: 0 20px 0 10px;
 	display: flex;
 	justify-content: center;
-	margin-left:5px;
-	margin-right:5px;
-	overflow:auto;
 }
 
 #barlinksUl{
 	margin-bottom : 0;
 	align-items: center;
-	vertical-align:center;
 	display: flex;
 	gap: 4rem;
 	list-style:none;
-	margin:auto;
-	padding-left:0px !important;
 }
 
 #barlinksUl li{
-	width:85px;
+	
 }
 #barlinksUl a{
 	text-decoration: none;
