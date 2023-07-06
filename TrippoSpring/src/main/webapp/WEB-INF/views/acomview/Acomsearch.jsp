@@ -4,7 +4,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-
+<style>
+	body{
+		background-image: url('${pageContext.request.contextPath}/images/acomimage/back.jpg');
+	}
+</style>
 <!-- 반응형 웹을 위한 부트스르랩 설정 -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -177,7 +181,7 @@
 </head>
 <body>
 	<%@ include file="/inc/top.jspf" %>
-	<div class="page" style="background-image:url('${pageContext.request.contextPath}/images/acomimage/back.jpg')">
+	<%-- <div class="page" style="background-image:url('${pageContext.request.contextPath}/images/acomimage/back.jpg')"> --%>
 	<h1 class="trippo"> Trippo가 회원님에게 맞는 숙소를 찾아드립니다</h1>
 	<form  class="searchform" action="${pageContext.request.contextPath}/acomlist"
 		method="get">
@@ -188,7 +192,7 @@
 				<!-- 목적지 선택  -->
 				<img class="iconimg" src="${pageContext.request.contextPath}/images/acomimage/airicon.jpg" alt="Trripo">
 				<input name="dest" class="destination" placeholder="어디로 여행하세요?"
-					data-destination="1" autocomplete="on" id="Ra9" onchange="auto()">
+					data-destination="1" autocomplete="on" id="Ra9" onkeyup="auto()"><!-- onkeyup="auto()" -->
 				<div id="lst1" class="listbox" style="display: none">
 					<div id="lst2" class="blist" style="display: none"></div>
 				</div>
@@ -237,7 +241,7 @@
 		</div>
 		
 	</form>
-	</div>
+	<!-- </div> -->
 <!-- ----------------------------------------------- -->
 <!-- -----------------------------------------------  -->
 </body>
