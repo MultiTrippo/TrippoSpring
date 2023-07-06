@@ -4,11 +4,15 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+
 <style>
-	body{
-		background-image: url('${pageContext.request.contextPath}/images/acomimage/back.jpg');
-	}
+body{
+	background-image: url('${pageContext.request.contextPath}/images/acomimage/back.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
 </style>
+
 <!-- 반응형 웹을 위한 부트스르랩 설정 -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
