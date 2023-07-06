@@ -20,6 +20,9 @@ h2 {
   text-align: center;
   font-weight: 300;
 }
+strong{
+	font-weight:300;
+}
 .container{
 	background-color: gray;
 }
@@ -141,6 +144,9 @@ button[class*="btn"] {border: 0;}
 }
 .bordered {
   border: 1px soild black;
+}
+.notBordered{
+	outline: none;
 }
 
 /* default button style */
