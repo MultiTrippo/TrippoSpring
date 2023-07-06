@@ -36,10 +36,10 @@
 .destination{
 	padding:10px;
 	opacity: 0.8;
-	   align-items: center;
+	align-items: center;
     display: flex;
     flex-grow: 1;
-    width: 50%;
+    width: 90%;
     background-color:"red"
  
 }
