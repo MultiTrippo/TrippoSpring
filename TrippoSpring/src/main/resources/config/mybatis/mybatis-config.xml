@@ -10,6 +10,7 @@
       <typeAlias type="com.schedule.db.EtcVO" alias="EtcVO"/>
       <typeAlias type="com.schedule.db.FixVO" alias="FixVO"/>
       <typeAlias type="com.schedule.db.ScheduleListVO" alias="ScheduleListVO"/>
+      <typeAlias type="com.member.vo.MemberVO" alias="MemberVO" />
    </typeAliases>
    
    <!-- mapper 정의 ========================================== -->
