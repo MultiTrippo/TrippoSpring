@@ -65,13 +65,13 @@
 			<!-- save and share buttons -->
 			<div class="buttons">
 		
-				<button class="share-button">
-					<img alt="공유하기 버튼 이미지" src="images/schedule/share.png" style="width:20px;height:20px" onclick="clip(); return false;">
-					<span>공유하기</span>
+				<button class="share-button" onclick="clip(); return false;">
+				  <img alt="공유하기 버튼 이미지" src="images/schedule/share.png" style="width:20px;height:20px">
+				  <span>공유하기</span>
 				</button>
-				<button class="save-button">
-					<img alt="저장하기 버튼 이미지" src="images/schedule/save.png" style="width:20px;height:20px" onclick="saveAlert(); return false;">
-					<span>저장하기</span>
+				<button class="save-button" onclick="saveAlert(); return false;">
+				  <img alt="저장하기 버튼 이미지" src="images/schedule/save.png" style="width:20px;height:20px" >
+				  <span>저장하기</span>
 				</button>
 			</div>
 			
@@ -95,7 +95,7 @@
 				      for more information.
 				      -->
 				    <script
-				      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBzMHaefU9ZZCbSDZs3gMGI_pGrvPtnLA&callback=initAutocomplete&libraries=places,visualization&v=weekly"
+				      src="https://maps.googleapis.com/maps/api/js?key=apikey&callback=initAutocomplete&libraries=places,visualization&v=weekly"
 				      defer
 				    ></script>
 				    

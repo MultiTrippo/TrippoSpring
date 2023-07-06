@@ -106,7 +106,7 @@ $(document).ready(function() {
     $(document).on("click", ".editButton", function() {
         var textSpan = $(this).siblings("span");
         var textValue = textSpan.text();
-        var newText = prompt("Enter the updated text", textValue);
+        var newText = prompt("ETC. 수정할 내용을 적어주세요.", textValue);
 
         if (newText !== null) {
             textSpan.text(newText);
