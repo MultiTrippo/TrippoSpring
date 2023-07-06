@@ -189,6 +189,9 @@
 </head>
 
 <body id="bodyTag">
+<div id="header">
+	<%@ include file="/inc/top.jspf"%>
+</div>
   <div id="page-wrap">
   <!-- <h1>Photo Slideshow</h1>
 

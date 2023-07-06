@@ -8,6 +8,11 @@ body {
 	align-items: center;
 }
 
+#header {
+	margin:10px;
+	border: 2px solid red;
+}
+
 #wrap {
 	margin-top:0px;
 }

@@ -140,7 +140,7 @@ $(document).ready(function() {
 
         // HashMap 데이터를 JSON 형태로 변환
         var hashMapJson = JSON.stringify(Array.from(hashMap.entries()));
-        alert(hashMapJson);
+        //alert(hashMapJson);
         
         
         // AJAX를 사용하여 데이터를 컨트롤러로 전송
