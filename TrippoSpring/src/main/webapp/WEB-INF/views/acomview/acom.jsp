@@ -28,7 +28,10 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-  
+  <!-- 글꼴  -->
+<link
+	href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap"
+	rel="stylesheet">
   
  
   <script>
@@ -286,7 +289,8 @@
 	<img class="img2">
 	</div>
 	<div class="acomimage3"><img class="img3"></div>
-	<button id="plusimage" data-target="#myModal" data-toggle="modal">이미지 더보기
+	<button id="plusimage" data-target="#myModal" data-toggle="modal" style="background-image:url('${pageContext.request.contextPath}/images/acomimage/purple.jpg')">
+	이미지 더보기
 	</button>
 	</div>
 	<div style="display:flex">
@@ -297,7 +301,9 @@
 	<h4>사용자 평점</h4>
 	<h1>♥${param.score}</h1>
 	</div>
-	<div class="location">구글 지도로 보기</div>
+	<div class="location">구글 지도로 보기
+	(서비스준비중입니다)
+	</div>
 	</div>
 	
 	
@@ -326,7 +332,7 @@
         })
     </script>
 	<!-- 네비게이션 바 연습 -->
-<div class="container" id="con">	
+<div class="container" id="con" style="margin:0; max-width:1332px;">	
 <ul class="tab" style="background-color:white">
   <li>
     <a href="#roominfo" class="selected">객실 선택</a>
@@ -359,9 +365,9 @@
 			</div>
 		</div>
 	 </li>
-	<li id="acominfo" style="background-color:white"> </li>
-	<li id="facil" style="background-color:white"> </li>
-	<li id="acompoli" style="background-color:white"> </li>
+	<li id="acominfo" style="background-color:white" style="border-radius: 30px"> </li>
+	<li id="facil" style="background-color:white" style="border-radius: 30px"> </li>
+	<li id="acompoli" style="background-color:white" style="border-radius: 30px"> </li>
 	</ul>
 	</div>
 	
