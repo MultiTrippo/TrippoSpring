@@ -58,7 +58,7 @@
 
 					paginationForm.find("input[name='currPage']").val(
 							$(this).attr("href"));
-					paginationForm.attr("action", "/myapp/trip_review_list");
+					paginationForm.attr("action", "<%=request.getContextPath()%>/trip_review_list");
 					paginationForm.submit();
 				});
 
@@ -77,7 +77,7 @@
 			let val = $("input[name='keyword']").val();
 			paginationForm.find("input[name='keyword']").val(val);
 			paginationForm.find("input[name='currPage']").val(1);
-			paginationForm.attr("action", "/myapp/trip_review_search");
+			paginationForm.attr("action", "<%=request.getContextPath()%>/trip_review_search");
 			paginationForm.submit();
 		});
 
@@ -218,7 +218,7 @@
 									<th scope="col">여행지</th>
 									<th scope="col">글쓴이</th>
 									<th scope="col">작성일</th>
-									<th scope="col">조회수</th>
+									<th scope="col">조회수</th> 
 								</tr>
 							</thead>
 							<tbody>
@@ -226,7 +226,7 @@
 									<tr>
 										<th scope="row">${list.review_num }</th>
 										<td><a
-											href="/myapp/viewOneReview?review_num=${list.review_num }"
+											href="${pageContext.request.contextPath }/viewOneReview?review_num=${list.review_num }"
 											style="text-decoration: none">${list.review_title }</a></td>
 										<td>${list.wwhere }</td>
 										<td>${list.user_id }</td>
