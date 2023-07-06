@@ -28,15 +28,14 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public int deletePost(int postId) {
+	public int deletePost(int postNo) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public PostVO getPostById(int postId) {
-		// TODO Auto-generated method stub
-		return null;
+	public PostVO getPostById(int postNo) {
+		return this.postMapper.getPostById(postNo);
 	}
 
 	@Override
@@ -46,7 +45,7 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public List<PostVO> getNextCategoryPost(String category, int postId) {
+	public List<PostVO> getNextCategoryPost(String category, int postNo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -70,13 +69,13 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public int increaseViews(int postId) {
+	public int increaseViews(int postNo) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int increaseLikes(int postId) {
+	public int increaseLikes(int postNo) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

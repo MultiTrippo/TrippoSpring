@@ -206,9 +206,10 @@ $(document).ready(function() {
         <br><br>
 
 
-
-		<label for="file">이미지<br>첨부하기:</label>
-		<input type="file" name="imageFiles" value="" multiple>
+		<div style="display: flex; flex-direction: row;">
+		    <label for="file" style="margin-top: auto; margin-bottom: -5px; padding:0px;">이미지<br>첨부하기:</label>
+		    <input type="file" id="file" name="imageFiles" value="" multiple style="margin-top: auto;">
+		</div>
   		<div id="preview-container"></div>
 
 		<!-- 국가 DropDown -->

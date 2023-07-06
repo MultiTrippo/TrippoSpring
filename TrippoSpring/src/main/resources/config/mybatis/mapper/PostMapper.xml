@@ -25,4 +25,9 @@
 			</if>
 		</where>
 	</select>
+	
+	<select id="getPostById" resultType="PostVO">
+		SELECT * FROM board_post
+		WHERE postNo = #{postId}
+	</select>
 </mapper>

@@ -2,6 +2,20 @@
 
 body {
 	background: linear-gradient(to bottom, #fddfdf, #ffffd8, #e0fefe);
+	display: flex;
+	flex-direction: column;
+	justify-content: center; 
+	align-items: center;
+}
+
+#wrap {
+	margin-top:0px;
+}
+#page-wrap {
+	display: flex;
+	flex-direction: column;
+	justify-content: center; 
+	align-items: center;
 }
 
 #slideshow-container {
@@ -28,15 +42,15 @@ body {
 #wrap>div {
 	margin: 5px;
 	width: 1200px;
-	margin-top:30px;
-	margin-bottom:30px;
+	margin-top: 30px;
+	margin-bottom: 30px;
 	padding-top: 15px;
 	/* background: linear-gradient(to bottom, #fddfdf ,#ffb6c1, #87ceeb); */
 }
 
 .img-wrapper {
-  	border-radius: 4px;
-  	/* margin-bottom: 10px; */
+	border-radius: 4px;
+	/* margin-bottom: 10px; */
 	width: 100%;
 	height: 10rem;
 	display: flex;
@@ -49,7 +63,7 @@ body {
 .post-wrapper {
 	border: 2px solid silver;
 	margin: 0.5rem;
-	background-color:'red';
+	background-color: 'red';
 	/* background-color:#DDFFFF; */
 	/* background-color: #FFFFDD; */
 	color: black;
@@ -61,7 +75,7 @@ body {
 .card-body {
 	padding: 0 !important;
 	margin-top: 5px;
-	display:flex;
+	display: flex;
 	flex-direction: column;
 	height: 170px;
 }
@@ -72,12 +86,12 @@ body {
 }
 
 .post-wrapper {
-  display: inline-block;
-  vertical-align: top;
-  margin-right: 10px;
-  margin-bottom: 10px;
-  background-color: white;
-  border: 5px solid white;
+	display: inline-block;
+	vertical-align: top;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	background-color: white;
+	border: 5px solid white;
 }
 
 .title {
@@ -86,27 +100,26 @@ body {
 
 .card-writer {
 	margin-top: 0px;
- 	margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 
 .slide-btn {
-	font-size:50px !important;
+	font-size: 50px !important;
 	margin: 1px !important;
 	padding: 1px !important;
 	border-radius: 20px !important;
-	
 }
 
 .slide-btn:hover {
-	background-color:'black';
-	color:'white';
+	background-color: 'black';
+	color: 'white';
 }
 
 /*  */
-
 #food {
 	background-color: #f78585;
 	border-radius: 20px;
+	margin-top:10px !important;
 }
 
 #attraction {
@@ -121,8 +134,8 @@ body {
 
 .section-title {
 	text-align: center;
-  	color: white;
-  	font-weight:bold;
+	color: white;
+	font-weight: bold;
 }
 
 .card-title {
@@ -132,20 +145,28 @@ body {
 }
 
 .photospot_card-text {
-    display: block;
-    color: black;
-    width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: normal;
-    text-align: left;
-    word-wrap: break-word;
-    display: -webkit-box;
-    -webkit-line-clamp: 2 ;
-    -webkit-box-orient: vertical;
+	display: block;
+	color: black;
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: normal;
+	text-align: left;
+	word-wrap: break-word;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
 }
 
 /* modal 스타일 ----------- */
+#addPostModal-btn {
+	float: left;
+}
+
+#PostModalBtn-div {
+	width:98%;
+}
+
 .modal {
 	display: none;
 	position: fixed;
@@ -153,18 +174,40 @@ body {
 	left: 0;
 	top: 0;
 	width: 100%;
-	height: 50%;
+	height: 100%;
 	overflow: auto;
 	background-color: rgba(0, 0, 0, 0.4);
+	
+}
+
+.modal-dialog {
+	margin: 1% auto;
 }
 
 .modal-content {
 	background-color: #fefefe;
-	margin: 1% auto;
 	padding: 20px;
 	border: 1px solid #888;
-	width: 500px !important;
-	overflow: auto;
+	border-radius: 1rem !important;
+}
+
+.modal-header {
+	padding: 10px;
+	border-bottom: 1px solid #ddd;
+}
+
+.modal-title {
+	margin: 0;
+}
+
+.modal-body {
+	width: 100%;
+}
+
+.modal-footer {
+	padding: 10px;
+	border-top: 1px solid #ddd;
+	text-align: right;
 }
 
 .close {
@@ -178,4 +221,4 @@ body {
 	color: black;
 	text-decoration: none;
 	cursor: pointer;
-} 
+}

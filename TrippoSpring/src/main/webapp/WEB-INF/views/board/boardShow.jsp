@@ -1,98 +1,145 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.List"%>
+<%@ page import="java.util.ArrayList"%>
+
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Photo Gallery</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
-  	<link rel="stylesheet" type="text/css" href="./../../../css/board/boardShow.css">
+<meta charset="UTF-8">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css"
+	href="./../../../css/board/boardShow.css">
+<script>
+	var postJson = '${postJson}'; // JSON 형태의 문자열로 가져오기
+	var vo = JSON.parse(postJson); // JSON 문자열을 JavaScript 객체로 변환
+	var images = vo.imgUrls;
+	var imageList = images.split(',');
+	//alert(vo.city);
 
-    <script>
-    var images = [
-        "https://www.theluxeinsider.com/wp-content/uploads/2020/10/IthaaUnderseaRestaurant.jpg",
-        "https://i.insider.com/5805e479dd0895c84b8b46da?width=1000&format=jpeg&auto=webp",
-        "https://www.fodors.com/wp-content/uploads/2021/09/shutterstock_724425730.jpg",
-        "https://i.ytimg.com/vi/amKiW5ExPys/maxresdefault.jpg",
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHxuEofzOcjqyGZjYY-EiNYalUMBtx_XrbtqEoOlbe_kpvrgoddJHqtl-_EkZA8wW1nLg&usqp=CAU",
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSq0QitN7LXOqSWQD0MVLotoD4t_XyaLNi0nEqDX4A3LQWlXvL64Ey-nfx0K1ZrJOfBcg&usqp=CAU",
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5K1QtFVZSu7sRFWrotIPOAt83FGtOLzttlw&usqp=CAU",
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOYKv3AxhH1JuW27bkYwtR68ZDe9tV3KP4bGUe8xk0QJqSbakTX4wcXJzLdiFJKdkBX4s&usqp=CAU",
-        "https://i.insider.com/57d04c58b996eb93008b6683?width=600&format=jpeg&auto=webp"
-        // Add more image URLs as needed
-    ];
-    
-    function putImage() {
-        <%for (int i = 0; i < 9; i++) {%>
-		var img<%=i%> = document.getElementById("gallery-img<%=i%>");
-		img<%=i%>.src = images[<%=i%>];
-		if(<%=i%><4){
-			var galleryItems = document.getElementsByClassName("gallery-item");
-			galleryItems[<%=i%>].classList.toggle("show");	
-		}
-		<%}%>
-	}
-    
-    function showMore() {
-        var galleryItems = document.getElementsByClassName("gallery-item");
+	function putImage() {
+		var gallery = document.getElementById("gallery");
+		for (var i = 0; i < imageList.length; i++) {
+			var galleryItem = document.createElement("div");
+			galleryItem.setAttribute("class", "gallery-item");
+			galleryItem.setAttribute("id", "gallery-item" + i);
 
-        for (var i = 4; i < galleryItems.length; i++) {
-            galleryItems[i].classList.toggle("show");
-        }
+			var img = document.createElement("img");
+			img.setAttribute("class", "gallery-img");
+			img.setAttribute("src",
+					"${request.contextPath}/images/board/Upload/"
+							+ imageList[i]);
+			img.setAttribute("id", "gallery-img" + i);
+			img.setAttribute("alt", "GalleryImage");
 
-        var showMoreButton = document.getElementById("show-more-button");
-        showMoreButton.classList.toggle("hidden");
-    }
-    </script>
-</head>
-<body onload="putImage();">
-    <h1>Photo Gallery</h1>
+			galleryItem.appendChild(img);
+			gallery.appendChild(galleryItem);
 
-    <div id="scroll-view">
-    	<div class="gallery">
-	        <%-- 필요한 만큼 사진 갤러리 아이템 추가 (차후에 db에서 이미지 개수 받아서 수정 예정)--%>
-	        <%
-			for (int i = 0; i < 9; i++) {
-			%>
-				<%-- 사진 갤러리 부분 --%>
-		        <div class="gallery-item">
-		            <img class="gallery-img" src="" id="gallery-img<%=i%>" alt="GalleryImage">
-		        </div>
-		        <% if ((i + 1) % 2 == 0) { %>
-		           <!--  <div style="clear: both;"></div> -->
-		        <% } %>
-			<%
+			if (i < 4) {
+				galleryItem.classList.add("show");
 			}
-			%>
-    	</div>
-    </div>
-	<div id="show-more-button">
-        <button class="btn btn-primary" onclick="showMore()">더보기</button>
-    </div>
+		}
+		var postTitle = document.getElementById("post-title");
+		postTitle.innerText = vo.title;
+		var postContent = document.getElementById("post-content");
+		postContent.innerText = vo.content;
+		var postWriter = document.getElementById("post-writer");
+		postWriter.innerText = vo.writer;
+		alert(postWriter);
+		var postDate = document.getElementById("post-date");
+		postDate.innerText = vo.uploadedDate;
+		var postCountry = document.getElementById("countrySpan");
+		postCountry.innerText = vo.country;
+		var postCity = document.getElementById("citySpan");
+		
+		postCity.innerText = vo.city;
+	}
+
+	var isOpen = false;
+	function showMore() {
+		var galleryItems = document.getElementsByClassName("gallery-item");
+		for (var i = 4; i < galleryItems.length; i++) {
+			galleryItems[i].classList.toggle("show");
+		}
+
+		var showMoreButton = document.getElementById("show-more-button");
+		showMoreButton.classList.toggle("hidden");
+
+		var showMoreBtn = document.getElementById("showMore");
+		isOpen = !isOpen;
+		if (isOpen === true) {
+			showMoreBtn.innerText = "숨기기";
+			showMoreBtn.setAttribute("class", "btn btn-primary");
+		} else {
+			showMoreBtn.innerText = "더보기"
+			showMoreBtn.setAttribute("class", "btn btn-info");
+		}
+
+	}
+	
+	window.onload = function() {
+        putImage(0);
+    };
+</script>
+</head>
 
 
-    <div class="post-content">
-        <h2>게시글 제목</h2>
-        <p>게시글 내용</p>
-    </div>
+<body>
+	<!-- <body> -->
+	<!-- <h1>Photo Gallery</h1> -->
 
+	<div id="content-wrap">
+		<!-- LEFT --------------------------------------- -->
+		<div id="left">
+			<div id="scroll-view">
+				<div class="gallery" id="gallery"></div>
+			</div>
+			<div id="show-more-button">
+				<button class="btn btn-info" id="showMore" onclick="showMore()">더보기</button>
+			</div>
+		</div>
+		<!-- LEFT END ----------------------------------- -->
+		<!-- RIGHT --------------------------------------- -->
+		<div id="right">
+			<div class="post-content">
+				<h2 id="post-title" style="color: #fc4141; font-weight: bold">게시글
+					제목</h2>
+				<h5 style="color: #4d4d4d; font-weight: 600">
+					<span id="citySpan"></span>, <span id="countrySpan"></span>
+				</h5>
+				<p>
+					<span style="font-weight: 600">작성자: </span><span id="post-writer"
+						style="color: #282e91;"></span>
+				</p>
+				<p>
+					<span style="font-weight: 600">작성일: </span><span id="post-date"
+						style="color: #282e91;"></span>
+				</p>
+				<p id="post-content">게시글 내용</p>
+			</div>
 
-    <div class="comments">
-        <%-- 댓글 부분 --%>
-        <div class="comment">
-            <strong>작성자:</strong> 댓글 내용
-        </div>
-        <%-- 필요한 만큼 댓글 추가 --%>
-    </div>
-
-    <form action="댓글_작성_처리_페이지" method="post">
-        <h3>댓글 작성</h3>
-        <label for="comment-author">작성자:</label>
-        <input type="text" id="comment-author" name="author" required>
-        <br>
-        <label for="comment-content">내용:</label>
-        <textarea id="comment-content" name="content" required></textarea>
-        <br>
-        <input type="submit" value="댓글 작성">
-    </form>
+			<div class="comments">
+				<%-- 댓글 부분 --%>
+				<div class="comment">
+					<strong>작성자:</strong> 댓글 내용
+				</div>
+				<%-- 댓글 추가 --%>
+				<form id="comment-form" action="댓글_작성_처리_페이지" method="post">
+					<hr>
+					<label class="showLabel" for="comment-author">작성자:</label> <input
+						type="text" id="comment-author" name="author" required> <br>
+					<label class="showLabel" for="comment-content">내용:</label>
+					<textarea id="comment-content" name="content" required></textarea>
+					<br> <label class="showLabel"></label> <input id="comment-btn"
+						type="submit" class="btn btn-info" value="댓글 작성">
+				</form>
+			</div>
+		</div>
+		<!-- RIGHT END ----------------------------------- -->
+	</div>
 </body>
+
+
 </html>
