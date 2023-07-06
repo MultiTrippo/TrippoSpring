@@ -113,13 +113,21 @@ body {
 }
 
 #wwwh{
+	margin: auto;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	padding: 2rem 1rem 1rem 1rem;
+	flex-direction: column;
 }
 
+
 /* 입력 form */
+.insteadOfForm{
+	width: 82%;
+}
+
+
 .input-group{
 	/* div */
 	margin-bottom: 1rem!important;
@@ -144,6 +152,22 @@ body {
     flex-wrap: wrap;
     align-items: stretch;
     width: 49%;
+    height: 2.8rem;
+}
+
+.input-group-30-set{
+	display: flex;
+	flex-direction: row; 
+	justify-content: space-between;
+}
+
+.input-group-30{
+	margin-bottom: 1rem!important;
+	/* position: relative; */
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 32%;
     height: 2.8rem;
 }
 
@@ -188,19 +212,29 @@ body {
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
-.form-check{
-	/* 누구와 체크부분 */
-	float: left;
-    margin: 0 1rem;
-    line-height: 2rem;
+
+
+
+
+
+
+
+
+
+
+/* 뷰어 */
+.form-control-viewer{
+	width: 100%;
+	height: 700px;
+	background-color: white;
+	border-radius: 5px;
+	padding: 1rem;
+	overflow: auto; /* 내용이 넘치면 스크롤생성 자동 */
+	
+	-ms-overflow-style: none; /* 인터넷 익스플로러 */
+    scrollbar-width: none; /* 파이어폭스 */
 }
 
-
-
-
-
-
-
-
-
-
+.form-control-viewer::-webkit-scrollbar {
+    display: none; /* 크롬, 사파리, 오페라, 엣지 */
+}

@@ -57,9 +57,7 @@
 	<body>
 		
 		<!-- header part -->
-		<div>
-		
-		</div>
+		<%@ include file="/inc/top.jspf" %> 
 		
 	
 		<!-- main part -->

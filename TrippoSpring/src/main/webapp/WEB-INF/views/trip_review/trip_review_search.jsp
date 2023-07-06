@@ -63,7 +63,7 @@
 
 					paginationForm.find("input[name='currPage']").val(
 							$(this).attr("href"));
-					paginationForm.attr("action", "/myapp/trip_review_search");
+					paginationForm.attr("action", "<%=request.getContextPath()%>/trip_review_search");
 					paginationForm.submit();
 				});
 
@@ -82,7 +82,7 @@
 			let val = $("input[name='keyword']").val();
 			paginationForm.find("input[name='keyword']").val(val);
 			paginationForm.find("input[name='currPage']").val(1);
-			paginationForm.attr("action", "/myapp/trip_review_search");
+			paginationForm.attr("action", "<%=request.getContextPath()%>/trip_review_search");
 			paginationForm.submit();
 		});
 
@@ -204,10 +204,12 @@
 					</button>
 				</div>
 				<div>
-					<button type="button" class="customBtn" id="btnWrite">
-						<ion-icon name="create"></ion-icon>
-						후기 작성하기
-					</button>
+					<c:if test="${loginUser ne null }">
+						<button type="button" class="customBtn" id="btnWrite">
+							<ion-icon name="create"></ion-icon>
+							후기 작성하기
+						</button>
+					</c:if>	
 					<button type="button" class="customBtn" id="btnList">
 						<ion-icon name="receipt"></ion-icon>
 						글목록으로
@@ -233,7 +235,7 @@
 									<tr>
 										<th scope="row">${list.review_num }</th>
 										<td><a
-											href="/myapp/viewOneReview?review_num=${list.review_num }"
+											href="${pageContext.request.contextPath }/viewOneReview?review_num=${list.review_num }"
 											style="text-decoration: none">${list.review_title }</a></td>
 										<td>${list.wwhere }</td>
 										<td>${list.user_id }</td>

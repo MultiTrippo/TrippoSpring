@@ -30,7 +30,10 @@
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
 <link rel="stylesheet"
 	href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css" />
-
+<!-- 글꼴  -->
+<link
+	href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap"
+	rel="stylesheet">
 
 <!-- 자동 완성 api 불러오기  -->
 <script>
@@ -60,6 +63,7 @@
 	}
 	function auto() {
 		var complete = $('#Ra9').val();
+		if(!complete) return ;
 		console.log("complete=" + complete)
 		const settings = {//자동완성 api 
 
@@ -172,14 +176,17 @@
 
 </head>
 <body>
-	<form  class="searchform" action="http://localhost:9090/myapp/acomlist"
+	<%@ include file="/inc/top.jspf" %>
+	<div class="page" style="background-image:url('${pageContext.request.contextPath}/images/acomimage/back.jpg')">
+	<h1 class="trippo"> Trippo가 회원님에게 맞는 숙소를 찾아드립니다</h1>
+	<form  class="searchform" action="${pageContext.request.contextPath}/acomlist"
 		method="get">
-		<input type="text" name="dest_ids" id="dest_id">
+		<input type="hidden" name="dest_ids" id="dest_id">
 		<input type="hidden" name="search_type" id="dest_type">
 		<div class="searchbox">
 			<div class="locationsc">
 				<!-- 목적지 선택  -->
-				<img class="iconimg" src="/images/acomimage/airicon.jpg" alt="Trripo">
+				<img class="iconimg" src="${pageContext.request.contextPath}/images/acomimage/airicon.jpg" alt="Trripo">
 				<input name="dest" class="destination" placeholder="어디로 여행하세요?"
 					data-destination="1" autocomplete="on" id="Ra9" onchange="auto()">
 				<div id="lst1" class="listbox" style="display: none">
@@ -188,10 +195,10 @@
 			</div>
 			<!-- 위치검색창 div -->
 			<div class="date">
-				<label for="check-in" class=check-in>체크인날짜:</label> <input
+				<label for="check-in" class=check-in>&nbsp; &nbsp; 체크인날짜:</label> <input
 					type="text" id="check-in" name="arrival_date"
 					placeholder="체크인날짜를 골라주세요" /> <br> 
-					<label for="checkout" class=check-out>체크아웃날짜:</label> <input type="text" id="check-out"
+					<label for="checkout" class=check-out>&nbsp; &nbsp; 체크아웃날짜:</label> <input type="text" id="check-out"
 					name="departure_date" placeholder="체크아웃날짜를 골라주세요" />
 			</div>
 			<!-- ---------------------------- -->
@@ -199,7 +206,7 @@
 			<!-- --------------인원수 선택 버튼 -------------- -->
 			<div class="people">
 				<div class="adult">
-					<h4>인원수를 설정해주세요</h4>
+					<h4 >&nbsp; &nbsp; 인원수를 설정해주세요</h4>
 					<label for="adults">어른 수:</label> <input type="number" id="adults"
 						name="guest_qty" value="0" readonly size="1"> <input
 						type="button" onclick="adjustValue('adults', '+')" value="+">
@@ -228,7 +235,9 @@
 
 		
 		</div>
+		
 	</form>
+	</div>
 <!-- ----------------------------------------------- -->
 <!-- -----------------------------------------------  -->
 </body>

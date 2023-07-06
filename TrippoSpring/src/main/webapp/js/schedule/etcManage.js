@@ -115,6 +115,7 @@ $(document).ready(function() {
             var containerDiv = $(this).closest(".containerDiv");
             var etcId = containerDiv.attr("data-etcId");
 	
+			console.log("up-etcid:" + etcId);
             // AJAX를 사용하여 데이터를 서버로 전송
             $.ajax({
                 url: "/etcUpdate",
@@ -144,8 +145,8 @@ $(document).ready(function() {
         
 
         if (confirmation) {
-            var container = $(this).closest("#containerDiv");
-			var etcId = container.attr("data-etcId");  // 등록할 때 설정한 데이터 속성으로부터 etc_id 가져오기
+            var containerDel = $(this).closest(".containerDiv");
+			var etcId = containerDel.attr("data-etcId");  // 등록할 때 설정한 데이터 속성으로부터 etc_id 가져오기
 
 			console.log("etcId : " + etcId);
 			
@@ -159,7 +160,7 @@ $(document).ready(function() {
                     page_id: pageId
                 },
                 success: function() {
-                    container.remove();
+                    containerDel.remove();
                     console.log("ETC data deleted successfully.");
                 },
                 error: function() {

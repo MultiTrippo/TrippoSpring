@@ -5,17 +5,15 @@
 }
 
  body {
-	
+	background: linear-gradient(45deg, #EEFFD2, #D2EFFF);
  }
 
 td {
 	background-color: rgba(255,255,255,0.2);
-	color: #fff;
 }
 
 th{
-	background-color: #55608f;
-	color: white;
+	background-color: #B6E0FF;
 	height: 70px;
 }
 
@@ -48,6 +46,12 @@ form{
 	border-style: none;
 	border-radius: 5px;
 	background: #BBFFC2;
+	box-shadow: 3px 3px 3px gray;
+	trainsition-duration : 0.2s;
+}
+
+#titleBtn:hover{
+	box-shadow:none;
 }
 
 #tableBody{
@@ -80,6 +84,13 @@ form{
 	color : #ED536C;
 	width: 70px;
 	height: 35px;
+	box-shadow: 3px 3px 3px rgb(109, 109, 109), -3px -3px 3px rgb(237, 237, 237);
+	transition: 0.3s;
+}
+
+#editButton:hover {
+	box-shadow: none;
+  	transition: 0.3s;
 }
 
 #deleteButton {
@@ -89,4 +100,11 @@ form{
 	border-style: none;
 	width: 70px;
 	height: 35px;
+	box-shadow: 3px 3px 3px rgb(109, 109, 109), -3px -3px 3px rgb(237, 237, 237);
+  	transition: 0.3s;
+}
+
+#deleteButton:hover {
+	box-shadow: none;
+	trainsition: 0.3s;
 }

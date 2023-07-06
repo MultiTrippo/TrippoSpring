@@ -55,16 +55,18 @@
 	<header class="top_header">
 		<div class="navbar">
 			<div class="logoimg_div">
-				<img alt="TrippoLogo" class="logoimg" src="images/TrippoLogo.png">
+				<a href="#">
+					<img alt="TrippoLogo" class="logoimg" src="images/TrippoLogo.png">
+				</a>
 			</div>
 			
 			<div class="bar_div">
 				<ul id="barlinksUl">
-					<li><a href="#">여행지정보</a></li> 
-					<li><a href="/myapp/trip_review_list">여행후기</a></li> 
-					<li><a href="#">일정관리</a></li> 
-					<li><a href="#">숙소정보</a></li> 
-					<li><a href="#">항공정보</a></li> 
+					<li><a href="${pageContext.request.contextPath }/boardList">여행지정보</a></li> 
+					<li><a href="${pageContext.request.contextPath }/trip_review_list">여행후기</a></li> 
+					<li><a href="${pageContext.request.contextPath }/scheduleList">일정관리</a></li> 
+					<li><a href="${pageContext.request.contextPath }/Acomsearch">숙소정보</a></li> 
+					<li><a href="${pageContext.request.contextPath }/trip_flight_page">항공정보</a></li> 
 				</ul>
 			</div>
 			

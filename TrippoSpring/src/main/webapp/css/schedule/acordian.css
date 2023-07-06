@@ -1,5 +1,14 @@
 @charset "UTF-8";
 
+
+*{
+	font-family: 'IBM Plex Sans KR', sans-serif;
+}
+
+ body {
+	background: linear-gradient(45deg, #FBFFCE, #D2EFFF);
+ }
+ 
 #accordionContainer {
 	padding : 20px;
 	
@@ -16,7 +25,7 @@
 
 #fixContainer::-webkit-scrollbar-thumb {
 	height: 5px;
-	background :  #F2FF68;
+	background :  #D187FF;
 	border-radius: 10px;
 }
 	
@@ -32,22 +41,28 @@
 }
 
 #fixAddBtn {
-	background: #DCDFBB;
+	background: #E5BAFF;
 	border-style : none;
 	border-radius: 10px;
 	height: 35px;
 	width: 70px;
+	box-shadow: 3px 3px 3px rgb(109, 109, 109);
+	transition: 0.3s;
+}
+
+#fixAddBtn:hover{
+	box-shadow: none;
+  	transition: 0.3s;
+}
 }
 
 .content{
 	height: 120px;
 }
 
-
-
 .accordion {
 	width: 500px;
-	background: #FCFEE6;
+	background: #FFDAEE;
 }
 
 textarea {
@@ -75,6 +90,12 @@ textarea {
 	float: right;
 	margin-top:10px;
 	margin-right: 10px;
+	box-shadow: 3px 3px 3px gray;
+	trainsition-duration : 0.3s;
+}
+
+.delete:hover{
+	box-shadow:none;
 }
 
 .save {
@@ -87,4 +108,10 @@ textarea {
 	float: right;
 	margin-top:10px;
 	margin-right: 10px;
+	box-shadow: 3px 3px 3px gray;
+	trainsition-duration : 0.3s;
+}
+
+.save:hover {
+	box-shadow:none;
 }
