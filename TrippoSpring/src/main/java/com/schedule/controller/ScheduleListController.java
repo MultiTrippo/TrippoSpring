@@ -24,15 +24,26 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @Log4j
 public class ScheduleListController {
+	
+	
 	@Autowired
 	private ScheduleService service;
+	
 
 	@RequestMapping(value="/scheduleList", method = RequestMethod.GET)
 	public String getAllScheduleList(Model model, HttpSession session) {
 		MemberVO mvo= (MemberVO)session.getAttribute("loginUser");
+		
+		if (mvo == null) {
+	        return "redirect:/login";
+	    }
+		
 		model.addAttribute("id", mvo.getId());
 
 		System.out.println("id" + mvo.getId());
+		
+		 
+		
 
 		List<ScheduleListVO> list = service.getAllScheduleList(mvo.getId());
 		model.addAttribute("getAllScheduleList", list);
