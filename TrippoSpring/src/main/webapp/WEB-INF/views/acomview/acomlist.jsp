@@ -19,12 +19,15 @@
 <!-- 참조 ( self ) -->
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
- 
-
+ <!-- 글꼴  -->
+<link
+	href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap"
+	rel="stylesheet">
 
 </head>
 <body>
-<div class="test"> <h1>* * * 님에게 딱 맞는 숙소 </h1>
+<%@ include file="/inc/top.jspf" %> 
+<div class="test"> <h1> </h1>
 <script>
 $(function() {
 	acom();
