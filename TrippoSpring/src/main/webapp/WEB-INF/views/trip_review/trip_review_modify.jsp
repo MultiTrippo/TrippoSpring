@@ -149,7 +149,7 @@
 								<span class="input-group-text">작성자</span> <input type="text"
 									class="form-control"
 									value="<c:out value="${selectedReview.user_id }"/>"
-									name="user_id">
+									name="user_id" readonly>
 							</div>
 							<div class="input-group-50-set">
 							<div class="input-group-50">

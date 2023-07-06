@@ -55,7 +55,9 @@
 	<header class="top_header">
 		<div class="navbar">
 			<div class="logoimg_div">
-				<img alt="TrippoLogo" class="logoimg" src="images/TrippoLogo.png">
+				<a href="#">
+					<img alt="TrippoLogo" class="logoimg" src="images/TrippoLogo.png">
+				</a>
 			</div>
 			
 			<div class="bar_div">

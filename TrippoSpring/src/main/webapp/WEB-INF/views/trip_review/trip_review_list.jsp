@@ -199,13 +199,16 @@
 						<ion-icon name="search-outline"></ion-icon>
 					</button>
 				</div>
-				<!-- 페이지이동버튼 -->
-				<div class="BtnsOnSidebar">
-					<button type="button" class="customBtn" id="btnWrite">
-						<ion-icon name="create"></ion-icon>
-						후기 작성하기
-					</button>
-				</div>
+				
+				<c:if test="${loginUser ne null }">
+					<!-- 페이지이동버튼 -->
+					<div class="BtnsOnSidebar">
+						<button type="button" class="customBtn" id="btnWrite">
+							<ion-icon name="create"></ion-icon>
+							후기 작성하기
+						</button>
+					</div>
+				</c:if>	
 			</div>
 			<div id="containerOnTheRight">
 				<div id="insideReviewBoard">

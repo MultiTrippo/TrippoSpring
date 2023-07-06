@@ -204,10 +204,12 @@
 					</button>
 				</div>
 				<div>
-					<button type="button" class="customBtn" id="btnWrite">
-						<ion-icon name="create"></ion-icon>
-						후기 작성하기
-					</button>
+					<c:if test="${loginUser ne null }">
+						<button type="button" class="customBtn" id="btnWrite">
+							<ion-icon name="create"></ion-icon>
+							후기 작성하기
+						</button>
+					</c:if>	
 					<button type="button" class="customBtn" id="btnList">
 						<ion-icon name="receipt"></ion-icon>
 						글목록으로
