@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class PostVO {
-	private int id;
+	private int postNo;
 	private String writer;
 	private String title;
 	private String content;
@@ -12,12 +12,13 @@ public class PostVO {
 	private String country;
 	private String city;
 	private String category;
+	private String uploadedDate;
 
 	// Constructors
 	public PostVO() {
 	}
 
-	public PostVO(String writer, String title, String content, String imgUrls, String country, String city, String category) {
+	public PostVO(String writer,String title, String content, String imgUrls, String country, String city, String category, String uploadedDate) {
 		this.writer=writer;
 		this.title = title;
 		this.content = content;
@@ -25,6 +26,7 @@ public class PostVO {
 		this.country = country;
 		this.city = city;
 		this.category=category;
+		this.uploadedDate = uploadedDate;
 	}
 
 }

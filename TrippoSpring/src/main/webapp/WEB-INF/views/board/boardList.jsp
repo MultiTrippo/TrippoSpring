@@ -25,6 +25,7 @@
         var titleElement = document.getElementById("food_card-title" + i);
         var writerElement = document.getElementById("food_card-writer" + i);
         var contentElement = document.getElementById("food_card-text" + i);
+        var modalElement = document.getElementById("food_post-modal" + i);
         var ImageUrl = foodList[index].imgUrls;
         var urlList = ImageUrl.split(',');
         if (urlList.length > 1) {
@@ -33,6 +34,7 @@
         imgElement.src = "${request.contextPath}/images/board/Upload/" + ImageUrl;
         titleElement.innerText = foodList[index].title;
         writerElement.innerText = "[" + foodList[index].writer + "]"; 
+        modalElement.setAttribute("onclick", "openBoardModal("+foodList[index].postNo+")");
         contentElement.innerText = foodList[index++].content;
       }
     }
@@ -68,6 +70,7 @@
         var titleElement = document.getElementById("attr_card-title" + i);
         var writerElement = document.getElementById("attr_card-writer" + i);
         var contentElement = document.getElementById("attr_card-text" + i);
+        var modalElement = document.getElementById("attr_post-modal" + i);
         var ImageUrl = AttrList[index].imgUrls;
         var urlList = ImageUrl.split(',');
         if (urlList.length > 1) {
@@ -76,6 +79,7 @@
         imgElement.src = "${request.contextPath}/images/board/Upload/" + ImageUrl;
         titleElement.innerText = AttrList[index].title;
         writerElement.innerText = "[" + AttrList[index].writer + "]"; 
+        modalElement.setAttribute("onclick", "openBoardModal("+AttrList[index].postNo+")");
         contentElement.innerText = AttrList[index++].content;
       }
     }
@@ -111,6 +115,7 @@
 	    var titleElement = document.getElementById("photospot_card-title" + i);
 	    var writerElement = document.getElementById("photospot_card-writer" + i);
 	    var contentElement = document.getElementById("photospot_card-text" + i);
+	    var modalElement = document.getElementById("photospot_post-modal" + i);
 	    var ImageUrl = PhotoSpotList[index].imgUrls;
 	    var urlList = ImageUrl.split(',');
 	    if (urlList.length > 1) {
@@ -118,7 +123,8 @@
 	    }
 	    imgElement.src = "${request.contextPath}/images/board/Upload/" + ImageUrl;
 	    titleElement.innerText = PhotoSpotList[index].title;
-	    writerElement.innerText = "[" + PhotoSpotList[index].writer + "]"; 
+	    writerElement.innerText = "[" + PhotoSpotList[index].writer + "]";
+	    modalElement.setAttribute("onclick", "openBoardModal("+PhotoSpotList[index].postNo+")");
 	    contentElement.innerText = PhotoSpotList[index++].content;
 	  }
 	}
@@ -140,36 +146,94 @@
 	}
     /* -------------------------------------------------- */
     
+    function openBoardModal(postNo) {
+	  $.ajax({
+	    url: '/boardShow',
+	    type: 'GET',
+	    data: {
+	      postNo: postNo
+	    },
+	    cache: false,
+	    success: function(response) {
+	    	var htmlText = $(response).text(); // HTML 문자열을 jQuery 객체로 변환
+	    	var index1 = htmlText.indexOf("{");
+	    	var index2 = htmlText.indexOf("}");
+	 		var jsonString = htmlText.substring(index1, index2+1);
+	      $('#boardShowModal .modal-body').html(response);
+	      loadScript('/js/board/boardShow.js', jsonString);
+	      $('#boardShowModal').modal('show');
+	    },
+	    error: function(xhr, status, error) {
+	      console.log(error);
+	    }
+	  });
+	}
+    
+    function loadScript(url, jsonString) {
+    	  var script = document.createElement('script');
+    	  script.src = url;
+    	  //alert(jsonString);
+    	  script.setAttribute('jsonString', jsonString);
+    	  document.head.appendChild(script);
+    	  var bodyTag = document.getElementById("bodyTag");
+    	  bodyTag.setAttribute("onload","putImage(0)");
+    	}
+    
     window.onload = function() {
           showFood(0);
           showAttr(0);
           showPhotoSpot(0);
       };
+      
   </script>
-
 </head>
 
-<body>
+<body id="bodyTag">
   <div id="page-wrap">
-  	<button type="button" class="btn btn-info" onclick="location.href='/addPost';">게시글 작성</button>
-  <h1>Photo Slideshow</h1>
+  <!-- <h1>Photo Slideshow</h1>
 
   <div>
     <h1>Board Title</h1>
+  </div> -->
+
+ <!-- 게시글 추가하는 modal ------------------- -->
+  <!-- 모달 버튼 -->
+  <div id="PostModalBtn-div">
+  	<button id="addPostModal-btn" class="btn btn-light">게시글 작성하기</button>
   </div>
-
-  <button id="modalButton" class="btn btn-light">게시글 작성하기</button>
-
-  <div id="myModal" class="modal">
-    <div class="modal-content">
+  <!-- 모달 -->
+  <div id="addPostModal" class="modal">
+    <div class="modal-content modal-dialog modal-dialog-scrollable">
       <span class="close">&times;</span>
+      <!-- boardAdd.jsp 띄움 -->
       <jsp:include page="boardAdd.jsp" />
     </div>
   </div>
- 
+  <!-- ------------------------------------- -->
+  
+<!-- 게시글 보는 modal ------------------- -->
+<div id="boardShowModal" class="modal fade shadow-lg show" tabindex="-1" role="dialog" aria-labelledby="boardShowModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Trippo's Photo Gallery</h1>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        			<span aria-hidden="true">&times;</span>
+      		</button>
+      </div>
+      <div class="modal-body">
+      	
+      </div>
+      <div class="modal-footer">
+        
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ------------------------------------- -->
 
-	
-  <div id="wrap">
+
+<div id="wrap">
 	<!-- 맛집 ================================================ -->
     <div id="food">
       <h1 class="section-title">-------- 맛집 추천 --------</h1>
@@ -186,7 +250,8 @@
 					    <h5 id="food_card-title<%=i%>" class="food_card-title card-title"></h5>
 					    <p id="food_card-writer<%=i%>" class="card-writer"></p>
 					    <p id="food_card-text<%=i%>" class="food_card-text"></p>
-					    <a href="#" class="btn btn-warning detail-btn ">게시글 보기</a>
+					    <!-- 버튼을 클릭하면 모달 창이 나타나도록 하는 버튼 -->
+						<a id="food_post-modal<%=i%>" data-toggle="modal" data-target="#viewPostModal" class="btn btn-warning detail-btn">게시글 보기</a>
 					</div>
 				</div>
 			<%
@@ -212,7 +277,7 @@
 	            <h5 id="attr_card-title<%=i%>" class="attr_card-title card-title"></h5>
 	            <p id="attr_card-writer<%=i%>" class="card-writer"></p>
 	            <p id="attr_card-text<%=i%>" class="attr_card-text"></p>
-	            <a href="#" class="btn btn-warning detail-btn">게시글 보기</a>
+	            <a id="attr_post-modal<%=i%>" class="btn btn-warning detail-btn">게시글 보기</a>
 	          </div>
 	        </div>
 	      <% } %>
@@ -238,7 +303,7 @@
 					    <h5 id="photospot_card-title<%=i%>" class="photospot_card-title card-title"></h5>
 					    <p id="photospot_card-writer<%=i%>" class="card-writer"></p>
 					    <p id="photospot_card-text<%=i%>" class="photospot_card-text"></p>
-					    <a href="#" class="btn btn-warning detail-btn">게시글 보기</a>
+					    <a id="photospot_post-modal<%=i%>" class="btn btn-warning detail-btn">게시글 보기</a>
 					</div>
 				</div>
 			<%
@@ -251,11 +316,11 @@
     <!-- ===================================================== -->
     
   </div>
-  </div>
-
+ </div>
+ 
   <script>
-    var modal = document.getElementById("myModal");
-    var modalButton = document.getElementById("modalButton");
+    var modal = document.getElementById("addPostModal");
+    var modalButton = document.getElementById("addPostModal-btn");
     var span = document.getElementsByClassName("close")[0];
 
     modalButton.onclick = function() {

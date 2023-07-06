@@ -46,6 +46,7 @@ public class BoardViewController {
 	    } catch (JsonProcessingException e) {
 	        foodListJson = "[]"; // 변환 실패 시 빈 배열로 초기화
 	    }
+	    System.out.println(foodListJson);
 	    model.addAttribute("foodListJson", foodListJson);
 	    
 	    // Attraction ====================================
