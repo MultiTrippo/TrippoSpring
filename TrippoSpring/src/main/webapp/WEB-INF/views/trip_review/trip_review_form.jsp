@@ -157,7 +157,7 @@
 							</div>
 							<div class="input-group">
 								<span class="input-group-text">작성자</span> <input type="text"
-									class="form-control" placeholder="작성자" name="user_id">
+									class="form-control" placeholder="작성자" name="user_id" value="${loginUser.id }" <c:if test="${loginUser ne null }">readonly</c:if>>
 							</div>
 							<div class="input-group-50-set">
 								<div class="input-group-50">

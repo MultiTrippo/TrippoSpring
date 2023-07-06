@@ -46,7 +46,7 @@
 						});
 
 		$('#btnDelete').click(function(e) {
-			e.preventDefault();
+			e.preventDefault();		
 
 			if (confirm("정말 삭제하시겠습니까?")) {
 				//확인
@@ -87,19 +87,25 @@
 	<div class="wrapper">
 		<div class="reviewTwoParts">
 			<div class="reviewSidebar">
-				<h1 class="reviewSidebarTitle">${selectedReview.user_id }님의후기</h1>
+				<h1 class="reviewSidebarTitle">${selectedReview.user_id }님의 여행후기</h1>
+				
+				<form name="hiddenForm" id="hiddenForm">
+					<input type="hidden" name="review_num" value="<c:out value='${selectedReview.review_num }' />">
+				</form>
+				
+				
 				<div>
-					<button type="button" class="customBtn" id="btnWrite">
-						<ion-icon name="create"></ion-icon>
-						후기 작성하기
-					</button>
+					<c:if test="${loginUser ne null }">
+						<button type="button" class="customBtn" id="btnWrite">
+							<ion-icon name="create"></ion-icon>
+							후기 작성하기
+						</button>
+					</c:if>
 					<button type="button" class="customBtn" id="btnList">
 						<ion-icon name="receipt"></ion-icon>
 						글목록으로
-					</button>
-					<form name="hiddenForm" id="hiddenForm">
-						<input type="hidden" name="review_num"
-							value="<c:out value='${selectedReview.review_num }' />">
+					</button>		
+					<c:if test="${loginUser.id eq selectedReview.user_id }">								
 						<button type="button" class="customBtn" id="btnModify">
 							<ion-icon name="cut"></ion-icon>
 							후기 수정하기
@@ -107,8 +113,8 @@
 						<button type="button" class="customBtn" id="btnDelete">
 							<ion-icon name="trash"></ion-icon>
 							후기 삭제하기
-						</button>
-					</form>
+						</button>	
+					</c:if>				
 				</div>
 			</div>
 			<div id="containerOnTheRight">
