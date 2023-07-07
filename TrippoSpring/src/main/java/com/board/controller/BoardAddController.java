@@ -75,7 +75,7 @@ public class BoardAddController extends HttpServlet{
 				} //switch
 				//convert base64 string to binary data
 				byte[] data = DatatypeConverter.parseBase64Binary(strings[1]);
-				String path = request.getServletContext().getRealPath("/images/board/Upload/"+file_name);
+				String path = request.getServletContext().getRealPath("/images/board/Upload");
 				//post.setImgUrls(path);
 				System.out.println("path: "+path);
 				File file = new File(path);
@@ -83,13 +83,13 @@ public class BoardAddController extends HttpServlet{
 				if(!file.exists()) {
 					file.mkdirs();
 				}
-				
+				File file2 = new File(path, file_name);
 				System.out.println("addPost 4");
-				try (OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(file))) {
+				try (OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(file2))) {
 					System.out.println("addPost 5");
 					outputStream.write(data);
 				} catch (IOException e) {
-					e.printStackTrace();
+					//e.printStackTrace();
 				}//try n catch
 			}//for ----------
 
