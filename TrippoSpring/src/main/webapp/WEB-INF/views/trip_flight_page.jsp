@@ -22,6 +22,7 @@
 
 </head>
 <body>
+<%@ include file="/inc/top.jspf" %>
 <!-- Bootstrap js -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
@@ -34,27 +35,27 @@
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 
 <!-- ------------- -->
-<div style="background-color:#D2EFFF">
+<div style="background-color:#D2EFFF; align:center; text-align:center">
 	<div id="flight_header" style="background-color:white">
 		<div id="container">
 		<input type='button' class="btn-two small rounded"  value="편도" id="one_way" onclick="toggleFlightType('ONE_WAY')"> 
 			<input type='button' class="btn-two small rounded"  value="왕복" style="background-color:white; color:black" onclick="toggleFlightType('ROUND_TRIP')">		</div>	
 		<br>
 			<div id="container_two">
-<span class="btn-two rounded" ><img src="images/flightImages/plane.png" width=30px; height=30px;> <input id="airport_dep" style="border:none;border-right:0px;border-top:0px;border-left:0px;" type="text" onchange="getAirport_dep(this.value)"></span>
+<span class="btn-two rounded" ><img src="/images/flightImages/plane.png" width=30px; height=30px;> <input id="airport_dep" style="border:none;border-right:0px;border-top:0px;border-left:0px;" type="text" onchange="getAirport_dep(this.value)"></span>
 <!--  <button id="swap-button" type="button" style="background-color:#9BD4DB">전환</button> -->
-			<span class="btn-two rounded"><img src="images/flightImages/plane.png" width=30px; height=30px;> <input id="airport_arr"  style="border:none;border-right:0px;border-top:0px;border-left:0px;" type="text" value="" onchange="getAirport_arr(this.value)"></span>
-			<span class="btn-two"><img src="images/flightImages/calender.png" width=30px; height=30px;> <input type="text" id="datepicker" style="border:0"></span>
-			<span class="btn-two" id=dateCome><img src="images/flightImages/calender.png" width=30px; height=30px;> <input type="text" id="datepicker_round" style="border:0"></span>
-				<select name="ppl" id="ppl">
-				<option>인원 수</option>
+			<span class="btn-two rounded"><img src="/images/flightImages/plane.png" width=30px; height=30px;> <input id="airport_arr"  style="border:none;border-right:0px;border-top:0px;border-left:0px;" type="text" value="" onchange="getAirport_arr(this.value)"></span>
+			<span class="btn-two"><img src="/images/flightImages/calenderImg.png" width=30px; height=30px;> <input type="text" id="datepicker" style="border:0"></span>
+			<span class="btn-two" id=dateCome><img src="/images/flightImages/calenderImg.png" width=30px; height=30px;> <input type="text" id="datepicker_round" style="border:0"></span>
+				<select class="pl" name="ppl" id="ppl">
+				<option >인원 수</option>
 		 	   	 <option value="1">1</option>
 				  <option value="2">2</option>
 				  <option value="3">3</option>
 				  <option value="4">4</option>
 				  <option value="5">5</option>
 				</select>
-				<select name="seat_class" id="seat_class">
+				<select name="seat_class" class="pl" id="seat_class">
 				<option>좌석 등급</option>
 		 	   	 <option value="ECONOMY">ECONOMY</option>
 				  <option value="PREMIUM_ECONOMY">PREMIUM_ECONOMY</option>
@@ -63,13 +64,13 @@
 				</select>
 				<input type='button' class=flight_type style="display: none">
 				
-			<span class=flight_set><button type="submit" style="background-color:#9BD4DB" onclick="init()">검색하기</button></span>
+			<span class=flight_set><button type="submit" class="btn-gradient blue" onclick="init()">검색하기</button></span>
 			</div>
 	</div>
 	<br>
-	<div id="flight_body" style="background-color:white" >
+	<div id="flight_body" style="background-color:white" align:center; text-align:center; margin:auto; >
 	
-<div id="flight-details" style="width: 100%; height: 100%;">
+<div id="flight-details" style="width: 40%; height: 80%; align:center; text-align:center; margin:auto; ">
   <p></p>
 </div>
 	<script>
@@ -102,13 +103,43 @@
 	let seat_class=$("#seat_class option:selected").text(); //좌석등급
 	let oneway_time;
 	let round_time;
+	let val_dep="";
+	let val_arr="";
 	function getAirport_dep(val){
-		airport_departure=val;
+		const settings = {
+				async: true,
+				crossDomain: true,
+				url: `https://tripadvisor16.p.rapidapi.com/api/v1/flights/searchAirport?query=\${val}`,
+				method: 'GET',
+				headers: {
+					'X-RapidAPI-Key': '96189eb4d6msh3bf15acb83294b1p13772cjsnf682bafc6b9c',
+					'X-RapidAPI-Host': 'tripadvisor16.p.rapidapi.com'
+				}
+			};
+			$.ajax(settings).done(function (response) {
+				console.log(response.data[0].airportCode);
+				val_dep=response.data[0].airportCode;
+				airport_departure=val_dep;
+			});
 		//console.log(val);
 		//test2(val);
 	}//출발공항
 	function getAirport_arr(val){
-		airport_arrival=val;
+		const settings = {
+				async: true,
+				crossDomain: true,
+				url: `https://tripadvisor16.p.rapidapi.com/api/v1/flights/searchAirport?query=\${val}`,
+				method: 'GET',
+				headers: {
+					'X-RapidAPI-Key': '96189eb4d6msh3bf15acb83294b1p13772cjsnf682bafc6b9c',
+					'X-RapidAPI-Host': 'tripadvisor16.p.rapidapi.com'
+				}
+			};
+			$.ajax(settings).done(function (response) {
+				console.log(response.data[0].airportCode);
+				val_arr=response.data[0].airportCode;
+				airport_arrival=val_arr;
+			});
 		//console.log(val);
 		//test2(val);
 	}//도착공항
@@ -135,10 +166,13 @@
 	        ticketType="ONE_WAY";
 	    }
 	}//--------------편도/왕복
+	function goUrl(url){
+		window.open(url);
+	}
 	
 	function init(){
-		airport_departure=$('#airport_dep').val().toUpperCase();
-		airport_arrival=$('#airport_arr').val().toUpperCase();
+		//airport_departure=$('#airport_dep').val().toUpperCase();
+		//airport_arrival=$('#airport_arr').val().toUpperCase();
 		ppl=$('#ppl').val();
 		seat_class=$('#seat_class').val();
 		oneway_time=$('#datepicker').val();
@@ -165,7 +199,7 @@
 			url: `https://tripadvisor16.p.rapidapi.com/api/v1/flights/searchFlights?sourceAirportCode=\${airport_departure}&destinationAirportCode=\${airport_arrival}&date=\${oneway_time}&itineraryType=\${ticketType}&sortOrder=PRICE&numAdults=\${ppl}&numSeniors=0&classOfService=\${seat_class}&returnDate=\${round_time}&pageNumber=1&nonstop=yes&currencyCode=USD`,
 					method: 'GET',
 			headers: {
-				'X-RapidAPI-Key': '60c5ede577msh7e68a54b4501c1bp180965jsna4480f0218b9',
+				'X-RapidAPI-Key': '96189eb4d6msh3bf15acb83294b1p13772cjsnf682bafc6b9c',
 				'X-RapidAPI-Host': 'tripadvisor16.p.rapidapi.com'
 			}
 		};
@@ -186,16 +220,17 @@
 		    	let timeStringArrTo=timeStringArr.substring(11,16);
 		        var result = "";
 		        //if (flights.segments.legs[i].layovers.length === 0) {
-		        result += "<div class='flight-info' style='border: 0.5px solid black; padding: 10px;'>";
-		        result += "<img src='" + flights[i].segments[0].legs[0].operatingCarrier.logoUrl + "' width=60px, height=60px/> ";
-		        result += "<strong style='font-size: 20pt;' >" + flights[i].segments[0].legs[0].operatingCarrier.displayName + "</strong> ";
+		        result += "<div class='flight-info' style='border: 0.5px solid black; padding: 10px; align:center; text-align:left; '>";
+		        result += "<img src='" + flights[i].segments[0].legs[0].operatingCarrier.logoUrl + "' width=60px, height=60px/> &nbsp;";
+		        result += "<strong style='font-size: 20pt;' >" + flights[i].segments[0].legs[0].operatingCarrier.displayName + "</strong> &nbsp;&nbsp;&nbsp;&nbsp;";
 		       //result += "좌석등급: " + flights[i].segments[0].legs[0].classOfService + "  ";
 		        //result += "출발 시간: " + timeStringDepTo + " => 도착 시간: " +timeStringArrTo+ "    ";
 		        if(flights[i].segments[0].legs[0].destinationStationCode != airport_arrival ){
-		        	result +=  timeStringDepTo+"<span style='font-size: 0.9em; color: skyblue;'>"+flights[i].segments[0].legs[0].originStationCode +"</span> => "+timeStringArrTo+"<span style='font-size: 0.9em; color:skyblue;'>"+airport_arrival+ "</span>		";}
+		        	result +=  timeStringDepTo+"<span style='font-size: 0.9em; color: skyblue;'>"+flights[i].segments[0].legs[0].originStationCode +"</span> => "+timeStringArrTo+"<span style='font-size: 0.9em; color:skyblue;'>"+airport_arrival+ "</span>";}
 		        else{
-		        	result +=  timeStringDepTo+"<span style='font-size: 0.9em; color: skyblue;'>"+flights[i].segments[0].legs[0].originStationCode +"</span> => "+timeStringArrTo+"<span style='font-size: 0.9em; color:skyblue;'>"+flights[i].segments[0].legs[0].destinationStationCode+ "</span>		";}
-		        result += " 가격: <strong style='font-size: 15pt; text-align:right;' >" + Math.round(flights[i].purchaseLinks[0].totalPrice*1300).toLocaleString() + "원~ </strong><br>";
+		        	result +=  timeStringDepTo+"<span style='font-size: 0.9em; color: skyblue;'>"+flights[i].segments[0].legs[0].originStationCode +"</span> => "+timeStringArrTo+"<span style='font-size: 0.9em; color:skyblue;'>"+flights[i].segments[0].legs[0].destinationStationCode+ "</span>";}
+		        result += "<p style='text-align:right; align:right; margin-bottom: 0; margin-top: 0; padding-top:0; padding-bottom:0;'> 가격: <strong style='font-size: 15pt; text-align:right;' >" + Math.round(flights[i].purchaseLinks[0].totalPrice*1300).toLocaleString() + "원~ </strong> &nbsp;&nbsp;";
+		        result += " <input type='button' class='btn-gradient orange mini' width='50px' height='50px' value='이동하기'  onclick=\"goUrl('" + flights[i].purchaseLinks[0].url + "')\"></p>";
 		        //result += "배급업체: " + "<strong>" + flights[i].purchaseLinks[0].providerId + " </strong><br>";
 		        //result += "항공편 번호: " + flights[i].segments[0].legs[0].flightNumber + "<br>";
 		        //result += "상품명: " + "<strong>" + response.data.flights[i].purchaseLinks[0].commerceName + "</strong><br>";
@@ -210,8 +245,8 @@
 		    	let timeStringDepToR=timeStringDepR.substring(11,16);
 		    	timeStringArrR=flights[i].segments[1].legs[0].arrivalDateTime;
 		    	let timeStringArrToR=timeStringArrR.substring(11,16);
-		         result += "<img src='" + response.data.flights[i].segments[1].legs[0].operatingCarrier.logoUrl + "' width=60px, height=60px/> ";
-		        result += "<strong style='font-size: 20pt;' >" + flights[i].segments[1].legs[0].operatingCarrier.displayName + "</strong>	";
+		         result += "<img src='" + response.data.flights[i].segments[1].legs[0].operatingCarrier.logoUrl + "' width=60px, height=60px/> &nbsp;";
+		        result += "<strong style='font-size: 20pt;' >" + flights[i].segments[1].legs[0].operatingCarrier.displayName + "</strong> &nbsp;&nbsp;&nbsp;&nbsp;";
 		       // result += "좌석등급 (왕복): " + response.data.flights[i].segments[1].legs[0].classOfService + "		";
 				//result += "출발 시간: " + timeStringDepToR + " => 도착 시간: " +timeStringArrToR+ "	";
 				result += timeStringDepToR+"<span style='font-size: 0.9em; color:skyblue;'>"+response.data.flights[i].segments[1].legs[0].originStationCode +"</span> => ";
@@ -224,11 +259,10 @@
 		        else if(ticketType="ONE_WAY" ){
 		        	result += "</div>";
 		        }
-		       
-		        
+		     
 		         //if(flights[i].segments[1] != null ){
 		        //	 result += "<div class='flight-info-round' style='border: 0.5px solid black; padding: 10px; display: none;'>"
-	var flightElement = $("<div>").addClass("flight-info").html(result); // 새로운 div를 생성하고 클래스를 추가하여 스타일을 적용
+	var flightElement = $("<div>").addClass("flight-info").html(result); // 
 		        $("#flight-details").append(flightElement);
 		    }//for--
 		});
