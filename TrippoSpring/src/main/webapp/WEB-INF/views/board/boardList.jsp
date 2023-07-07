@@ -31,6 +31,7 @@
         if (urlList.length > 1) {
         	ImageUrl=urlList[0];
         }
+        //imgElement.src = "images/board/Upload/" + ImageUrl;
         imgElement.src = "${request.contextPath}/images/board/Upload/" + ImageUrl;
         titleElement.innerText = foodList[index].title;
         writerElement.innerText = "[" + foodList[index].writer + "]"; 
