@@ -7,6 +7,14 @@
     font-family: 'IBM Plex Sans KR', sans-serif;
 }
 
+a:link {
+	color: #655DBB; 
+}
+
+a:visited{
+	color: #655DBB; 	
+}
+
 .sidebar{
 	width: 20%;
 	height: 100%;
@@ -26,24 +34,98 @@
 	letter-spacing: 2;
 }
 
-.menus{
+
+
+/* list의 검색창 */
+.searchbar{
+	width: 100%;
+	height: 3em;
 	display: flex;
-	flex-direction: column;
-	gap: 2rem;
+	justify-content: space-between;
+	border: none;
+	background-color: white;
+	border-radius: 20px;
+	padding: 0.5rem 1rem;	
+	position: relative;
 }
 
-.menus a{
+.searchbar input{
+	width: 90%;
+	border: none;
+}
+
+.btnCityListSearch{
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 100%;
+	padding: 0 5%;
+	border: none;
+	background-color: #FFF8D6;
+	color: #655DBB;
+	font-size: 16px;
+	border-radius: 20px;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+	cursor: pointer;	
+}
+
+.btnCityListSearch:hover{
+	background-color: #f7d56c;
+}
+
+
+/* 페이지네이션 */
+#paginationDiv{
 	display: flex;
+  	justify-content: center;
+}
+
+#pagination{
+	margin: 20;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.page-link {
+  color: #000; 
+  background-color: #fff;
+  border: 1px solid #ccc; 
+  
+}
+
+.page-item.active .page-link {
+ z-index: 1;
+ color: #555;
+ font-weight:bold;
+ background-color: #f1f1f1;
+ border-color: #ccc;
+ 
+}
+
+.page-link:focus, .page-link:hover {
+  color: #000;
+  background-color: #fafafa; 
+  border-color: #ccc;
+}
+
+/* 버튼 */
+.customBtn{
+	width: 100%;
+	display: flex;
+	flex-direction: row;
 	align-items: center;
-	color: white;
-	text-decoration: none;
+	gap: 0.5rem;
+	padding: 1rem 1.5rem;
+	background: #F7FFE5;
+	color: #606C5D;
+	border: none;
+	border-radius: 10px;
+	box-shadow: rgba(99,99,99,0.2) 0px 2px 8px 0px;
+	cursor: pointer;	
+	font-size: 1.5rem;
+	margin: 0.5rem;
 }
 
-.menus a:hover{
-	color: blue;
-}
-
-#form-check{
-	float: left;
-	margin-right: 2em;
+.customBtn:hover{
+	background-color: #C4D7B2;
 }

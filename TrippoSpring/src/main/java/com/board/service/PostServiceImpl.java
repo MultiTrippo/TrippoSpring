@@ -1,6 +1,7 @@
 package com.board.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -27,15 +28,14 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public int deletePost(int postId) {
+	public int deletePost(int postNo) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public PostVO getPostById(int postId) {
-		// TODO Auto-generated method stub
-		return null;
+	public PostVO getPostById(int postNo) {
+		return this.postMapper.getPostById(postNo);
 	}
 
 	@Override
@@ -45,16 +45,16 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public List<PostVO> getNextCategoryPost(String category, int postId) {
+	public List<PostVO> getNextCategoryPost(String category, int postNo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<PostVO> getFilteredPosts(String category, String country, String city) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<PostVO> getFilteredPosts(Map<String, String> map) {
+		return this.postMapper.getFilteredPosts(map);
 	}
+
 
 	@Override
 	public int getNumAllPosts() {
@@ -69,13 +69,13 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public int increaseViews(int postId) {
+	public int increaseViews(int postNo) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int increaseLikes(int postId) {
+	public int increaseLikes(int postNo) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

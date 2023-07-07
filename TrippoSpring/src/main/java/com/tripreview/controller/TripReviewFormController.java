@@ -5,13 +5,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tripreview.service.TripReviewService;
+import com.tripreview.vo.Criteria;
+import com.tripreview.vo.ReviewPagingVO;
 import com.tripreview.vo.TripReviewVO;
 
 @Controller
@@ -45,15 +47,56 @@ public class TripReviewFormController {
 		return "redirect:trip_review_list";
 	}
 	
-	/** 모든 후기 리스트 보기 */
-	@RequestMapping(value = "/trip_review_list", method = RequestMethod.GET)
-	public String getAllList(Model model){
-				
-		List<TripReviewVO> list = service.getAllList();
-		model.addAttribute("getAllList", list);
+//	/** 모든 후기 리스트 보기 */
+//	@RequestMapping(value = "/trip_review_list", method = RequestMethod.GET)
+//	public String getAllList(Model model){
+//				
+//		List<TripReviewVO> list = service.getAllList();
+//		model.addAttribute("getAllList", list);
+//		
+//		return "trip_review/trip_review_list"; 
+//	}
+	
+	/** 모든 후기 리스트 보기 + 페이징 처리 */
+	@GetMapping("/trip_review_list")
+	public String getAllListWithPaging(Model model, Criteria cri){
+		
+		System.out.println("cri"+ cri); //기본생성자		
+		
+		System.out.println("cri.getCurrPage(): "+cri.getCurrPage());
+		System.out.println("cri.getAmount(): "+cri.getAmount()); 
+		System.out.println("cri.getColsNum(): "+cri.getColsNum()); 
+			
+		List<TripReviewVO> list = service.getAllListWithPaging(cri);
+		model.addAttribute("getAllListWithPaging", list);
+		
+		int totalReviews = service.getTotalReviewsCnt(cri);
+		ReviewPagingVO pagingVO = new ReviewPagingVO(cri, totalReviews);		
+		model.addAttribute("pagingVO", pagingVO);
 		
 		return "trip_review/trip_review_list"; 
 	}
+	
+	/** 검색어로 후기 조회하기 + 페이징 처리 */
+	@GetMapping("/trip_review_search")
+	public String searchKeywordWithPaging(Model model, Criteria cri){
+		
+		System.out.println("cri"+ cri); //기본생성자		
+		
+		System.out.println("cri.getCurrPage(): "+cri.getCurrPage());
+		System.out.println("cri.getAmount(): "+cri.getAmount()); 
+		System.out.println("cri.getColsNum(): "+cri.getColsNum()); 
+			
+		List<TripReviewVO> list = service.getAllListWithPaging(cri);
+		model.addAttribute("getAllListWithPaging", list);
+		
+		int totalReviews = service.getTotalReviewsCnt(cri);
+		ReviewPagingVO pagingVO = new ReviewPagingVO(cri, totalReviews);		
+		model.addAttribute("pagingVO", pagingVO);
+		
+		return "trip_review/trip_review_search"; 
+	}
+
 	
 	/** 선택한 후기 한개 조회하기 */
 	@RequestMapping(value = "/viewOneReview", method = RequestMethod.GET)
@@ -66,7 +109,6 @@ public class TripReviewFormController {
 		
 		return "trip_review/trip_review_view";
 	}
-	
 	
 	/** 선택한 후기 한개 삭제하기 */
 	@RequestMapping(value = "/deleteReview", method = RequestMethod.GET)
@@ -95,7 +137,7 @@ public class TripReviewFormController {
 	}
 	
 	/** 수정 완료 */
-	@RequestMapping(value = "/modifyReviewComplete", method = RequestMethod.GET)
+	@RequestMapping(value = "/modifyReviewComplete", method = RequestMethod.POST)
 	public String modifyReviewComplete(Model model, @ModelAttribute TripReviewVO review) {
 		System.out.println("reviewCompleteController "+review.getReview_title());
 		System.out.println("reviewCompleteController "+review.getUser_id());

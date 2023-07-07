@@ -1,0 +1,121 @@
+@charset "UTF-8";
+
+.top_header{
+	position: sticky;
+	padding: 0 2rem;
+	top: 0;
+	height: 130px;
+	z-index: 1;
+	display:flex;
+	align-items:center;
+	justify-content: center;
+	margin:10px;
+}
+
+.navbar{
+	width: 100%;
+	height: 120px;
+	max-width: 1200px;
+	display: flex;
+	align-items: center;
+	align-content:center;
+	justify-content: center;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+/* 트리포 로고 */
+.logoimg_div{
+    width: 100px;
+    height: 130px;
+    overflow: hidden;
+    background: none;
+}
+.logoimg{
+	top: 0;
+	left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 메뉴 링크들 */
+.bar_div{
+	background-color: #C9A7EB;
+	width: 65%;
+	height: 60px;
+	border-radius: 30px;
+	display: flex;
+	justify-content: center;
+	margin-left:5px;
+	margin-right:5px;
+	overflow:auto;
+}
+
+#barlinksUl{
+	margin-bottom : 0;
+	align-items: center;
+	vertical-align:center;
+	display: flex;
+	gap: 4rem;
+	list-style:none;
+	margin:auto;
+	padding-left:0px !important;
+}
+
+#barlinksUl li{
+	width:85px;
+}
+#barlinksUl a{
+	text-decoration: none;
+	color: #fff;
+	font-size: 18px;
+	transition: all 0.3s;
+	height: 70px;
+}
+
+#barlinksUl a:hover{
+	border-radius: 20px;
+	background-color: rgba(255, 255, 255, 0.5);
+	border: none;
+	cursor: pointer;
+	padding: 9px 20px;
+	color: #a46add;
+}
+
+/* 로그인, 로그아웃, 회원가입 버튼 */
+.headerBtnsDiv{	
+	flex-direction: row;
+}
+
+.header_login_btn,
+.header_logout_btn,
+.header_signup_btn{
+	font-size: 18px;
+	padding: 4px 15px;
+	background-color: rgba(255, 255, 255, 0.5);
+	color: black;
+	border: 1px solid #a46add;
+	border-radius: 30px;
+	transition: all 0.3s;
+	color: #883ed2;
+}
+
+.header_login_btn:hover,
+.header_logout_btn:hover,
+.header_signup_btn:hover{
+	background-color: #a46add;
+	color: white;	
+	cursor: pointer;
+}
+
+
+.header_login_btn {
+   margin-left: 7px;
+}
+
+.header_signup_btn{
+   margin-top: 5px;
+}
+
+

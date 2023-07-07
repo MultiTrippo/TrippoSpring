@@ -42,13 +42,16 @@
 			<input type='button' class="btn-two small rounded"  value="왕복" style="background-color:white; color:black" onclick="toggleFlightType('ROUND_TRIP')">		</div>	
 		<br>
 			<div id="container_two">
-<span class="btn-two rounded" ><img src="/images/flightImages/plane.png" width=30px; height=30px;> <input id="airport_dep" style="border:none;border-right:0px;border-top:0px;border-left:0px;" type="text" onchange="getAirport_dep(this.value)"></span>
+<span class="btn-two rounded" ><img src="images/flightImages/plane.png" width=30px; height=30px;> <input id="airport_dep" style="border:none;border-right:0px;border-top:0px;border-left:0px;" type="text" onchange="getAirport_dep(this.value)"></span>
 <!--  <button id="swap-button" type="button" style="background-color:#9BD4DB">전환</button> -->
+
 			<span class="btn-two rounded"><img src="/images/flightImages/plane.png" width=30px; height=30px;> <input id="airport_arr"  style="border:none;border-right:0px;border-top:0px;border-left:0px;" type="text" value="" onchange="getAirport_arr(this.value)"></span>
 			<span class="btn-two"><img src="/images/flightImages/calenderImg.png" width=30px; height=30px;> <input type="text" id="datepicker" style="border:0"></span>
 			<span class="btn-two" id=dateCome><img src="/images/flightImages/calenderImg.png" width=30px; height=30px;> <input type="text" id="datepicker_round" style="border:0"></span>
 				<select class="pl" name="ppl" id="ppl">
 				<option >인원 수</option>
+
+
 		 	   	 <option value="1">1</option>
 				  <option value="2">2</option>
 				  <option value="3">3</option>

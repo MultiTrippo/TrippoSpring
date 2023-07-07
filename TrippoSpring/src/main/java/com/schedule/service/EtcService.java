@@ -1,6 +1,8 @@
-package com.schedule.db;
+package com.schedule.service;
 
 import java.util.List;
+
+import com.schedule.db.EtcVO;
 
 
 public interface EtcService {

@@ -1,0 +1,110 @@
+@charset "UTF-8";
+
+*{
+	font-family: 'IBM Plex Sans KR', sans-serif;
+}
+
+ body {
+	background: linear-gradient(45deg, #EEFFD2, #D2EFFF);
+ }
+
+td {
+	background-color: rgba(255,255,255,0.2);
+}
+
+th{
+	background-color: #B6E0FF;
+	height: 70px;
+}
+
+tr:hover {
+	background-color: rgba(255,255,255,0.3);
+}
+
+#inputSchedule{
+	height: 50px;
+	display: flex;
+  	justify-content : center;
+}
+
+form{
+	backgorund: yellow;
+}
+
+#ScheduleInput {
+	margin-top: 5px;
+	width: 500px;
+	height: 40px;
+	border-style: none;
+	border-radius: 5px;
+	background: #F9F9F9;
+}
+
+#titleBtn {
+	width: 130px;
+	height: 40px;
+	border-style: none;
+	border-radius: 5px;
+	background: #BBFFC2;
+	box-shadow: 3px 3px 3px gray;
+	trainsition-duration : 0.2s;
+}
+
+#titleBtn:hover{
+	box-shadow:none;
+}
+
+#tableBody{
+	margin-top: 20px;
+	display: flex;
+  	justify-content : center;
+}
+
+#titleTd {
+	padding-left: 20px;
+	width: 700px;
+	height: 60px;
+}
+
+#dateTd {
+	padding-left: 20px;
+	width: 100px;
+	height: 60px;
+}
+
+#buttons {
+	padding-left: 40px;
+	width : 200px;
+}
+
+#editButton {
+	border-radius: 5px;
+	background-color: rgba( 255, 255, 255, 0.7 );
+	border: 1px solid #ED536C;
+	color : #ED536C;
+	width: 70px;
+	height: 35px;
+	box-shadow: 3px 3px 3px rgb(109, 109, 109), -3px -3px 3px rgb(237, 237, 237);
+	transition: 0.3s;
+}
+
+#editButton:hover {
+	box-shadow: none;
+  	transition: 0.3s;
+}
+
+#deleteButton {
+	border-radius: 5px;
+	background: #1785F2;
+	color: white;
+	border-style: none;
+	width: 70px;
+	height: 35px;
+	box-shadow: 3px 3px 3px rgb(109, 109, 109), -3px -3px 3px rgb(237, 237, 237);
+  	transition: 0.3s;
+}
+
+#deleteButton:hover {
+	box-shadow: none;
+	trainsition: 0.3s;
+}

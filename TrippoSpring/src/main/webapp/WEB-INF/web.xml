@@ -7,9 +7,7 @@
 		and Filters -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>
-			/WEB-INF/spring/root-context.xml
-		</param-value>
+		<param-value>/WEB-INF/spring/root-context.xml</param-value>
 	</context-param>
 
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
@@ -36,7 +34,6 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
   
-
 	<!-- 혜원: 한글인코딩 -->
 	<!-- Character Set Filter -->
 	<filter>

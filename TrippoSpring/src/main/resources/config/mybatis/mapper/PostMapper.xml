@@ -8,7 +8,26 @@
 	
 	<insert id="createPost">
 		INSERT INTO board_post (<include refid="post_columns"/>)
-		VALUES (#{writer}, NOW(), #{country}, #{city}, #{category}, #{title}, #{content}, #{imageUrls})
+		VALUES (#{writer}, NOW(), #{country}, #{city}, #{category}, #{title}, #{content}, #{imgUrls})
 	</insert>
 	
+	<select id="getFilteredPosts" resultType="PostVO">
+		SELECT * FROM board_post
+		<where>
+			<if test="category != null and category != ''">
+				AND category = #{category}
+			</if>
+			<if test="country != null and country != ''">
+				AND country = #{country}
+			</if>
+			<if test="city != null and city != ''">
+				AND city = #{city}
+			</if>
+		</where>
+	</select>
+	
+	<select id="getPostById" resultType="PostVO">
+		SELECT * FROM board_post
+		WHERE postNo = #{postId}
+	</select>
 </mapper>

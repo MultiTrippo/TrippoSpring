@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+ <mapper namespace="com.schedule.mapper.ScheduleMapper">
+ 	<select id="getAllScheduleList" resultType="ScheduleListVO">
+ 		select page_id, id, trav_date, trav_title
+ 		from travel_schedule
+ 		where id=#{id}
+ 	</select>
+ 	
+ 	<insert id="insertSchedule" parameterType="ScheduleListVO" useGeneratedKeys="true" keyProperty="page_id">	
+ 		insert into travel_schedule (page_id, id, trav_date, trav_title)
+ 		values (#{page_id}, #{id}, date_format(now(), '%Y-%m-%d'), #{trav_title})
+ 	</insert>
+ 	
+ 	<update id="updateSchedule" parameterType="ScheduleListVO">
+ 		update travel_schedule set trav_title=#{trav_title}
+ 		where id=#{id} and page_id=#{page_id}
+ 	</update>
+ 	
+ 	<delete id="deleteSchedule" parameterType="ScheduleListVO">
+ 		delete from travel_schedule where page_id=#{page_id} and id=#{id}
+ 	</delete>
+ 
+ 	
+ </mapper>

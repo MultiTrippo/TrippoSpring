@@ -1,106 +1,110 @@
 package com.board.controller;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.io.OutputStream;
+import java.util.HashSet;
 import java.util.Map;
-import java.util.UUID;
+import java.util.Set;
 
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.xml.bind.DatatypeConverter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.board.model.PostVO;
 import com.board.service.PostService;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
-public class BoardAddController {
+public class BoardAddController extends HttpServlet{
 
 	@Autowired
 	private PostService pService;
 	
-	//@GetMapping("/addPost")
-	//@RequestMapping(value="/addPost", method=RequestMethod.GET)
-	@GetMapping("/addPost")
+	@RequestMapping(value="/addPost", method=RequestMethod.GET)
 	public String boardAdd() {
 		return "board/boardAdd"; 
 	}
-	//https://memory-develo.tistory.com/148
-	@PostMapping(value="/addPost")
-	public String upload(@ModelAttribute PostVO post, @RequestParam("multiFile") List<MultipartFile> multiFileList, HttpServletRequest request) {
-		log.info("post check: "+post);
+
+	@ResponseBody
+	@PostMapping(value="/addPost", produces="application/json")
+	public ModelMap upload(@RequestParam(value="hashMapJson", required=false) String hashMapJson, @ModelAttribute PostVO post, HttpServletRequest request) {
+		System.out.println("addPost 1");
 		
-		int n=pService.createPost(post);
-		return"redirect:boardList";
-	}
-	
-	
-	@PostMapping("/multi-file")
-	public void multiFileUpload(@RequestParam("multiFile") List<MultipartFile> multiFileList, @RequestParam String fileContent, HttpServletRequest request) {
-		
-		// 받아온것 출력 확인
-		System.out.println("multiFileList : " + multiFileList);
-		System.out.println("fileContent : " + fileContent);
-		
-		// path 가져오기
-		String path = request.getSession().getServletContext().getRealPath("resources");
-		String root = path + "\\" + "uploadFiles";
-		
-		File fileCheck = new File(root);
-		
-		if(!fileCheck.exists()) fileCheck.mkdirs();
-		
-		
-		List<Map<String, String>> fileList = new ArrayList<>();
-		
-		for(int i = 0; i < multiFileList.size(); i++) {
-			String originFile = multiFileList.get(i).getOriginalFilename();
-			String ext = originFile.substring(originFile.lastIndexOf("."));
-			String changeFile = UUID.randomUUID().toString() + ext;
+		Gson gson = new Gson();
+		Map<String, Object> hashMap = gson.fromJson(hashMapJson, new TypeToken<Map<String, Object>>(){}.getType());
+
+		Set<String> imgUrlsSet = new HashSet<>(); // 중복을 허용하지 않는 Set 자료구조 생성
+
+		if (hashMapJson!=null) {
+			System.out.println("addPost 2");
+			for (Map.Entry<String, Object> entry : hashMap.entrySet()) {
+				System.out.println("addPost 3");
+			    String file_name = entry.getKey();
+			    Object img_uri = entry.getValue();
+			    imgUrlsSet.add(file_name); // 중복을 허용하지 않는 Set에 파일 이름 추가
+				
+				String[] strings = ((String) img_uri).split(",");
+				String extension;
+				switch (strings[0]) {//check image's extension
+	            case "data:image/jpeg;base64":
+	                extension = "jpeg";
+	                break;
+	            case "data:image/png;base64":
+	                extension = "png";
+	                break;
+	            default://should write cases for more images types
+	                extension = "jpg";
+	                break;
+				} //switch
+				//convert base64 string to binary data
+				byte[] data = DatatypeConverter.parseBase64Binary(strings[1]);
+				String path = request.getServletContext().getRealPath("/images/board/Upload/"+file_name);
+				//post.setImgUrls(path);
+				System.out.println("path: "+path);
+				File file = new File(path);
+				System.out.println("addPost 4");
+				try (OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(file))) {
+					System.out.println("addPost 5");
+					outputStream.write(data);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}//try n catch
+			}//for ----------
+
+			// Set을 콤마로 구분된 문자열로 변환하여 post에 설정
+			String imgUrls = String.join(",", imgUrlsSet);
+			post.setImgUrls(imgUrls);
 			
+			// 나머지 코드는 그대로 유지
+			System.out.println("addPost 6");
+			int n = pService.createPost(post);
 			
-			Map<String, String> map = new HashMap<>();
-			map.put("originFile", originFile);
-			map.put("changeFile", changeFile);
-			
-			fileList.add(map);
+			ModelMap map = new ModelMap("result", "success");
+			return map;
+		}//if------
+		else {
+			System.out.println("addPost 7");
+			ModelMap map = new ModelMap("result", "fail");
+			return map;
 		}
 		
-		
-		// System.out.println(fileList);
-		
-		// 파일업로드
-		try {
-			for(int i = 0; i < multiFileList.size(); i++) {
-				File uploadFile = new File(root + "\\" + fileList.get(i).get("changeFile"));
-				multiFileList.get(i).transferTo(uploadFile);
-			}
-			
-			System.out.println("다중 파일 업로드 성공!");
-			
-		} catch (IllegalStateException | IOException e) {
-			System.out.println("다중 파일 업로드 실패 ㅠㅠ");
-			// 만약 업로드 실패하면 파일 삭제
-			for(int i = 0; i < multiFileList.size(); i++) {
-				new File(root + "\\" + fileList.get(i).get("changeFile")).delete();
-			}
-			
-			
-			e.printStackTrace();
-		}
-		
-	}
-	
-	
-}
+	}//upload ///////
+
+}//////////////////////
