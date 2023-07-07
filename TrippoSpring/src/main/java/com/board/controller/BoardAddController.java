@@ -79,6 +79,11 @@ public class BoardAddController extends HttpServlet{
 				//post.setImgUrls(path);
 				System.out.println("path: "+path);
 				File file = new File(path);
+				
+				if(!file.exists()) {
+					file.mkdirs();
+				}
+				
 				System.out.println("addPost 4");
 				try (OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(file))) {
 					System.out.println("addPost 5");
