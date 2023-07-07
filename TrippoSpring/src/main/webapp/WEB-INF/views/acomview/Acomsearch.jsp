@@ -196,7 +196,7 @@ body{
 				<!-- 목적지 선택  -->
 				<img class="iconimg" src="${pageContext.request.contextPath}/images/acomimage/airicon.jpg" alt="Trripo">
 				<input name="dest" class="destination" placeholder="어디로 여행하세요?"
-					data-destination="1" autocomplete="on" id="Ra9" onchange="auto()">
+					data-destination="1" autocomplete="on" id="Ra9" onkeyup="auto()"><!-- onkeyup="auto()" -->
 				<div id="lst1" class="listbox" style="display: none">
 					<div id="lst2" class="blist" style="display: none"></div>
 				</div>
