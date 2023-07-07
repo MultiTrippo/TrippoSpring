@@ -29,8 +29,7 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	public int deletePost(int postNo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.postMapper.deletePost(postNo);
 	}
 
 	@Override

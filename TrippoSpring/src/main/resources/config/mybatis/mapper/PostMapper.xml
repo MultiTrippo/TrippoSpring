@@ -30,4 +30,9 @@
 		SELECT * FROM board_post
 		WHERE postNo = #{postId}
 	</select>
+	
+	<delete id="deletePost">
+		DELETE FROM board_post
+		WHERE postNo = #{postNo}
+	</delete>
 </mapper>
