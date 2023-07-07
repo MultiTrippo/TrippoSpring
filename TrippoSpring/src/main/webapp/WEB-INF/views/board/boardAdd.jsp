@@ -110,15 +110,15 @@ $(document).ready(function() {
         var city = document.getElementById('city').value;
         var category = document.getElementById('category').value;
         
-        if (category.length===''){
+        if (category.length<1){
         	alert("카테고리를 선택해주세요.");
         	return false;
         }
-        if (country.length===''){
+        if (country.length<1){
         	alert("국가를 선택해주세요.");
         	return false;
         }
-        if (city.length===''){
+        if (city.length<1){
         	alert("도시를 선택해주세요.");
         	return false;
         }
@@ -215,8 +215,8 @@ $(document).ready(function() {
 		<!-- 국가 DropDown -->
         <br><br>
         <label for="country">국가:</label>
-        <select id="country" name="country" class="btn btn-info btn-sm dropdown-toggle" >
-        	<option selected>--- 국가를 선택하세요 ---</option>
+        <select id="country" name="country" class="btn btn-info btn-sm dropdown-toggle">
+        	<option value="" selected>--- 국가를 선택하세요 ---</option>
         </select>
         <br><br>
         
