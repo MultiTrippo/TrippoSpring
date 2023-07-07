@@ -156,10 +156,10 @@ $(document).ready(function() {
                 city: city,
                 category: category,
             },
-            success: function(response) {
+            success: function(res) {
                 // 성공적으로 응답을 받았을 때 실행되는 코드
-                console.log(response);
-                //alert(hashMapJson);
+                alert("게시물을 성공적으로 등록하였습니다.");
+                window.location.href = res.url;
             },
             error: function(xhr, status, error) {
                 // 요청이 실패했을 때 실행되는 코드

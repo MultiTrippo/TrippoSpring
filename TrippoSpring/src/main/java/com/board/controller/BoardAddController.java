@@ -79,7 +79,7 @@ public class BoardAddController extends HttpServlet{
 				//post.setImgUrls(path);
 				System.out.println("path: "+path);
 				File file = new File(path);
-				
+				System.out.println("Image Saved Path :"+path);
 				if(!file.exists()) {
 					file.mkdirs();
 				}
@@ -101,7 +101,9 @@ public class BoardAddController extends HttpServlet{
 			System.out.println("addPost 6");
 			int n = pService.createPost(post);
 			
-			ModelMap map = new ModelMap("result", "success");
+			ModelMap map = new ModelMap();
+			map.put("result", "success");
+			map.put("url","/boardList");
 			return map;
 		}//if------
 		else {
