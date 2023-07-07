@@ -270,6 +270,7 @@
 </div>
 
 <body>
+	<%@ include file="/inc/top.jspf" %> 
 	<div class="form" style="width: 70%;margin-left: 15%;">
 	<div class="acomname"> 
 	<h1 id=korname></h1>
@@ -286,9 +287,9 @@
 	 <!--  <img class="img1">-->
 	</div>
 	<div class="acomimage2">
-	<img class="img2">
+	<!-- <img class="img2"> -->
 	</div>
-	<div class="acomimage3"><img class="img3"></div>
+	<div class="acomimage3"></div>
 	<button id="plusimage" data-target="#myModal" data-toggle="modal" style="background-image:url('${pageContext.request.contextPath}/images/acomimage/purple.jpg')">
 	이미지 더보기
 	</button>

@@ -55,14 +55,14 @@
 	<header class="top_header">
 		<div class="navbar">
 			<div class="logoimg_div">
-				<a href="#">
+				<a href="${pageContext.request.contextPath }/boardList">
 					<img alt="TrippoLogo" class="logoimg" src="images/TrippoLogo.png">
 				</a>
 			</div>
 			
 			<div class="bar_div">
 				<ul id="barlinksUl">
-					<li><a href="${pageContext.request.contextPath }/boardList">여행지정보</a></li> 
+					<%-- <li><a href="${pageContext.request.contextPath }/boardList">여행지정보</a></li>  --%>
 					<li><a href="${pageContext.request.contextPath }/trip_review_list">여행후기</a></li> 
 					<li><a href="${pageContext.request.contextPath }/scheduleList">일정관리</a></li> 
 					<li><a href="${pageContext.request.contextPath }/Acomsearch">숙소정보</a></li> 

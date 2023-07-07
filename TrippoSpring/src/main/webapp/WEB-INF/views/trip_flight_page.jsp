@@ -71,7 +71,7 @@
 			</div>
 	</div>
 	<br>
-	<div id="flight_body" style="background-color:white" align:center; text-align:center; margin:auto; >
+	<div id="flight_body" style="background-color:white align:center; text-align:center; margin:auto; ">
 	
 <div id="flight-details" style="width: 40%; height: 80%; align:center; text-align:center; margin:auto; ">
   <p></p>
