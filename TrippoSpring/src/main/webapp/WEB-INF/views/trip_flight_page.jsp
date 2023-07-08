@@ -139,7 +139,7 @@ setDropdownArr();
 			<option selected>출발지를 선택하세요</option>
 			</select></span>
 			<span class="btn-two"><img src="/images/flightImages/calenderImg.png" width=30px; height=30px;> <input type="text" id="datepicker" style="border:0"></span>
-			<span class="btn-two" id=dateCome><img src="/images/flightImages/calenderImg.png" width=30px; height=30px;> <input type="text" id="datepicker_round" style="border:0"></span>
+			<span class="btn-two" id=dateCome><img src="/images/flightImages/calenderImg.png" width=30px; height=30px;> <input type="text" id="datepicker_round" style="border:0"></span><br>
 				<select class="pl" name="ppl" id="ppl">
 				<option >인원 수</option>
 		 	   	 <option value="1">1</option>
