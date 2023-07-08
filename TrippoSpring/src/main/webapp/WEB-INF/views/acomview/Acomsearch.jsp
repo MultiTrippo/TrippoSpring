@@ -275,7 +275,7 @@ body {
 							
 						</div>
 					</div>
-
+		
 					<!-- 검색버튼 -->							
 					<div>
 						<button class="scbut" type="submit">검 색</button>
