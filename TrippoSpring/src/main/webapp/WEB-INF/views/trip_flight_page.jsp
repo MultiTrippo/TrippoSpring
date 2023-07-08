@@ -38,6 +38,7 @@ function setDropdownDep(){
 		url: '/resources/trip_flight/major_airport_final.json',
 		dataType: 'json',
 		success: function(data){
+
 			 var airportCodes = [];
 			 var cities = [];
              var countries = [];
