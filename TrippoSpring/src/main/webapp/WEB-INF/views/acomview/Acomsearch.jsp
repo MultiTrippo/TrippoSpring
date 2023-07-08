@@ -281,7 +281,7 @@ body {
 						<button class="scbut" type="submit">검 색</button>
 					</div>
 				</div>
-
+	
 			</form>
 		</div>
 	</div>
