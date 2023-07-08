@@ -132,9 +132,11 @@ setDropdownArr();
 			<div id="container_two">
 			<span class="btn-two rounded" ><img src="/images/flightImages/plane.png" width=30px; height=30px;> 
 			<select id="airport_dep" class="airport_dep" style="border:none;border-right:0px;border-top:0px;border-left:0px;">
+			<option selected>출발지를 선택하세요</option>
 			</select></span>
 			<span class="btn-two rounded"><img src="/images/flightImages/plane.png" width=30px; height=30px;> 
 			<select id="airport_arr" class="airport_dep" style="border:none;border-right:0px;border-top:0px;border-left:0px;">
+			<option selected>출발지를 선택하세요</option>
 			</select></span>
 			<span class="btn-two"><img src="/images/flightImages/calenderImg.png" width=30px; height=30px;> <input type="text" id="datepicker" style="border:0"></span>
 			<span class="btn-two" id=dateCome><img src="/images/flightImages/calenderImg.png" width=30px; height=30px;> <input type="text" id="datepicker_round" style="border:0"></span>
