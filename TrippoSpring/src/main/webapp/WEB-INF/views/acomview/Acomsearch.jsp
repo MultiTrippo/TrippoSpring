@@ -211,7 +211,7 @@ body {
 								<label for="Ra9" class=check-in>여행지:</label> <input name="dest"
 									class="destination" placeholder="어디로 여행하세요?"
 									data-destination="1" autocomplete="on" id="Ra9"
-									onkeyup="auto()">
+									onchange="auto()">
 							</div>
 						</div>
 
