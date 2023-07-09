@@ -271,39 +271,44 @@
 
 <body>
 	<div class="form" style="width: 70%;margin-left: 15%;">
-	<div class="acomname"> 
-	<h1 id=korname></h1>
-	<h3 id=name> </h3>
-	<h4 id="addr"></h4>
-	</div>
-	<div>
-	<div class="acomcheckin"> 체크인 날짜 : ${acom.arrival_date}</div>
-	<div class="acomcheckout">체크아웃 날짜 :${acom.departure_date}</div>
-	<div class="people">인원: 성인${acom.guest_qty}명/아이${acom.children_qty}명</div>
-	</div>
-	<div style="display:flex">
-	<div class="acomimage1">           <!-- 1번 가장 큰 이미지 불러오기 -->
-	 <!--  <img class="img1">-->
-	</div>
-	<div class="acomimage2">
-	<img class="img2">
-	</div>
-	<div class="acomimage3"><img class="img3"></div>
-	<button id="plusimage" data-target="#myModal" data-toggle="modal" style="background-image:url('${pageContext.request.contextPath}/images/acomimage/purple.jpg')">
-	이미지 더보기
-	</button>
-	</div>
-	<div style="display:flex">
-	<div class="roomservice"><h2>숙소 내 인기시설</h2>
-	<div class="service" > </div>
-	</div>
-	<div class="review">
-	<h4>사용자 평점</h4>
-	<h1>♥${param.score}</h1>
-	</div>
-	<div class="location">구글 지도로 보기
-	(서비스준비중입니다)
-	</div>
+		<div class="acomname"> 
+			<text id=korname></text>
+			<text id=name> </text>
+			<text id="addr"></text>
+		</div>
+		
+		<div>
+			<div class="acomcheckin"> 체크인 날짜 : ${acom.arrival_date}</div>
+			<div class="acomcheckout">체크아웃 날짜 :${acom.departure_date}</div>
+			<div class="people">인원: 성인${acom.guest_qty}명/아이${acom.children_qty}명</div>
+		</div>
+		
+		<div style="display:flex">
+			<div class="acomimage1">           <!-- 1번 가장 큰 이미지 불러오기 -->
+			 <!--  <img class="img1">-->
+			</div>
+			<div class="acomimage2">
+			<!-- <img class="img2"> -->
+			</div>
+			<div class="acomimage3"></div>
+			<button id="plusimage" data-target="#myModal" data-toggle="modal" style="background-image:url('${pageContext.request.contextPath}/images/acomimage/purple.jpg')">
+			이미지 더보기
+			</button>
+		</div>
+		
+		<div style="display:flex">
+			<div class="roomservice"><text id="popular">숙소 내 인기시설</text>
+			<div class="service" > </div>
+		</div>
+		
+		<div class="review">
+			<text id="titleScore">사용자 평점</text>
+			<text id="Score">♥${param.score}</text>
+		</div>
+		
+		<div class="location">구글 지도로 보기
+		(서비스준비중입니다)
+		</div>
 	</div>
 	
 	

@@ -1,138 +1,188 @@
 @charset "UTF-8";
 *{
 	font-family: 'IBM Plex Sans KR', sans-serif;
-	}
+}
+
 .scrollable-container {
   overflow: auto;
 }
-.acomname{
-  width: 100%;
-  height: 160px;
-  margin: 0 0 7px;
-  border-radius: 30px;
-  background-color: #c4b0ff;
- padding: 0 10px;
+
+#korname{
+	margin-top: 10px;
+	margin-left: 10px;
+	font-size: 30px;
+	font-weight: bolder;
 }
+
+#name {
+	margin-top: 10px;
+	margin-left: 10px;
+	font-size: 30px;
+	font-weight: bolder;
+}
+
+#addr {
+	margin-top: 5px;
+	margin-left: 10px;
+	font-size: 15px;
+}
+
+.acomname{
+	width: 100%;
+	height: 160px;
+	margin: 0 0 7px;
+	border-radius: 30px;
+	background-color: #c4b0ff;
+	padding: 0 10px;
+	display:flex;
+	flex-direction: column;
+}	
+
 .acomcheckin {
     display: inline-block;
-    width: 420px;
+    width: 31%;
     height: 40px;
     flex-grow: 1;
-    margin: 0 25px 0 0;
+    margin: 0 3% 0 0;
     border-radius: 20px;
     background-color: #c4b0ff;
     text-align : center;
     padding:10px 0;
 }
+
 .acomcheckout {
     display: inline-block;
-    width: 420px;
+    width: 30%;
     height: 40px;
     flex-grow: 1;
-    margin: 0 30px 0 30px;
+    margin: 0 4% 0 0%;
     border-radius: 20px;
     background-color: #c4b0ff;;
     text-align : center;
     padding:10px 0;
 }
+
 .people {/*인원수*/
 	display: inline-block;
-    width: 370px;
+    width: 30%;
     height: 40px;
     flex-grow: 1;
-    margin: 0 0 0 25px;
+    margin: 0 0 0 0;
     border-radius: 20px;
     background-color: #c4b0ff;
     text-align : center;
     padding:10px 0;
 }
+
 .acomimage1{/*가장큰 이미지 */
 
-display: inline-block;
-flex-grow: 1;
-  width: 420px;
-  height: 160px;
-  border-radius: 30px;
- background-size:100% 100%;
- margin: 5px 10px 5px 0;
- 
+	display: inline-block;
+	flex-grow: 1;
+	width: 420px;
+	height: 160px;
+	border-radius: 30px;
+	background-size:100% 100%;
+	margin: 5px 10px 5px 0;
+
 }
 
 
-
-
 .acomimage2{/*두번째로 큰 이미지 */
-flex-grow: 1;
-display: inline-block;
-  width: 350px;
-  height: 160px;
-background-size:100% 100%;
-  border-radius: 30px;
+	flex-grow: 1;
+	display: inline-block;
+	width: 350px;
+	height: 160px;
+	background-size:100% 100%;
+	border-radius: 30px;
 	margin: 5px 10px 5px 5px; 
 }
 
 
 .acomimage3{/*세번째로 큰 이미지 */
-flex-grow: 1;
-display: inline-block;
-  width: 320px;
-  height: 160px; 
-  border-radius: 30px;
-background-size:100% 100%;
-margin: 5px 10px 5px 5px;
+	flex-grow: 1;
+	display: inline-block;
+	width: 320px;
+	height: 160px; 
+	border-radius: 30px;
+	background-size:100% 100%;
+	margin: 5px 10px 5px 5px;
 }
 
-
 #plusimage{/* 이미지 더보기*/
-flex-grow: 1;
-display: inline-block;
+	flex-grow: 1;
+	display: inline-block;
 	width:160px;
 	height: 160px;
- 	border-radius: 30px;
-   /* background-image: url("${pageContext.request.contextPath}/images/acomimage/purple.jpg");  */
+	border-radius: 30px;
+	/* background-image: url("${pageContext.request.contextPath}/images/acomimage/purple.jpg");  */
 	background-size: 100% 100%;
 	margin: 5px 0 5px 5px;
 
 }
-.roomservice {/*숙소 내 인기시설 */
-display: inline-block;
-  width: 780px;
-  height: 160px;
-  margin: 13px 10px 0 0;
-  border-radius: 30px;
-  background-color: #c4b0ff;
 
+.roomservice {/*숙소 내 인기시설 */
+	display: inline-block;
+	width: 780px;
+	height: 160px;
+	margin: 13px 10px 0 0;
+	border-radius: 30px;
+	background-color: #c4b0ff;
+	padding : 10px;
 }
+
+#titleScore {
+	font-size: 20px;
+	font-weight: bold;
+	margin-top: 40px;
+}
+
+#Score {
+	font-size : 25px;
+	font-weight: bolder;
+	margin-top: 1px;
+}
+
+#popular {
+	margin-top: 5px;
+	margin-left: 5px;
+	font-size: 30px;
+	font-weight: bolder;
+}
+
 .review {/*사용자 평점*/
-display: inline-block;
-  width: 173px;
-  height: 160px;
-  margin: 13px 0 13px 0;
-  border-radius: 30px;
-  background-color: #c4b0ff;
-	line-height:160px;
+	display: flex;
+	flex-direction: column;
+	width: 173px;
+	height: 160px;
+	margin: 13px 0 13px 0;
+	border-radius: 30px;
+	background-color: #c4b0ff;
 	text-align:center;
+	padding : 8px;
 	
 }
 .location {/*구글 지도로 보기*/
-display: inline-block;
-  width: 350px;
-  height: 160px;
-  margin: 14px 0 12px 11px;
-  border-radius: 30px;
-    background-color: #c4b0ff;
-    	line-height:160px;
+	display: inline-block;
+	width: 350px;
+	height: 160px;
+	margin: 14px 0 12px 11px;
+	border-radius: 30px;
+	background-color: #c4b0ff;
+	line-height:160px;
 	text-align:center;
 }
 
 .nav{
 	background-color:#c4b0ff
 }
- *{			
- 			box-sizing:border-box;
-            margin: 0;
-            padding: 0;
-        }
+
+
+
+*{			
+	box-sizing:border-box;
+	margin: 0;
+	padding: 0;
+}
         #con{
         border-radius: 30px;
         width:100%;
