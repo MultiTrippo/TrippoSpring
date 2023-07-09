@@ -16,7 +16,7 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	min-height: 160vh;
+	min-height: 1200px;
 }
 
 /* 찐보라 박스 */
@@ -28,9 +28,9 @@ body {
 	align-items: center;
 	justify-content: center;
 	width: 90%;
-	height: 160vh;
+	height: 1200px;
 	padding: 10px 10px 10px 10px;
-	min-height: 160vh;
+	min-height: 1200px;
 	margin-bottom: 2rem;
 }
 
@@ -44,7 +44,7 @@ body {
 	text-align: center;
 	background: rgba(255, 255, 255, 0.5);
 	border-radius: 2rem 0 0 2rem;
-	height: 160vh;
+	height: 1200px;
 	width: 20%;
 	position: absolute;
 	left: 0;
@@ -93,7 +93,7 @@ body {
 	justify-content: space-evenly;
 	text-align: center;
 	border-radius: 2rem;
-	height: 160vh;
+	height: 1200px;
 	width: 80%;
 	position: absolute;
 	right: 0;
@@ -104,7 +104,7 @@ body {
 /* 속지 */
 #insideReviewBoard {
 	background: rgba(255, 255, 255, 0.5);
-	height: 150vh;
+	height: 1100px;
 	width: 95%;
 	border-radius: 2rem;
 	align-items: center;

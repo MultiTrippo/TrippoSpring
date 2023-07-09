@@ -5,6 +5,15 @@
 <head>
 <meta charset="UTF-8">
 
+<style>
+body {
+	background-image:
+		url('${pageContext.request.contextPath}/images/acomimage/back.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+</style>
+
 <!-- 반응형 웹을 위한 부트스르랩 설정 -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -63,7 +72,8 @@
 	}
 	function auto() {
 		var complete = $('#Ra9').val();
-		if(!complete) return ;
+		if (!complete)
+			return;
 		console.log("complete=" + complete)
 		const settings = {//자동완성 api 
 
@@ -95,9 +105,10 @@
 								+ ")'>" + city.label + "</a></li>";*/
 
 						str += "<li><a href='#' onclick='autoSet(\""
-									+ city.label + "\",\""+city.dest_id+"\",\""+city.dest_type+"\")'>" + city.label
-									+ "</a></li>";
-						
+								+ city.label + "\",\"" + city.dest_id + "\",\""
+								+ city.dest_type + "\")'>" + city.label
+								+ "</a></li>";
+
 						//alert(str)
 						console.log(str)
 					});//$.each()
@@ -113,11 +124,10 @@
 					test(response.data);
 					}); */
 
-				}
-		);//done()
+				});//done()
 	}////function auto() 자동완성기능 
 	function autoSet(label, dest_id, dest_type) {
-		
+
 		$('#Ra9').val(label);
 		$('#dest_id').val(dest_id)
 		$('#dest_type').val(dest_type)
@@ -168,7 +178,7 @@
 				console.log(response);
 			});
 	}
-	*/
+	 */
 </script>
 
 
@@ -176,69 +186,107 @@
 
 </head>
 <body>
-	<%@ include file="/inc/top.jspf" %>
-	<div class="page" style="background-image:url('${pageContext.request.contextPath}/images/acomimage/back.jpg')">
-	<h1 class="trippo"> Trippo가 회원님에게 맞는 숙소를 찾아드립니다</h1>
-	<form  class="searchform" action="${pageContext.request.contextPath}/acomlist"
-		method="get">
-		<input type="hidden" name="dest_ids" id="dest_id">
-		<input type="hidden" name="search_type" id="dest_type">
-		<div class="searchbox">
-			<div class="locationsc">
-				<!-- 목적지 선택  -->
-				<img class="iconimg" src="${pageContext.request.contextPath}/images/acomimage/airicon.jpg" alt="Trripo">
-				<input name="dest" class="destination" placeholder="어디로 여행하세요?"
-					data-destination="1" autocomplete="on" id="Ra9" onchange="auto()">
-				<div id="lst1" class="listbox" style="display: none">
-					<div id="lst2" class="blist" style="display: none"></div>
-				</div>
-			</div>
-			<!-- 위치검색창 div -->
-			<div class="date">
-				<label for="check-in" class=check-in>&nbsp; &nbsp; 체크인날짜:</label> <input
-					type="text" id="check-in" name="arrival_date"
-					placeholder="체크인날짜를 골라주세요" /> <br> 
-					<label for="checkout" class=check-out>&nbsp; &nbsp; 체크아웃날짜:</label> <input type="text" id="check-out"
-					name="departure_date" placeholder="체크아웃날짜를 골라주세요" />
-			</div>
-			<!-- ---------------------------- -->
+	<%@ include file="/inc/top.jspf"%>
+	<%-- <div class="page" style="background-image:url('${pageContext.request.contextPath}/images/acomimage/back.jpg')"> --%>
 
-			<!-- --------------인원수 선택 버튼 -------------- -->
-			<div class="people">
-				<div class="adult">
-					<h4 >&nbsp; &nbsp; 인원수를 설정해주세요</h4>
-					<label for="adults">어른 수:</label> <input type="number" id="adults"
-						name="guest_qty" value="0" readonly size="1"> <input
-						type="button" onclick="adjustValue('adults', '+')" value="+">
-					<input type="button" onclick="adjustValue('adults', '-')" value="-">
-				</div>
-				<div class="child">
-					<label for="children">아이 수:</label> <input type="number"
-						id="children" name="children_qty" value="0" readonly size="1">
-					<input type="button" onclick="adjustValue('children', '+')"
-						value="+"> <input type="button"
-						onclick="adjustValue('children', '-')" value="-">
-				</div>
-				<div class="room">
-					<label for="rooms">방 개수:</label> <input type="number" id="rooms"
-						name="room_qty" value="0" readonly size="1"> <input
-						type="button" onclick="adjustValue('rooms', '+')" value="+">
-					<input type="button" onclick="adjustValue('rooms', '-')" value="-">
-
-				</div>
-			</div>
-
-			<!-- 검색버튼 -->
-			<div>
-				<button class="scbut" type="submit">검색</button>
-			</div>
-
-		
+	<div class="page-wrapper">
+		<div class="acomsearch-title-div">
+			<h1 class="trippo">Trippo가 회원님에게 맞는 숙소를 찾아드립니다</h1>
 		</div>
-		
-	</form>
+
+		<div class="card-body">
+			<form class="searchform"
+				action="${pageContext.request.contextPath}/acomlist" method="get">
+				<input type="hidden" name="dest_ids" id="dest_id"> <input
+					type="hidden" name="search_type" id="dest_type">
+
+				<div class="searchbox">
+					<div class="locationsc">
+						<!-- 목적지 선택  -->
+						<%-- <img class="iconimg"
+						src="${pageContext.request.contextPath}/images/acomimage/airicon.jpg"
+						alt="Trripo"> --%>
+						<div>
+							<div class="input-group">
+								<label for="Ra9" class=check-in>여행지:</label> <input name="dest"
+									class="destination" placeholder="어디로 여행하세요?"
+									data-destination="1" autocomplete="on" id="Ra9"
+									onchange="auto()">
+							</div>
+						</div>
+
+						<!-- onkeyup="auto()" -->
+						<div id="lst1" class="listbox">
+							<div id="lst2" class="blist"></div>
+						</div>
+					</div>
+
+					<!-- 위치검색창 div -->
+					<div class="date">
+						<div class="row-checkInOut">
+							<div class="input-group">
+								<label for="check-in" class=check-in>체크인 날짜:</label> <input
+									type="text" id="check-in" name="arrival_date"
+									placeholder="체크인날짜를 골라주세요" />
+							</div>
+
+							<div class="input-group">
+								<label for="checkout" class=check-out>체크아웃 날짜:</label> <input
+									type="text" id="check-out" name="departure_date"
+									placeholder="체크아웃날짜를 골라주세요" />
+							</div>
+						</div>
+					</div>
+					<!-- ---------------------------- -->
+
+					<!-- --------------인원수 선택 버튼 -------------- -->
+					<div class="people">
+						<h4 class="people-title">인원수를 설정해주세요</h4>
+						<div class="row-peopleCnt">
+							<div class="adult">								
+								<label for="adults">어른 수:</label> 
+								<input type="number"
+									id="adults" name="guest_qty" value="0" readonly size="1">
+								<input type="button" onclick="adjustValue('adults', '+')"
+									value="+" class="btnPlusMinus"> 
+								<input type="button"
+									onclick="adjustValue('adults', '-')" value="-" class="btnPlusMinus">
+							</div>
+							
+							<div class="child">
+								<label for="children">아이 수:</label> 
+								<input type="number"
+									id="children" name="children_qty" value="0" readonly size="1">
+								<input type="button" onclick="adjustValue('children', '+')"
+									value="+" class="btnPlusMinus"> 
+								<input type="button"
+									onclick="adjustValue('children', '-')" value="-" class="btnPlusMinus">
+							</div>
+							
+							<div class="room">
+								<label for="rooms">방 개수:</label> 
+								<input type="number" id="rooms"
+									name="room_qty" value="0" readonly size="1"> 
+								<input
+									type="button" onclick="adjustValue('rooms', '+')" value="+" class="btnPlusMinus">
+								<input type="button" onclick="adjustValue('rooms', '-')"
+									value="-" class="btnPlusMinus">
+							</div>
+							
+						</div>
+					</div>
+
+					<!-- 검색버튼 -->							
+					<div>
+						<button class="scbut" type="submit">검 색</button>
+					</div>
+				</div>
+
+			</form>
+		</div>
 	</div>
-<!-- ----------------------------------------------- -->
-<!-- -----------------------------------------------  -->
+	<!-- </div> -->
+	<!-- ----------------------------------------------- -->
+	<!-- -----------------------------------------------  -->
 </body>
 </html>

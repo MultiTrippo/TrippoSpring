@@ -270,6 +270,7 @@
 </div>
 
 <body>
+      <%@ include file="/inc/top.jspf" %> 
 	<div class="form" style="width: 70%;margin-left: 15%;">
 		<div class="acomname"> 
 			<text id=korname></text>

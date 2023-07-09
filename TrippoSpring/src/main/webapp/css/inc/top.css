@@ -6,31 +6,32 @@
 	top: 0;
 	height: 130px;
 	z-index: 1;
-	width: 1260px;
-	margin: 0 auto;
+	display:flex;
+	align-items:center;
+	justify-content: center;
+	margin:10px;
 }
 
 .navbar{
-	width: 1260px;
-	height: 130px;
-	margin: 0 auto;
+	width: 100%;
+	height: 120px;
+	max-width: 1200px;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	align-content:center;
+	justify-content: center;
 	flex-direction: row;
+	flex-wrap: wrap;
 }
 
 /* 트리포 로고 */
 .logoimg_div{
-	position: relative;
     width: 100px;
     height: 130px;
     overflow: hidden;
-    margin:0 auto; 
     background: none;
 }
 .logoimg{
-	position: absolute;
 	top: 0;
 	left: 0;
     width: 100%;
@@ -41,24 +42,28 @@
 /* 메뉴 링크들 */
 .bar_div{
 	background-color: #C9A7EB;
-	width: 800px;
-	height: 70px;
+	width: 65%;
+	height: 60px;
 	border-radius: 30px;
-	margin: 0 20px 0 10px;
 	display: flex;
 	justify-content: center;
+	margin-left:5px;
+	margin-right:5px;
+	overflow:auto;
 }
 
 #barlinksUl{
 	margin-bottom : 0;
 	align-items: center;
+	vertical-align:center;
 	display: flex;
-	gap: 4rem;
+	gap: 3px;
 	list-style:none;
+	padding-left:10px !important;
 }
 
 #barlinksUl li{
-	
+	width: 140px;
 }
 #barlinksUl a{
 	text-decoration: none;
@@ -66,6 +71,7 @@
 	font-size: 18px;
 	transition: all 0.3s;
 	height: 70px;
+	width: 140px;
 }
 
 #barlinksUl a:hover{
@@ -73,7 +79,7 @@
 	background-color: rgba(255, 255, 255, 0.5);
 	border: none;
 	cursor: pointer;
-	padding: 9px 20px;
+	padding: 8px 15px;
 	color: #a46add;
 }
 
