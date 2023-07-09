@@ -10,7 +10,6 @@
 <%@ page import="org.json.JSONObject" %>
 <%@ page import="org.json.JSONArray" %>
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -135,7 +134,7 @@ $(document).ready(function() {
         for (var i = 0; i < images.length; i++) {
             var image = images[i];
             var imageUri = image.src;
-            hashMap.set('image_' + writer + i + '_' + formattedNow + '.jpg', imageUri);
+            hashMap.set('image_' + i + '_' + formattedNow + '.jpg', imageUri);
         }
 
         // HashMap 데이터를 JSON 형태로 변환
@@ -160,6 +159,8 @@ $(document).ready(function() {
                 // 성공적으로 응답을 받았을 때 실행되는 코드
                 alert("게시물을 성공적으로 등록하였습니다.");
                 window.location.href = res.url;
+                window.location.href = "/boardList";
+                
             },
             error: function(xhr, status, error) {
                 // 요청이 실패했을 때 실행되는 코드
@@ -261,6 +262,7 @@ $(document).ready(function() {
           // 이미지 삭제 버튼 클릭 시 해당 이미지 삭제
           img.parentNode.removeChild(img);
           deleteButton.parentNode.removeChild(deleteButton);
+          preview_set.parentNode.removeChild(preview_set);
           });
           
           var preview_set = document.createElement("div");

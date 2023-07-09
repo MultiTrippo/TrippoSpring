@@ -158,6 +158,8 @@
 	    success: function(response) {
 	    	var deleteBtn = document.getElementById("delete-btn");
 	    	deleteBtn.setAttribute("onclick", "deletePost("+postNo+")")
+	    	var editBtn = document.getElementById("edit-btn");
+	    	editBtn.setAttribute("onclick", "openEditor("+postNo+")")
 	    	
 	    	var htmlText = $(response).text(); // HTML 문자열을 jQuery 객체로 변환
 	    	var index01 = htmlText.indexOf("{");
@@ -198,6 +200,44 @@
           showPhotoSpot(0);
       };
       
+      function openEditor(postNo){
+    	  $("#closePostModal").click();
+    	  $("#editPostModal").show();
+    	  $.ajax({
+    		    url: '/editPost',
+    		    type: 'GET',
+    		    data: {
+    		      postNo: postNo
+    		    },
+    		    cache: false,
+    		    success: function(response) {
+    		      $('#editPostModal .modal-body').html(response);
+    		      loadScript2('/js/board/boardEdit.js');
+    		      
+    		      console.log($('#editPostModal'));	     	
+    		      jQuery('#editPostModal').modal('show');
+    		    },
+    		    error: function(xhr, status, error) {
+    		      console.log(error);
+    		    }
+    		  });
+    }//openEditor
+    
+    function loadScript2(url) {
+  	  var script = document.createElement('script');
+  	  script.src = url;
+  	  script.setAttribute('commentJson', commentJson);
+  	  document.head.appendChild(script);
+  	  var bodyTag = document.getElementById("bodyTag");
+  	}
+  
+      
+      
+      
+      function closeEditor(){
+    	  $("#editPostModal").hide();
+      }
+      
       
       function deletePost(TargetPostNo){
   		console.log(TargetPostNo);
@@ -215,6 +255,9 @@
   			}
   		})
   	}
+
+      
+      
   </script>
 </head>
 
@@ -248,13 +291,26 @@
 </div>
   <!-- ------------------------------------- -->
   
+<!-- 수정모달 -->
+<div id="editPostModal"  class="modal fade shadow-lg show" tabindex="-1" role="dialog" aria-labelledby="boardShowModalLabel">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <span class="close" onclick="closeEditor()">&times;</span>
+      <div class="modal-body">
+     	 
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- ------------------------------------- -->
+  
 <!-- 게시글 보는 modal ------------------- -->
 <div id="boardShowModal" class="modal fade shadow-lg show" tabindex="-1" role="dialog" aria-labelledby="boardShowModalLabel">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Trippo's Photo Gallery</h1>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button id="closePostModal" type="button" class="close" data-dismiss="modal" aria-label="Close">
         			<span aria-hidden="true">&times;</span>
       		</button>
       </div>
@@ -262,7 +318,8 @@
       	
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-warning" id="delete-btn">게시글 삭제</button>
+	        <button type="button" class="btn btn-warning" id="delete-btn">게시글 삭제</button>
+	        <button type="button" class="btn btn-success" id="edit-btn">게시글 수정</button>
       </div>
     </div>
   </div>

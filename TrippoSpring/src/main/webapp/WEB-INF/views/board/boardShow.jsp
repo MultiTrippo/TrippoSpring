@@ -97,9 +97,7 @@
 
 			var img = document.createElement("img");
 			img.setAttribute("class", "gallery-img");
-			img.setAttribute("src",
-					"${request.contextPath}/images/board/Upload/"
-							+ imageList[i]);
+			img.setAttribute("src", "${request.contextPath}/images/board/Upload/" + imageList[i]);
 			img.setAttribute("id", "gallery-img" + i);
 			img.setAttribute("alt", "GalleryImage");
 

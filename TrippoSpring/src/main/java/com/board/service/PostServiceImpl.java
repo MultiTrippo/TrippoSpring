@@ -23,8 +23,7 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	public int updatePost(PostVO post) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.postMapper.updatePost(post);
 	}
 
 	@Override

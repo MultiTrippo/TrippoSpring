@@ -91,5 +91,18 @@ public class BoardShowController {
 		map.put("url", "/boardList");
 		return map;
 	}
+	
+//	@ResponseBody
+//	@PostMapping(value="/postEdit", produces="application/json")
+//	public ModelMap editPost (@RequestParam int targetPostNo) {
+//		PostVO oldPost = pService.getPostById(targetPostNo);
+//		int n = pService.updatePost(oldPost);
+//		PostVO updatedPost = pService.getPostById(oldPost.getPostNo());
+//		ModelMap map = new ModelMap();
+//		map.put("result", n);
+//		map.put("url", "/boardList");
+//		map.put("post", updatedPost);
+//		return map;
+//	}
 		
 }//////////////////////////////////////////////////////////////
