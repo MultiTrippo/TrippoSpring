@@ -5,11 +5,11 @@
 <head>
   <meta charset="UTF-8">
   <title>자유게시판</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="./../../../css/board/boardList.css">
-  <!-- 헤더 안보임 -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
   <script>
   	/* Food --------------------------------------- */
     var currentFoodIdx = 0;
@@ -31,7 +31,6 @@
         if (urlList.length > 1) {
         	ImageUrl=urlList[0];
         }
-        //imgElement.src = "images/board/Upload/" + ImageUrl;
         imgElement.src = "${request.contextPath}/images/board/Upload/" + ImageUrl;
         titleElement.innerText = foodList[index].title;
         writerElement.innerText = "[" + foodList[index].writer + "]"; 
@@ -156,23 +155,13 @@
 	    },
 	    cache: false,
 	    success: function(response) {
-	    	var deleteBtn = document.getElementById("delete-btn");
-	    	deleteBtn.setAttribute("onclick", "deletePost("+postNo+")")
-	    	
 	    	var htmlText = $(response).text(); // HTML 문자열을 jQuery 객체로 변환
-	    	var index01 = htmlText.indexOf("{");
-	    	var index02 = htmlText.indexOf("}");
-	 		var jsonString = htmlText.substring(index01, index02+1);
-	 		
-	 		var index11 = htmlText.indexOf("[");
-	    	var index12 = htmlText.indexOf("]");
-	    	var commentJson = htmlText.substring(index11, index12+1);
-	 		
+	    	var index1 = htmlText.indexOf("{");
+	    	var index2 = htmlText.indexOf("}");
+	 		var jsonString = htmlText.substring(index1, index2+1);
 	      $('#boardShowModal .modal-body').html(response);
-	      loadScript('/js/board/boardShow.js', jsonString, commentJson);
-	      
-	      console.log($('#boardShowModal'));	     	
-	      jQuery('#boardShowModal').modal('show');
+	      loadScript('/js/board/boardShow.js', jsonString);
+	      $('#boardShowModal').modal('show');
 	    },
 	    error: function(xhr, status, error) {
 	      console.log(error);
@@ -180,16 +169,14 @@
 	  });
 	}
     
-    function loadScript(url, jsonString, commentList) {
+    function loadScript(url, jsonString) {
     	  var script = document.createElement('script');
     	  script.src = url;
     	  //alert(jsonString);
     	  script.setAttribute('jsonString', jsonString);
-    	  script.setAttribute('commentJson', commentJson);
     	  document.head.appendChild(script);
     	  var bodyTag = document.getElementById("bodyTag");
     	  bodyTag.setAttribute("onload","putImage(0)");
-    	  bodyTag.setAttribute("onload","putComment(commentList)");
     	}
     
     window.onload = function() {
@@ -198,23 +185,6 @@
           showPhotoSpot(0);
       };
       
-      
-      function deletePost(TargetPostNo){
-  		console.log(TargetPostNo);
-  		$.ajax({
-  			type: 'POST',
-  			url: '/postDelete',
-  			data: 'targetPostNo='+TargetPostNo,
-  			success: function(res){
-  				alert("성공적으로 삭제되었습니다.");
-  				window.location.href = res.url;
-  			},
-  			
-  			error: function(e){
-  				alert(e.status);
-  			}
-  		})
-  	}
   </script>
 </head>
 
@@ -235,17 +205,13 @@
   	<button id="addPostModal-btn" class="btn btn-light">게시글 작성하기</button>
   </div>
   <!-- 모달 -->
-<div id="addPostModal"  class="modal fade shadow-lg show" tabindex="-1" role="dialog" aria-labelledby="boardShowModalLabel">
-  <div class="modal-dialog modal-dialog-scrollable">
-    <div class="modal-content">
+  <div id="addPostModal" class="modal">
+    <div class="modal-content modal-dialog modal-dialog-scrollable">
       <span class="close">&times;</span>
-      <div class="modal-body">
-        <!-- boardAdd.jsp 띄움 -->
-        <jsp:include page="boardAdd.jsp" />
-      </div>
+      <!-- boardAdd.jsp 띄움 -->
+      <jsp:include page="boardAdd.jsp" />
     </div>
   </div>
-</div>
   <!-- ------------------------------------- -->
   
 <!-- 게시글 보는 modal ------------------- -->
@@ -262,7 +228,7 @@
       	
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-warning" id="delete-btn">게시글 삭제</button>
+        
       </div>
     </div>
   </div>

@@ -16,9 +16,9 @@
 <head>
 <title>새로운 게시물 작성하기</title>
 <!-- jQuery import -->
-<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
-<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="./../../css/board/boardAdd.css">
 </head>
 <script>
@@ -110,15 +110,15 @@ $(document).ready(function() {
         var city = document.getElementById('city').value;
         var category = document.getElementById('category').value;
         
-        if (category.length<1){
+        if (category.length===''){
         	alert("카테고리를 선택해주세요.");
         	return false;
         }
-        if (country.length<1){
+        if (country.length===''){
         	alert("국가를 선택해주세요.");
         	return false;
         }
-        if (city.length<1){
+        if (city.length===''){
         	alert("도시를 선택해주세요.");
         	return false;
         }
@@ -156,10 +156,10 @@ $(document).ready(function() {
                 city: city,
                 category: category,
             },
-            success: function(res) {
+            success: function(response) {
                 // 성공적으로 응답을 받았을 때 실행되는 코드
-                alert("게시물을 성공적으로 등록하였습니다.");
-                window.location.href = res.url;
+                console.log(response);
+                //alert(hashMapJson);
             },
             error: function(xhr, status, error) {
                 // 요청이 실패했을 때 실행되는 코드
@@ -215,8 +215,8 @@ $(document).ready(function() {
 		<!-- 국가 DropDown -->
         <br><br>
         <label for="country">국가:</label>
-        <select id="country" name="country" class="btn btn-info btn-sm dropdown-toggle">
-        	<option value="" selected>--- 국가를 선택하세요 ---</option>
+        <select id="country" name="country" class="btn btn-info btn-sm dropdown-toggle" >
+        	<option selected>--- 국가를 선택하세요 ---</option>
         </select>
         <br><br>
         

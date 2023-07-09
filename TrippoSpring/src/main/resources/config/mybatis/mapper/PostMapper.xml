@@ -24,17 +24,10 @@
 				AND city = #{city}
 			</if>
 		</where>
-		ORDER BY uploadedDate DESC
 	</select>
 	
 	<select id="getPostById" resultType="PostVO">
 		SELECT * FROM board_post
 		WHERE postNo = #{postId}
-		ORDER BY uploadedDate DESC
 	</select>
-	
-	<delete id="deletePost">
-		DELETE FROM board_post
-		WHERE postNo = #{postNo}
-	</delete>
 </mapper>

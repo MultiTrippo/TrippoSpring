@@ -6,6 +6,13 @@
 <head>
 <meta charset="UTF-8">
 
+<!-- jQuery 3.7.0 uncompressed -->
+	<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+<!-- jQuery UI -->
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- ------ -->
+
 <!-- 글꼴 -->
 	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
 
@@ -48,14 +55,14 @@
 	<header class="top_header">
 		<div class="navbar">
 			<div class="logoimg_div">
-				<a href="${pageContext.request.contextPath }/boardList">
+				<a href="#">
 					<img alt="TrippoLogo" class="logoimg" src="images/TrippoLogo.png">
 				</a>
 			</div>
 			
 			<div class="bar_div">
 				<ul id="barlinksUl">
-					<%-- <li><a href="${pageContext.request.contextPath }/boardList">여행지정보</a></li>  --%>
+					<li><a href="${pageContext.request.contextPath }/boardList">여행지정보</a></li> 
 					<li><a href="${pageContext.request.contextPath }/trip_review_list">여행후기</a></li> 
 					<li><a href="${pageContext.request.contextPath }/scheduleList">일정관리</a></li> 
 					<li><a href="${pageContext.request.contextPath }/Acomsearch">숙소정보</a></li> 
