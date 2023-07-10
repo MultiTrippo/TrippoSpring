@@ -41,7 +41,6 @@
 			userName.setAttribute("id", "username-item"+i);
 			userName.setAttribute("class", "username-item")
 			userName.innerText = commentNow.username + ": ";
-
 			var commentItem = document.createElement("p");
 			commentItem.setAttribute("id", "comment-item"+i);
 			commentItem.setAttribute("class", "comment-item");
@@ -50,8 +49,8 @@
 			
 			var commentInfo = document.createElement("div");
 			commentInfo.setAttribute("class", "commentInfo");
-/* 			alert("loginUser"+"${loginUser.id}");
-			alert("selectedReview"+"${selectedReview.user_id }"); */
+			alert("loginUser"+"${loginUser.id}");
+			alert("selectedReview"+"${selectedReview.user_id }");
 			
 			var uid = sessionStorage.getItem('uid');
 			var commentDelete = document.createElement("button");
@@ -74,15 +73,19 @@
 			type: 'POST',
 			url: '/commentDelete',
 			data: 'targetPostNo='+TargetPostNo+"&targetCommentNo="+TargetCommentNo,
-			success: function(res){
-				var newCommentList = JSON.parse(JSON.stringify(res.comment));
-				var commentInput = document.getElementById("commentText");
-				commentInput.value = null;
-				var usernameInput = document.getElementById("username");
-				usernameInput.value = null;
-				
-				putComment(newCommentList);
-			},
+			success: function (res) {
+	            var newCommentList = JSON.parse(JSON.stringify(res.comment));
+	            var commentInput = document.getElementById("commentText");
+	            commentInput.value = null;
+	            var usernameInput = document.getElementById("username");
+	            if (uid === null) {
+				    usernameInput.value = "로그인 후 이용 가능합니다.";
+				} else {
+				    usernameInput.value = uid;
+				}
+
+	            putComment(newCommentList);
+	        },
 			
 			error: function(e){
 				alert(e.status);
