@@ -25,8 +25,9 @@
 
 </head>
 <body>
+	<div id="header">
 	<%@ include file="/inc/top.jspf" %> 
-
+	</div>
 	<div id="inputSchedule">
 		<form  action="ScheduleInsert" method="post">
 			<input type="text" id="ScheduleInput" placeholder="  여행 제목을 입력해주세요.">

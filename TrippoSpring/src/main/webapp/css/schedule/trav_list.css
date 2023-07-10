@@ -108,3 +108,14 @@ form{
 	box-shadow: none;
 	trainsition: 0.3s;
 }
+
+#header {
+	align-items: flex-start;
+	width: 100%;
+	height: 100px;
+	margin-bottom:25px;
+}
+
+#barlinksUl{
+	margin-top: 0;
+}
