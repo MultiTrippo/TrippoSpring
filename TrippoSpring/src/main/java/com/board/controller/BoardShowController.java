@@ -2,6 +2,8 @@ package com.board.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,7 +40,7 @@ public class BoardShowController {
 //	}// boardShow -------------------------------------------
 		
 	@RequestMapping(value="/boardShow", method=RequestMethod.GET)
-	public String boardShow(@RequestParam("postNo") int postNo, Model model) {
+	public String boardShow(@RequestParam("postNo") int postNo, Model model, HttpSession session) {
 		PostVO postDetail = pService.getPostById(postNo);
 		List<CommentVO> commentList = cService.getAllCommentsByPost(postNo);
 		try {
@@ -49,6 +51,9 @@ public class BoardShowController {
 			ObjectMapper objectMapper2 = new ObjectMapper();
 			String commentJson = objectMapper2.writeValueAsString(commentList);
 			model.addAttribute("commentJson", commentJson);
+			System.out.println(pService.getPostById(postNo).getWriter());
+			model.addAttribute("showUsername", pService.getPostById(postNo).getWriter());
+			model.addAttribute("postNo", postNo);
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 			return null;

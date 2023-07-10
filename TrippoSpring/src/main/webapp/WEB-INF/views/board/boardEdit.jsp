@@ -28,7 +28,7 @@
   <div id="result" onload='setDropdown()'></div>
   <form id="postformEdit">
     <label for="writerEdit">작성자:</label>
-    <input type="text" id="writerEdit" name="writerEdit" required>
+    <input type="text" id="writerEdit" name="writerEdit" readonly disabled required>
     <br><br>
     <!-- 카테고리 DropDown -->
     <label for="categoryEdit">카테고리:</label>

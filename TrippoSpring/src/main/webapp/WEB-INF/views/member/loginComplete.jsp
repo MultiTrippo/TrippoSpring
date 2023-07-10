@@ -22,6 +22,10 @@
 
 	<h1>로그인 완료!</h1>
 	<h2>환영합니다, ${loginUser.getId() }님</h2>
-
+<script>
+	<c:if test="${loginUser!=null}">
+	sessionStorage.setItem('uid','${loginUser.getId()}')
+	</c:if>
+</script>
 </body>
 </html>
