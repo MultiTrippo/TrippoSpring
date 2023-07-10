@@ -184,8 +184,15 @@ function send() {
             var commentInput = document.getElementById("commentText");
             //alert(commentInput.value);
             commentInput.value = null;
+            
+            var uid = sessionStorage.getItem('uid');
             var usernameInput = document.getElementById("username");
-            usernameInput.value = null;
+			if (uid === null) {
+			    usernameInput.value = "로그인 후 이용 가능합니다.";
+			} else {
+			    usernameInput.value = uid;
+			}
+            
 
             putComment(newCommentList);
         },

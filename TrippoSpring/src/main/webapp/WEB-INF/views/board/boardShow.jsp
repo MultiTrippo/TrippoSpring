@@ -41,7 +41,7 @@
 			userName.setAttribute("id", "username-item"+i);
 			userName.setAttribute("class", "username-item")
 			userName.innerText = commentNow.username + ": ";
-			alert(userName);
+
 			var commentItem = document.createElement("p");
 			commentItem.setAttribute("id", "comment-item"+i);
 			commentItem.setAttribute("class", "comment-item");
@@ -50,8 +50,8 @@
 			
 			var commentInfo = document.createElement("div");
 			commentInfo.setAttribute("class", "commentInfo");
-			alert("loginUser"+"${loginUser.id}");
-			alert("selectedReview"+"${selectedReview.user_id }");
+/* 			alert("loginUser"+"${loginUser.id}");
+			alert("selectedReview"+"${selectedReview.user_id }"); */
 			
 			var uid = sessionStorage.getItem('uid');
 			var commentDelete = document.createElement("button");

@@ -24,7 +24,8 @@
 $(document).ready(function() {
 	
 	var writer_box = document.getElementById('writer');
-	writer_box.value = `\${sessionStorage.getItem('uid')}`;
+	/* writer_box.value = `\${sessionStorage.getItem('uid')}`; */
+	writer_box.value = "${loginUser.id}";
 	
     // 도시 드롭다운 업데이트 함수
 	function updateCityDropdown() {
