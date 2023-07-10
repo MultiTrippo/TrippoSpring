@@ -129,6 +129,7 @@ body {
 	margin-top:10px !important;
 }
 
+
 #attraction {
 	background-color: #c2c605;
 	border-radius: 20px;
@@ -166,6 +167,17 @@ body {
 }
 
 /* modal 스타일 ----------- */
+
+#delete-btn {
+	float:right;
+}
+
+.modal-dialog-scrollable .modal-content {
+  max-height: calc(100vh - 200px); /* 스크롤 영역의 최대 높이를 설정하세요. 필요에 따라 조정할 수 있습니다. */
+  overflow-y: auto;
+}
+
+
 #addPostModal-btn {
 	float: right;
 }
@@ -173,6 +185,8 @@ body {
 #PostModalBtn-div {
 	width:98%;
 }
+
+
 
 .modal {
 	display: none;
@@ -196,6 +210,7 @@ body {
 	padding: 20px;
 	border: 1px solid #888;
 	border-radius: 1rem !important;
+	
 }
 
 .modal-header {
@@ -215,6 +230,7 @@ body {
 	padding: 10px;
 	border-top: 1px solid #ddd;
 	text-align: right;
+	justify-content: flex-end;
 }
 
 .close {
