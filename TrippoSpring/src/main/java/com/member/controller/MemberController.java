@@ -25,14 +25,14 @@ public class MemberController {
 
 	
 	
-	/** È¸¿ø°¡ÀÔ¾ç½Ä ÆäÀÌÁö Á¢¼Ó */
+	/** È¸ï¿½ï¿½ï¿½ï¿½ï¿½Ô¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public String signUp() {
 		
 		return "member/signup";
 	}
 	
-	/** È¸¿ø°¡ÀÔ ¿Ï·á¹öÆ° Å¬¸¯½Ã */
+	/** È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½ï¿½Æ° Å¬ï¿½ï¿½ï¿½ï¿½ */
 	@RequestMapping(value = "/signupComplete", method = RequestMethod.POST)
 	public String signUpComplete(@ModelAttribute MemberVO member) {
 		
@@ -41,15 +41,15 @@ public class MemberController {
 		
 		int n = service.signUpComplete(member);
 		if(n==1) {
-			System.out.println("È¸¿ø°¡ÀÔ ¿Ï·á");
+			System.out.println("È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½");
 		}else {
-			System.out.println("È¸¿ø°¡ÀÔ ½ÇÆÐ");
+			System.out.println("È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		}
 		
 		return "redirect:login";
 	}
 	
-	/** ¾ÆÀÌµð Áßº¹È®ÀÎ ¹öÆ° Å¬¸¯½Ã */
+	/** ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ßºï¿½È®ï¿½ï¿½ ï¿½ï¿½Æ° Å¬ï¿½ï¿½ï¿½ï¿½ */
 	@ResponseBody
 	@PostMapping("/idCheck")
 	public int idCheck(MemberVO member) {
@@ -59,7 +59,7 @@ public class MemberController {
 		return service.idCheck(member);
 	}
 	
-	/** ÀÌ¸ÞÀÏ Áßº¹È®ÀÎ ¹öÆ° Å¬¸¯½Ã */
+	/** ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ßºï¿½È®ï¿½ï¿½ ï¿½ï¿½Æ° Å¬ï¿½ï¿½ï¿½ï¿½ */
 	@ResponseBody
 	@PostMapping("/emailCheck")
 	public int emailCheck(MemberVO member) {
@@ -72,38 +72,38 @@ public class MemberController {
 	
 	
 	
-	/** ·Î±×ÀÎÆäÀÌÁö Á¢¼Ó */
+	/** ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() {
 		
 		return "member/login";
 	}
 	
-	/** ·Î±×ÀÎÇÏ±â ¹öÆ° Å¬¸¯ */
+	/** ï¿½Î±ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½Æ° Å¬ï¿½ï¿½ */
 	@RequestMapping(value = "/loginComplete", method = RequestMethod.POST)
 	public String loginComplete(@ModelAttribute MemberVO member, HttpServletRequest req, RedirectAttributes rttr) {
 		
-		//view¿¡¼­ ÀÔ·ÂÇÑ °ªÀÌ µé¾î¿È
-		System.out.println("controller¿¡¼­ getId: "+member.getId());
-		System.out.println("controller¿¡¼­ getPassword: "+member.getPassword()); 
+		//viewï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		System.out.println("controllerï¿½ï¿½ï¿½ï¿½ getId: "+member.getId());
+		System.out.println("controllerï¿½ï¿½ï¿½ï¿½ getPassword: "+member.getPassword()); 
 		
 		HttpSession session = req.getSession();
 		MemberVO loginUser = service.loginComplete(member);
 		
 		if(loginUser == null) {
-			//·Î±×ÀÎ ½ÇÆÐ
+			//ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			int result = 0;
 			rttr.addFlashAttribute("result", result);
 			return "redirect:login";			
 		}else {
-			//·Î±×ÀÎ ¼º°ø
+			//ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			session.setAttribute("loginUser", loginUser);
-			return "member/loginComplete";
+			return "redirect:boardList";
 		}
 		
 	}
 	
-	/** ·Î±×¾Æ¿ô ¹öÆ° Å¬¸¯ */
+	/** ï¿½Î±×¾Æ¿ï¿½ ï¿½ï¿½Æ° Å¬ï¿½ï¿½ */
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
 		session.invalidate();
