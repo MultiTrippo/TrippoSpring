@@ -10,15 +10,14 @@
 <%@ page import="org.json.JSONObject" %>
 <%@ page import="org.json.JSONArray" %>
 
-
 <!DOCTYPE html>
 <html>
 <head>
 <title>새로운 게시물 작성하기</title>
 <!-- jQuery import -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
 <link rel="stylesheet" type="text/css" href="./../../css/board/boardAdd.css">
 </head>
 <script>
@@ -110,15 +109,15 @@ $(document).ready(function() {
         var city = document.getElementById('city').value;
         var category = document.getElementById('category').value;
         
-        if (category.length===''){
+        if (category.length<1){
         	alert("카테고리를 선택해주세요.");
         	return false;
         }
-        if (country.length===''){
+        if (country.length<1){
         	alert("국가를 선택해주세요.");
         	return false;
         }
-        if (city.length===''){
+        if (city.length<1){
         	alert("도시를 선택해주세요.");
         	return false;
         }
@@ -135,7 +134,7 @@ $(document).ready(function() {
         for (var i = 0; i < images.length; i++) {
             var image = images[i];
             var imageUri = image.src;
-            hashMap.set('image_' + writer + i + '_' + formattedNow + '.jpg', imageUri);
+            hashMap.set('image_' + i + '_' + formattedNow + '.jpg', imageUri);
         }
 
         // HashMap 데이터를 JSON 형태로 변환
@@ -156,10 +155,12 @@ $(document).ready(function() {
                 city: city,
                 category: category,
             },
-            success: function(response) {
+            success: function(res) {
                 // 성공적으로 응답을 받았을 때 실행되는 코드
-                console.log(response);
-                //alert(hashMapJson);
+                alert("게시물을 성공적으로 등록하였습니다.");
+                window.location.href = res.url;
+                window.location.href = "/boardList";
+                
             },
             error: function(xhr, status, error) {
                 // 요청이 실패했을 때 실행되는 코드
@@ -215,8 +216,8 @@ $(document).ready(function() {
 		<!-- 국가 DropDown -->
         <br><br>
         <label for="country">국가:</label>
-        <select id="country" name="country" class="btn btn-info btn-sm dropdown-toggle" >
-        	<option selected>--- 국가를 선택하세요 ---</option>
+        <select id="country" name="country" class="btn btn-info btn-sm dropdown-toggle">
+        	<option value="" selected>--- 국가를 선택하세요 ---</option>
         </select>
         <br><br>
         
@@ -261,6 +262,7 @@ $(document).ready(function() {
           // 이미지 삭제 버튼 클릭 시 해당 이미지 삭제
           img.parentNode.removeChild(img);
           deleteButton.parentNode.removeChild(deleteButton);
+          preview_set.parentNode.removeChild(preview_set);
           });
           
           var preview_set = document.createElement("div");

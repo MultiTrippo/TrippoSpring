@@ -1,0 +1,83 @@
+@charset "UTF-8";
+
+body {
+    margin: 2em;
+}
+
+.preview-imageEdit {
+    width: 100px;
+    height: auto;
+    margin: 5px;
+    border: 1px solid #ccc;
+    padding: 2px;
+}
+
+
+label {
+    font-size: 1.5em;
+    display: inline-block;
+    width: 110px;
+}
+
+input[id="fileEdit"]::-webkit-file-upload-button {
+    background-color: #3CB043;
+    border-width: 0px;
+    border-radius: 3px;
+    padding-left: 2em;
+    padding-right: 2em;
+    color: white;
+    text-align: center;
+}
+
+input[id="fileEdit"]::-webkit-file-upload-button:hover {
+    background-color: #18461b;
+}
+
+.createEdit {
+    padding: 0.5em;
+    padding-left: 4em;
+    padding-right: 4em;
+    background-color: #3CB043;
+    border-width: 0px;
+    color: white;
+    display: block;
+    margin: 0 auto;
+}
+
+.createEdit:hover {
+    background-color: #b22222;
+}
+
+#writerEdit:hover, #titleEdit:hover, #contentEdit:hover {
+    background-color: #e7f1dc;
+}
+
+#preview-containerEdit {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border: 2px solid white;
+    background-color: #d2fdbb;
+    width: 25em;
+}
+
+.preview-setEdit {
+    display: flex;
+    flex-direction: column;
+    margin: 0.5em;
+    align-items: center;
+    justify-content: flex-end;
+    background-color: #ffffff95;
+    padding: 0.5em;
+    border: 2px solid white;
+}
+
+
+.preview-setEdit button {
+    border: 2px solid white !important;
+}
+
+/* form {
+    text-align: center;
+}
+ */

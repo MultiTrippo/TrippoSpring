@@ -24,10 +24,30 @@
 				AND city = #{city}
 			</if>
 		</where>
+		ORDER BY uploadedDate DESC
 	</select>
 	
 	<select id="getPostById" resultType="PostVO">
 		SELECT * FROM board_post
 		WHERE postNo = #{postId}
+		ORDER BY uploadedDate DESC
 	</select>
+	
+	<delete id="deletePost">
+		DELETE FROM board_post
+		WHERE postNo = #{postNo}
+	</delete>
+	
+	<update id="updatePost" parameterType="PostVO">
+		UPDATE board_post
+		SET writer = #{writer},
+		 	uploadedDate = NOW(),
+		  	country = #{country},
+		  	city = #{city},
+		   	category = #{category},
+		    title = #{title},
+		    content = #{content},
+		    imgUrls = #{imgUrls}
+		WHERE postNo = #{postNo}
+	</update>
 </mapper>

@@ -5,11 +5,11 @@
 <head>
   <meta charset="UTF-8">
   <title>자유게시판</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="./../../../css/board/boardList.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+  <!-- 헤더 안보임 -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script>
   	/* Food --------------------------------------- */
     var currentFoodIdx = 0;
@@ -31,6 +31,7 @@
         if (urlList.length > 1) {
         	ImageUrl=urlList[0];
         }
+        //imgElement.src = "images/board/Upload/" + ImageUrl;
         imgElement.src = "${request.contextPath}/images/board/Upload/" + ImageUrl;
         titleElement.innerText = foodList[index].title;
         writerElement.innerText = "[" + foodList[index].writer + "]"; 
@@ -155,13 +156,25 @@
 	    },
 	    cache: false,
 	    success: function(response) {
+	    	var deleteBtn = document.getElementById("delete-btn");
+	    	deleteBtn.setAttribute("onclick", "deletePost("+postNo+")")
+	    	var editBtn = document.getElementById("edit-btn");
+	    	editBtn.setAttribute("onclick", "openEditor("+postNo+")")
+	    	
 	    	var htmlText = $(response).text(); // HTML 문자열을 jQuery 객체로 변환
-	    	var index1 = htmlText.indexOf("{");
-	    	var index2 = htmlText.indexOf("}");
-	 		var jsonString = htmlText.substring(index1, index2+1);
+	    	var index01 = htmlText.indexOf("{");
+	    	var index02 = htmlText.indexOf("}");
+	 		var jsonString = htmlText.substring(index01, index02+1);
+	 		
+	 		var index11 = htmlText.indexOf("[");
+	    	var index12 = htmlText.indexOf("]");
+	    	var commentJson = htmlText.substring(index11, index12+1);
+	 		
 	      $('#boardShowModal .modal-body').html(response);
-	      loadScript('/js/board/boardShow.js', jsonString);
-	      $('#boardShowModal').modal('show');
+	      loadScript('/js/board/boardShow.js', jsonString, commentJson);
+	      
+	      console.log($('#boardShowModal'));	     	
+	      jQuery('#boardShowModal').modal('show');
 	    },
 	    error: function(xhr, status, error) {
 	      console.log(error);
@@ -169,14 +182,16 @@
 	  });
 	}
     
-    function loadScript(url, jsonString) {
+    function loadScript(url, jsonString, commentList) {
     	  var script = document.createElement('script');
     	  script.src = url;
     	  //alert(jsonString);
     	  script.setAttribute('jsonString', jsonString);
+    	  script.setAttribute('commentJson', commentJson);
     	  document.head.appendChild(script);
     	  var bodyTag = document.getElementById("bodyTag");
     	  bodyTag.setAttribute("onload","putImage(0)");
+    	  bodyTag.setAttribute("onload","putComment(commentList)");
     	}
     
     window.onload = function() {
@@ -184,6 +199,64 @@
           showAttr(0);
           showPhotoSpot(0);
       };
+      
+      function openEditor(postNo){
+    	  $("#closePostModal").click();
+    	  $("#editPostModal").show();
+    	  $.ajax({
+    		    url: '/editPost',
+    		    type: 'GET',
+    		    data: {
+    		      postNo: postNo
+    		    },
+    		    cache: false,
+    		    success: function(response) {
+    		      $('#editPostModal .modal-body').html(response);
+    		      loadScript2('/js/board/boardEdit.js');
+    		      
+    		      console.log($('#editPostModal'));	     	
+    		      jQuery('#editPostModal').modal('show');
+    		    },
+    		    error: function(xhr, status, error) {
+    		      console.log(error);
+    		    }
+    		  });
+    }//openEditor
+    
+    function loadScript2(url) {
+  	  var script = document.createElement('script');
+  	  script.src = url;
+  	  script.setAttribute('commentJson', commentJson);
+  	  document.head.appendChild(script);
+  	  var bodyTag = document.getElementById("bodyTag");
+  	}
+  
+      
+      
+      
+      function closeEditor(){
+    	  $("#editPostModal").hide();
+      }
+      
+      
+      function deletePost(TargetPostNo){
+  		console.log(TargetPostNo);
+  		$.ajax({
+  			type: 'POST',
+  			url: '/postDelete',
+  			data: 'targetPostNo='+TargetPostNo,
+  			success: function(res){
+  				alert("성공적으로 삭제되었습니다.");
+  				window.location.href = res.url;
+  			},
+  			
+  			error: function(e){
+  				alert(e.status);
+  			}
+  		})
+  	}
+
+      
       
   </script>
 </head>
@@ -205,13 +278,30 @@
   	<button id="addPostModal-btn" class="btn btn-light">게시글 작성하기</button>
   </div>
   <!-- 모달 -->
-  <div id="addPostModal" class="modal">
-    <div class="modal-content modal-dialog modal-dialog-scrollable">
+<div id="addPostModal"  class="modal fade shadow-lg show" tabindex="-1" role="dialog" aria-labelledby="boardShowModalLabel">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
       <span class="close">&times;</span>
-      <!-- boardAdd.jsp 띄움 -->
-      <jsp:include page="boardAdd.jsp" />
+      <div class="modal-body">
+        <!-- boardAdd.jsp 띄움 -->
+        <jsp:include page="boardAdd.jsp" />
+      </div>
     </div>
   </div>
+</div>
+  <!-- ------------------------------------- -->
+  
+<!-- 수정모달 -->
+<div id="editPostModal"  class="modal fade shadow-lg show" tabindex="-1" role="dialog" aria-labelledby="boardShowModalLabel">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <span class="close" onclick="closeEditor()">&times;</span>
+      <div class="modal-body">
+     	 
+      </div>
+    </div>
+  </div>
+</div>
   <!-- ------------------------------------- -->
   
 <!-- 게시글 보는 modal ------------------- -->
@@ -220,7 +310,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Trippo's Photo Gallery</h1>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button id="closePostModal" type="button" class="close" data-dismiss="modal" aria-label="Close">
         			<span aria-hidden="true">&times;</span>
       		</button>
       </div>
@@ -228,7 +318,8 @@
       	
       </div>
       <div class="modal-footer">
-        
+	        <button type="button" class="btn btn-warning" id="delete-btn">게시글 삭제</button>
+	        <button type="button" class="btn btn-success" id="edit-btn">게시글 수정</button>
       </div>
     </div>
   </div>
