@@ -22,6 +22,10 @@
 </head>
 <script>
 $(document).ready(function() {
+	
+	var writer_box = document.getElementById('writer');
+	writer_box.value = `\${sessionStorage.getItem('uid')}`;
+	
     // 도시 드롭다운 업데이트 함수
 	function updateCityDropdown() {
 	    var selectedCountry = document.getElementById('country').value;
@@ -183,7 +187,7 @@ $(document).ready(function() {
     <form id="postform">
 
         <label for="writer">작성자:</label>
-        <input type="text" id="writer" name="writer" required>
+        <input type="text" id="writer" name="writer" readonly disabled required>
         <br><br>
         
         <!-- 카테고리 DropDown -->

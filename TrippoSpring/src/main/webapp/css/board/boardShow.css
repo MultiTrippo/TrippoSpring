@@ -87,6 +87,15 @@
 	width: 75%;
 }
 
+#button-wrapper {
+	display: flex;
+    justify-content: flex-end;
+}
+
+#delete-btn, #edit-btn {
+	margin: 3px;
+}
+
 .comments {
 	display: flex;
 	flex-direction: column;

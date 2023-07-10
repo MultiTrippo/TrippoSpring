@@ -25,7 +25,8 @@
 	function putComment(commentList) {
 		var commentBox = document.getElementById('commentBox');
 		commentBox.innerHTML='';
-		//alert(commentList);
+		
+
 		for(var i = 0; i<commentList.length; i++) {
 			var commentNow = commentList[i];
 			var commentSet = document.createElement("div");
@@ -40,7 +41,7 @@
 			userName.setAttribute("id", "username-item"+i);
 			userName.setAttribute("class", "username-item")
 			userName.innerText = commentNow.username + ": ";
-			
+			alert(userName);
 			var commentItem = document.createElement("p");
 			commentItem.setAttribute("id", "comment-item"+i);
 			commentItem.setAttribute("class", "comment-item");
@@ -49,7 +50,10 @@
 			
 			var commentInfo = document.createElement("div");
 			commentInfo.setAttribute("class", "commentInfo");
+			alert("loginUser"+"${loginUser.id}");
+			alert("selectedReview"+"${selectedReview.user_id }");
 			
+			var uid = sessionStorage.getItem('uid');
 			var commentDelete = document.createElement("button");
 			commentDelete.setAttribute("class", "delete-btn btn btn-primary btn-sm");
 			commentDelete.setAttribute("value", commentNow.postNo);
@@ -155,7 +159,7 @@
 	function send(){
 		var username = document.getElementById('username').value;
 		if(username == ''){
-			alert('작성자를 입력하세요');
+			alert('로그인 후 작성 가능합니다.');
 			document.getElementById('username').focus();
 			return false;
 		}
@@ -204,9 +208,11 @@
 
 <body>
 	<!-- <body> -->
-	<!-- <h1>Photo Gallery</h1> -->
+	<!-- <h1>Photo Gallery</h1> --><%-- 
+	<input type=text id='userName' value="${showUsername}">
+	<c:set var="userName" value="${showUsername}" scope="session"/> --%>
 
-	<div id="content-wrap">
+	<div id="content-wrap" >
 		<!-- LEFT --------------------------------------- -->
 		<div id="left">
 			<div id="scroll-view">
@@ -234,6 +240,10 @@
 						style="color: #282e91;"></span>
 				</p>
 				<p id="post-content">게시글 내용</p>
+				<div id="button-wrapper">
+					<button type="button" class="btn btn-warning" id="delete-btn" onclick="deletePost(${postNo})" <c:if test="${loginUser eq null || loginUser.id ne showUsername }">style="display:none" disabled</c:if>>게시글 삭제</button>
+	    			<button type="button" class="btn btn-success" id="edit-btn" onclick="openEditor(${postNo})" <c:if test="${loginUser eq null || loginUser.id ne showUsername}">style="display:none" disabled</c:if>>게시글 수정</button>
+				</div>
 			</div>
 
 			<div class="comments">
@@ -244,8 +254,8 @@
 				<%-- 댓글 추가 action="/boardShow" method="post" --%>
 				<form id="comment-form">
 					<hr>
-					<label class="showLabel" for="username">작성자:</label> <input
-						type="text" id="username" name="username" required> <br>
+					<label class="showLabel" for="username">작성자:</label>
+					<input type="text" id="username" name="username" readonly disabled> <br>
 					<label class="showLabel" for="commentText">내용:</label>
 					<textarea id="commentText" name="commentText" required></textarea>
 					<br> <label class="showLabel"></label>
@@ -254,6 +264,7 @@
 			</div>
 		</div>
 		<!-- RIGHT END ----------------------------------- -->
+		
 	</div>
 </body>
 
