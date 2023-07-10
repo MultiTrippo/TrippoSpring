@@ -75,21 +75,16 @@ public class BoardAddController extends HttpServlet{
 				} //switch
 				//convert base64 string to binary data
 				byte[] data = DatatypeConverter.parseBase64Binary(strings[1]);
-				String path = request.getServletContext().getRealPath("/images/board/Upload");
+				String path = request.getServletContext().getRealPath("/images/board/Upload/"+file_name);
 				//post.setImgUrls(path);
 				System.out.println("path: "+path);
 				File file = new File(path);
-				System.out.println("Image Saved Path :"+path);
-				if(!file.exists()) {
-					file.mkdirs();
-				}
-				File file2 = new File(path, file_name);
 				System.out.println("addPost 4");
-				try (OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(file2))) {
+				try (OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(file))) {
 					System.out.println("addPost 5");
 					outputStream.write(data);
 				} catch (IOException e) {
-					//e.printStackTrace();
+					e.printStackTrace();
 				}//try n catch
 			}//for ----------
 
@@ -101,9 +96,7 @@ public class BoardAddController extends HttpServlet{
 			System.out.println("addPost 6");
 			int n = pService.createPost(post);
 			
-			ModelMap map = new ModelMap();
-			map.put("result", "success");
-			map.put("url","/boardList");
+			ModelMap map = new ModelMap("result", "success");
 			return map;
 		}//if------
 		else {
