@@ -14,6 +14,12 @@
 <link rel="stylesheet" type="text/css"
 	href="./../../../css/board/boardShow.css">
 <script>
+	<c:if test="${loginUser!=null}">
+	sessionStorage.setItem('uid','${loginUser.getId()}')
+	</c:if>
+</script>
+
+<script>
 	var postJson = '${postJson}'; // JSON 형태의 문자열로 가져오기
 	var vo = JSON.parse(postJson); // JSON 문자열을 JavaScript 객체로 변환
 	var images = vo.imgUrls;
