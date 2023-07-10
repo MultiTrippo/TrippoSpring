@@ -13,6 +13,10 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css"
 	href="./../../../css/board/boardShow.css">
+
+<script></script>
+
+	
 <script>
 	<c:if test="${loginUser!=null}">
 	sessionStorage.setItem('uid','${loginUser.getId()}')
@@ -27,6 +31,13 @@
 	var commentJson = '${commentJson}';
 	var commentList = JSON.parse(commentJson);
 	//alert(vo.city);
+	var uid = sessionStorage.getItem('uid');
+	var usernameBox = document.getElementById("username");
+	if (uid === null) {
+	    usernameBox.value = "로그인 후 이용 가능합니다.";
+	} else {
+	    usernameBox.value = uid;
+	}
 
 	function putComment(commentList) {
 		var commentBox = document.getElementById('commentBox');
