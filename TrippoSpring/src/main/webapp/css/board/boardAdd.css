@@ -2,7 +2,6 @@
 
 body {
     margin: 2em;
-    background: linear-gradient(to bottom, #fddfdf, #ffffd8, #e0fefe);
 }
 
 .preview-image {
@@ -48,7 +47,7 @@ input[type="file"]::-webkit-file-upload-button:hover {
     background-color: #b22222;
 }
 
-#writer:hover, #title:hover, #content:hover {
+#title:hover, #content:hover {
     background-color: #d8f0ff;
 }
 
@@ -58,7 +57,11 @@ input[type="file"]::-webkit-file-upload-button:hover {
     flex-wrap: wrap;
     border: 2px solid white;
     background-color: #d8f2ff;
-    width: 25em;
+    width: 20em;
+    align-itmes: center;
+    padding-left:10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .preview_set {
@@ -76,7 +79,7 @@ input[type="file"]::-webkit-file-upload-button:hover {
     border: 2px solid white !important;
 }
 
-/* form {
-    text-align: center;
+#writer {
+	background-color: #585858;
+	color: white;
 }
- */

@@ -51,6 +51,7 @@ public class BoardShowController {
 			ObjectMapper objectMapper2 = new ObjectMapper();
 			String commentJson = objectMapper2.writeValueAsString(commentList);
 			model.addAttribute("commentJson", commentJson);
+			
 			System.out.println(pService.getPostById(postNo).getWriter());
 			model.addAttribute("showUsername", pService.getPostById(postNo).getWriter());
 			model.addAttribute("postNo", postNo);
@@ -61,9 +62,8 @@ public class BoardShowController {
 		return "board/boardShow";
 	}// boardShow -------------------------------------------
 	
-	//@PostMapping(value="redirect:/b", produces="application/json")
-	//@PostMapping("/boardShowSend")
-	//@RequestMapping("/boardShowSend")
+
+
 	@ResponseBody
 	@PostMapping(value="/boardShowSend", produces="application/json")
 	public ModelMap addComment(@RequestBody CommentVO comment) {

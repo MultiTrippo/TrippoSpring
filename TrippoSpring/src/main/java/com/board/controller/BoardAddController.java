@@ -51,8 +51,10 @@ public class BoardAddController extends HttpServlet{
 		Map<String, Object> hashMap = gson.fromJson(hashMapJson, new TypeToken<Map<String, Object>>(){}.getType());
 
 		Set<String> imgUrlsSet = new HashSet<>(); // 중복을 허용하지 않는 Set 자료구조 생성
-
-		if (hashMapJson!=null) {
+	
+		if (hashMapJson!=null && post.getWriter()!=null && post.getCategory()!=null 
+				&& post.getTitle()!=null && post.getContent()!=null 
+				&& post.getCountry()!=null  && post.getCity()!=null) {
 			System.out.println("addPost 2");
 			for (Map.Entry<String, Object> entry : hashMap.entrySet()) {
 				System.out.println("addPost 3");
@@ -77,7 +79,7 @@ public class BoardAddController extends HttpServlet{
 				byte[] data = DatatypeConverter.parseBase64Binary(strings[1]);
 				String path = request.getServletContext().getRealPath("/images/board/Upload");
 				//post.setImgUrls(path);
-				System.out.println("path: "+path);
+				//System.out.println("path: "+path);
 				File file = new File(path);
 				System.out.println("Image Saved Path :"+path);
 				if(!file.exists()) {
@@ -104,11 +106,13 @@ public class BoardAddController extends HttpServlet{
 			ModelMap map = new ModelMap();
 			map.put("result", "success");
 			map.put("url","/boardList");
+			System.out.println("addPost 7");
 			return map;
 		}//if------
 		else {
-			System.out.println("addPost 7");
+			System.out.println("addPost 8");
 			ModelMap map = new ModelMap("result", "fail");
+			map.put("url","/boardList");
 			return map;
 		}
 		

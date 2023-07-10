@@ -15,17 +15,18 @@
 <head>
 <title>새로운 게시물 작성하기</title>
 <!-- jQuery import -->
-<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
-<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="./../../css/board/boardAdd.css">
 </head>
+
+
 <script>
 $(document).ready(function() {
 	
 	
 	var writer_box = document.getElementById('writer');
-	/* writer_box.value = `\${sessionStorage.getItem('uid')}`; */
 	writer_box.value = "${loginUser.id}";
 	
     // 도시 드롭다운 업데이트 함수
@@ -50,7 +51,7 @@ $(document).ready(function() {
 	            cityDropdown.appendChild(option);
 	        }
 	    }
-	}
+	}// updateCityDropdown() ---------------------------------------------------------
 
 
     // 서버에서 JSON 데이터를 가져와 도시 드롭다운 설정
@@ -99,15 +100,15 @@ $(document).ready(function() {
                 console.log('JSON 파일을 불러오는데 실패했습니다.');
             }
         });
-    }
+    }// setDropdown ------------------------------------------------------------------
 
     
     // 페이지 로드 후 초기화 함수 호출
     setDropdown();
     $('#country').on('change', updateCityDropdown);
-
     // 폼 제출 이벤트 핸들러 등록
     $('#postform').submit(function(e) {
+    	e.preventDefault();
         var writer = document.getElementById('writer').value; // Access the value property
         var title = document.getElementById('title').value;
         var content = document.getElementById('content').value;
@@ -144,9 +145,9 @@ $(document).ready(function() {
         }
 
         // HashMap 데이터를 JSON 형태로 변환
+        // {이미지 이름 , 이미지 데이터 uri}
         var hashMapJson = JSON.stringify(Array.from(hashMap.entries()));
-        //alert(hashMapJson);
-        
+
         
         // AJAX를 사용하여 데이터를 컨트롤러로 전송
         $.ajax({
@@ -154,23 +155,30 @@ $(document).ready(function() {
             url: '/addPost',
             data: {
                 hashMapJson: hashMapJson,
-                writer: writer,
-                title: title,
-                content: content,
-                country: country,
-                city: city,
-                category: category,
-            },
+                writer,
+                title,
+                content,
+                country,
+                city,
+                category
+                },
+
             success: function(res) {
-                // 성공적으로 응답을 받았을 때 실행되는 코드
-                alert("게시물을 성공적으로 등록하였습니다.");
-                window.location.href = res.url;
-                window.location.href = "/boardList";
+                if(res.result == "success"){
+                	// 성공적으로 응답을 받았을 때 실행되는 코드
+                    alert("게시물을 성공적으로 등록하였습니다.");
+                }
+                else {
+                	alert("사용자 실수에 의한 게시물 업로드 거절")
+                }
+                location.href = "/boardList";
                 
             },
-            error: function(xhr, status, error) {
+            error: function(e) {
                 // 요청이 실패했을 때 실행되는 코드
-                console.log(error);
+                alert("게시물 등록에 실패 하였습니다.\n" + "에러내용: " + e.s);
+                console.log(e.status);
+                location.href = "/boardList";
             }
         });
     });
@@ -181,7 +189,6 @@ $(document).ready(function() {
 
 </head>
 <body>
-<!--  enctype="multipart/form-data" -->
     <h1>게시글 작성 페이지</h1>
 	
 	<div id="result" onload='setDropdown()'></div>
@@ -194,11 +201,11 @@ $(document).ready(function() {
         
         <!-- 카테고리 DropDown -->
         <label for="category">카테고리:</label>
-        <select id="category" name="category" class="btn btn-info btn-sm dropdown-toggle">
+        <select id="category" name="category" class="btn btn-info btn-sm dropdown-toggle" required>
         	<option selected value="">--- 카테고리를 선택하세요 ---</option>
             <option value="Food">맛집</option>
-            <option value="PhotoSpot">포토스팟</option>
             <option value="Attraction">관광지</option>
+            <option value="PhotoSpot">포토스팟</option>
         </select>
         <br><br>
         
@@ -222,17 +229,18 @@ $(document).ready(function() {
 		<!-- 국가 DropDown -->
         <br><br>
         <label for="country">국가:</label>
-        <select id="country" name="country" class="btn btn-info btn-sm dropdown-toggle">
+        <select id="country" name="country" class="btn btn-info btn-sm dropdown-toggle" required>
         	<option value="" selected>--- 국가를 선택하세요 ---</option>
         </select>
         <br><br>
         
         <!-- 도시명 DropDown -->
         <label for="city">도시:</label>
-        <select id="city" name="city" class="btn btn-info btn-sm dropdown-toggle" >
+        <select id="city" name="city" class="btn btn-info btn-sm dropdown-toggle" required>
         	
         </select>
         <br><br>
+        
         <div>
         	<input type="submit" value="게시물 올리기" class="create">
         </div>
@@ -245,6 +253,7 @@ $(document).ready(function() {
     function handleFileSelect(event) {
       var files = event.target.files; // 업로드된 파일들
 
+      
       // 각 파일에 대한 미리보기 이미지 생성
       for (var i = 0; i < files.length; i++) {
         var file = files[i];
@@ -265,10 +274,10 @@ $(document).ready(function() {
           deleteButton.setAttribute("class", "delete-button btn btn-danger");
           deleteButton.innerText = "Delete";
           deleteButton.addEventListener("click", function () {
-          // 이미지 삭제 버튼 클릭 시 해당 이미지 삭제
-          img.parentNode.removeChild(img);
-          deleteButton.parentNode.removeChild(deleteButton);
-          preview_set.parentNode.removeChild(preview_set);
+	          // 이미지 삭제 버튼 클릭 시 해당 이미지 삭제
+	          img.parentNode.removeChild(img);
+	          deleteButton.parentNode.removeChild(deleteButton);
+	          preview_set.parentNode.removeChild(preview_set);
           });
           
           var preview_set = document.createElement("div");
@@ -277,9 +286,6 @@ $(document).ready(function() {
           preview_set.appendChild(img);
           preview_set.appendChild(deleteButton);
           previewContainer.appendChild(preview_set);
-          /* previewContainer.appendChild(img);
-          previewContainer.appendChild(deleteButton); */
-
           
         };
         
