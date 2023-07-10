@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-*{
+*{	
 	font-family: 'IBM Plex Sans KR', sans-serif;
 }
 
@@ -118,4 +118,4 @@ form{
 
 #barlinksUl{
 	margin-top: 0;
-}
+}	
