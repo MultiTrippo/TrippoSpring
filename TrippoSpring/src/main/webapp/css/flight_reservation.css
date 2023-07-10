@@ -27,7 +27,7 @@ h2 {
 }
 
 strong{
-	font-weight:300;
+   font-weight:300;
 }
 
 .pl{
@@ -52,7 +52,7 @@ strong{
 }
 
 .container{
-	background-color: gray;
+   background-color: gray;
 }
 
 .color {
@@ -190,7 +190,7 @@ button[class*="btn"] {border: 0;}
 }
 
 .notBordered{
-	outline: none;
+   outline: none;
 }
 
 /* default button style */
@@ -348,11 +348,11 @@ button[class*="btn"] {border: 0;}
 
 <!-- personal setting --!>
 .flight_set{
-	background-color : #9BD4DB;
+   background-color : #9BD4DB;
 }
 
 .bordering{
-	border-bottom: 0.5px solid gray;
+   border-bottom: 0.5px solid gray;
     padding: 15px;
 }
 
@@ -360,7 +360,6 @@ button[class*="btn"] {border: 0;}
   width: 400px;
   margin: 20px;
   padding: 20px;
-  background-color: #f9f9f9;
 }
 
 #flight-details h3 {
@@ -381,16 +380,51 @@ button[class*="btn"] {border: 0;}
 }
 
 .searchBtn {
-	background-color: #C6D7F3;
-	width: 130px;
-	height: 40px;
-	border: none;
-	border-radius: 10px;
-	box-shadow: 3px 3px 3px rgb(109, 109, 109);
-	transition: 0.3s;
+   background-color: #C6D7F3;
+   width: 130px;
+   height: 40px;
+   border: none;
+   border-radius: 10px;
+   box-shadow: 3px 3px 3px rgb(109, 109, 109);
+   transition: 0.3s;
 }
 
 .searchBtn:hover {
-	box-shadow: none;
-  	transition: 0.3s;
+   box-shadow: none;
+     transition: 0.3s;
+}
+
+.flight-info {
+	border: 2px solid #99CCFF;
+	background: white; 
+	border-radius: 8px;
+	padding: 10px; 
+	align:center; 
+	text-align:left;
+	margin-top: 10px;
+}
+
+.prices {
+	display: flex;
+	justify-content: right; 
+}
+
+.goSite {
+	width: 90px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px rgb(109, 109, 109);
+    transition: 0.3s;
+    color: white;
+    background: #FF6699;
+    margin-left: 20px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+
+}
+
+.goSite:hover {
+	 box-shadow: none;
+     transition: 0.3s;
 }
