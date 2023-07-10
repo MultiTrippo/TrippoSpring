@@ -76,7 +76,11 @@ function deleteComment(TargetPostNo, TargetCommentNo) {
             var commentInput = document.getElementById("commentText");
             commentInput.value = null;
             var usernameInput = document.getElementById("username");
-            usernameInput.value = null;
+            if (uid === null) {
+			    usernameInput.value = "로그인 후 이용 가능합니다.";
+			} else {
+			    usernameInput.value = uid;
+			}
 
             putComment(newCommentList);
         },
