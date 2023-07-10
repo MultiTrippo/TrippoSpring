@@ -17,98 +17,99 @@ import com.member.vo.MemberVO;
 
 @Controller
 public class MemberController {
-	
-	@Autowired
-	private MemberService service;
-	
-	
+   
+   @Autowired
+   private MemberService service;
+   
+   
 
-	
-	
-	/** È¸¿ø°¡ÀÔ¾ç½Ä ÆäÀÌÁö Á¢¼Ó */
-	@RequestMapping(value = "/signup", method = RequestMethod.GET)
-	public String signUp() {
-		
-		return "member/signup";
-	}
-	
-	/** È¸¿ø°¡ÀÔ ¿Ï·á¹öÆ° Å¬¸¯½Ã */
-	@RequestMapping(value = "/signupComplete", method = RequestMethod.POST)
-	public String signUpComplete(@ModelAttribute MemberVO member) {
-		
-		System.out.println("controller: signUpComplete(member)");
-		System.out.println(member);
-		
-		int n = service.signUpComplete(member);
-		if(n==1) {
-			System.out.println("È¸¿ø°¡ÀÔ ¿Ï·á");
-		}else {
-			System.out.println("È¸¿ø°¡ÀÔ ½ÇÆĞ");
-		}
-		
-		return "redirect:login";
-	}
-	
-	/** ¾ÆÀÌµğ Áßº¹È®ÀÎ ¹öÆ° Å¬¸¯½Ã */
-	@ResponseBody
-	@PostMapping("/idCheck")
-	public int idCheck(MemberVO member) {
-		
-		System.out.println("controller: idCheck(member)");
-		
-		return service.idCheck(member);
-	}
-	
-	/** ÀÌ¸ŞÀÏ Áßº¹È®ÀÎ ¹öÆ° Å¬¸¯½Ã */
-	@ResponseBody
-	@PostMapping("/emailCheck")
-	public int emailCheck(MemberVO member) {
-		
-		System.out.println("controller: emailCheck(member)");
-		
-		return service.emailCheck(member);
-	}
-	
-	
-	
-	
-	/** ·Î±×ÀÎÆäÀÌÁö Á¢¼Ó */
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login() {
-		
-		return "member/login";
-	}
-	
-	/** ·Î±×ÀÎÇÏ±â ¹öÆ° Å¬¸¯ */
-	@RequestMapping(value = "/loginComplete", method = RequestMethod.POST)
-	public String loginComplete(@ModelAttribute MemberVO member, HttpServletRequest req, RedirectAttributes rttr) {
-		
-		//view¿¡¼­ ÀÔ·ÂÇÑ °ªÀÌ µé¾î¿È
-		System.out.println("controller¿¡¼­ getId: "+member.getId());
-		System.out.println("controller¿¡¼­ getPassword: "+member.getPassword()); 
-		
-		HttpSession session = req.getSession();
-		MemberVO loginUser = service.loginComplete(member);
-		
-		if(loginUser == null) {
-			//·Î±×ÀÎ ½ÇÆĞ
-			int result = 0;
-			rttr.addFlashAttribute("result", result);
-			return "redirect:login";			
-		}else {
-			//·Î±×ÀÎ ¼º°ø
-			session.setAttribute("loginUser", loginUser);
-			return "member/loginComplete";
-		}
-		
-	}
-	
-	/** ·Î±×¾Æ¿ô ¹öÆ° Å¬¸¯ */
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout(HttpSession session) {
-		session.invalidate();
-		
-		return "redirect:login";
-	}
+   
+   
+   /** íšŒì›ê°€ì…ì–‘ì‹ í˜ì´ì§€ ì ‘ì† */
+   @RequestMapping(value = "/signup", method = RequestMethod.GET)
+   public String signUp() {
+      
+      return "member/signup";
+   }
+   
+   /** íšŒì›ê°€ì… ì™„ë£Œë²„íŠ¼ í´ë¦­ì‹œ */
+   @RequestMapping(value = "/signupComplete", method = RequestMethod.POST)
+   public String signUpComplete(@ModelAttribute MemberVO member) {
+      
+      System.out.println("controller: signUpComplete(member)");
+      System.out.println(member);
+      
+      int n = service.signUpComplete(member);
+      if(n==1) {
+         System.out.println("íšŒì›ê°€ì… ì™„ë£Œ");
+      }else {
+         System.out.println("íšŒì›ê°€ì… ì‹¤íŒ¨");
+      }
+      
+      return "redirect:login";
+   }
+   
+   /** ì•„ì´ë”” ì¤‘ë³µí™•ì¸ ë²„íŠ¼ í´ë¦­ì‹œ */
+   @ResponseBody
+   @PostMapping("/idCheck")
+   public int idCheck(MemberVO member) {
+      
+      System.out.println("controller: idCheck(member)");
+      
+      return service.idCheck(member);
+   }
+   
+   /** ì´ë©”ì¼ ì¤‘ë³µí™•ì¸ ë²„íŠ¼ í´ë¦­ì‹œ */
+   @ResponseBody
+   @PostMapping("/emailCheck")
+   public int emailCheck(MemberVO member) {
+      
+      System.out.println("controller: emailCheck(member)");
+      
+      return service.emailCheck(member);
+   }
+   
+   
+   
+   
+   /** ë¡œê·¸ì¸í˜ì´ì§€ ì ‘ì† */
+   @RequestMapping(value = "/login", method = RequestMethod.GET)
+   public String login() {
+      
+      return "member/login";
+   }
+   
+   /** ë¡œê·¸ì¸í•˜ê¸° ë²„íŠ¼ í´ë¦­ */
+   @RequestMapping(value = "/loginComplete", method = RequestMethod.POST)
+   public String loginComplete(@ModelAttribute MemberVO member, HttpServletRequest req, RedirectAttributes rttr) {
+      
+      //viewì—ì„œ ì…ë ¥í•œ ê°’ì´ ë“¤ì–´ì˜´
+      System.out.println("controllerì—ì„œ getId: "+member.getId());
+      System.out.println("controllerì—ì„œ getPassword: "+member.getPassword()); 
+      
+      HttpSession session = req.getSession();
+      MemberVO loginUser = service.loginComplete(member);
+      
+      if(loginUser == null) {
+         //ë¡œê·¸ì¸ ì‹¤íŒ¨
+         int result = 0;
+         rttr.addFlashAttribute("result", result);
+         return "redirect:login";         
+      }else {
+         //ë¡œê·¸ì¸ ì„±ê³µ
+         session.setAttribute("loginUser", loginUser);
+         
+         return "redirect:boardList";
+      }
+      
+   }
+   
+   /** ë¡œê·¸ì•„ì›ƒ ë²„íŠ¼ í´ë¦­ */
+   @RequestMapping(value = "/logout", method = RequestMethod.GET)
+   public String logout(HttpSession session) {
+      session.invalidate();
+      
+      return "redirect:login";
+   }
 
 }
