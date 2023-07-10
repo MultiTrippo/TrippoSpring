@@ -5,111 +5,149 @@
 <head>
   <meta charset="UTF-8">
   <title>자유게시판</title>
-  <link rel="stylesheet" type="text/css" href="./../../../css/board/boardList.css">
-  <!-- 헤더 안보임 -->
+  
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="./../../../css/board/boardList.css">
+  
+  
   <script>
-  	/* Food --------------------------------------- */
-    var currentFoodIdx = 0;
-    var foodListJson = '${foodListJson}'; // JSON 형태의 문자열로 가져오기
-    var foodList = JSON.parse(foodListJson); // JSON 문자열을 JavaScript 객체로 변환
+  /* -------------------------------------------------- */
+  window.onload = function() {
+	  showFood(0);
+      showAttr(0);
+      showPhotoSpot(0);
+      };
+  /* -------------------------------------------------- */
+  /* Food --------------------------------------- */
+  var currentFoodIdx = 0;
+  var foodListJson = '${foodListJson}'; // JSON 형태의 문자열로 가져오기
+  var foodList = JSON.parse(foodListJson); // JSON 문자열을 JavaScript 객체로 변환
+	//console.info(foodList);
+  
+	function showFood(index) {
+	  currentFoodIdx = index;
+	  //console.info(foodList)
+	  for (var i = 0; i < 5; i++) {
+	    index = index % foodList.length;
+	    var imgElement = document.getElementById("food_slideshow-image" + i);
+	    var titleElement = document.getElementById("food_card-title" + i);
+	    var writerElement = document.getElementById("food_card-writer" + i);
+	    var contentElement = document.getElementById("food_card-text" + i);
+	    var modalElement = document.getElementById("food_post-modal" + i);
+	    // foodList 배열의 요소에 imgUrls 속성이 제대로 정의되어 있는지 확인
+	    if (foodList[index] && foodList[index].imgUrls) {
+	    	//console.info(foodList[index]);
+	      var ImageUrl = foodList[index].imgUrls;
+	      var urlList = ImageUrl.split(',');
+	      if (urlList.length > 1) {
+	        ImageUrl = urlList[0];
+	      }
+	      imgElement.src = "${request.contextPath}/images/board/Upload/" + ImageUrl;
+	      titleElement.innerText = foodList[index].title;
+	      writerElement.innerText = "[" + foodList[index].writer + "]";
+	      modalElement.setAttribute("onclick", "openBoardModal("+foodList[index].postNo+")");
+	      contentElement.innerText = foodList[index].content;
+	    } else {
+	      // imgUrls 속성이 정의되지 않은 경우 기본값으로 설정
+	      imgElement.src = ""; // 이미지 없음
+	      imgElement.alt = ""; // 이미지 없음
+	      titleElement.innerText = "No Title";
+	      writerElement.innerText = "";
+	      modalElement.setAttribute("onclick", "");
+	      contentElement.innerText = "게시물이 아직 존재하지 않습니다.";
+	    }
+	    index++;
+	  }
+	}
 
-    function showFood(index) {
-      currentFoodIdx = index;
-
-      for (var i = 0; i < 5; i++) {
-        index = index % foodList.length;
-        var imgElement = document.getElementById("food_slideshow-image" + i);
-        var titleElement = document.getElementById("food_card-title" + i);
-        var writerElement = document.getElementById("food_card-writer" + i);
-        var contentElement = document.getElementById("food_card-text" + i);
-        var modalElement = document.getElementById("food_post-modal" + i);
-        var ImageUrl = foodList[index].imgUrls;
-        var urlList = ImageUrl.split(',');
-        if (urlList.length > 1) {
-        	ImageUrl=urlList[0];
-        }
-        //imgElement.src = "images/board/Upload/" + ImageUrl;
-        imgElement.src = "${request.contextPath}/images/board/Upload/" + ImageUrl;
-        titleElement.innerText = foodList[index].title;
-        writerElement.innerText = "[" + foodList[index].writer + "]"; 
-        modalElement.setAttribute("onclick", "openBoardModal("+foodList[index].postNo+")");
-        contentElement.innerText = foodList[index++].content;
-      }
+  
+  function previousFood() {
+    if (currentFoodIdx === 0) {
+      showFood(foodList.length - 1);
+    } else {
+      showFood(currentFoodIdx - 1);
     }
+  }
+
+  function nextFood() {
+    if (currentFoodIdx === foodList.length - 1) {
+      showFood(0);
+    } else {
+      showFood(currentFoodIdx + 1);
+    }
+  }
+  /* -------------------------------------------------- */
+  
+  /* Attraction --------------------------------------- */
+  var currentAttrIdx = 0;
+var AttrListJson = '${AttrListJson}'; // JSON 형태의 문자열로 가져오기
+var AttrList = JSON.parse(AttrListJson); // JSON 문자열을 JavaScript 객체로 변환
+
+function showAttr(index) {
+  currentAttrIdx = index;
+  
+  for (var i = 0; i < 5; i++) {
+    index = index % AttrList.length;
+    var imgElement = document.getElementById("attr_slideshow-image" + i);
+    var titleElement = document.getElementById("attr_card-title" + i);
+    var writerElement = document.getElementById("attr_card-writer" + i);
+    var contentElement = document.getElementById("attr_card-text" + i);
+    var modalElement = document.getElementById("attr_post-modal" + i);
     
-    function previousFood() {
-      if (currentFoodIdx === 0) {
-        showFood(foodList.length - 1);
-      } else {
-        showFood(currentFoodIdx - 1);
+    // AttrList 배열의 요소에 imgUrls 속성이 제대로 정의되어 있는지 확인
+    if (AttrList[index] && AttrList[index].imgUrls) {
+      var ImageUrl = AttrList[index].imgUrls;
+      var urlList = ImageUrl.split(',');
+      if (urlList.length > 1) {
+        ImageUrl = urlList[0];
       }
+      imgElement.src = "${request.contextPath}/images/board/Upload/" + ImageUrl;
+      titleElement.innerText = AttrList[index].title;
+      writerElement.innerText = "[" + AttrList[index].writer + "]";
+      modalElement.setAttribute("onclick", "openBoardModal("+AttrList[index].postNo+")");
+      contentElement.innerText = AttrList[index].content;
+    } else {
+      // imgUrls 속성이 정의되지 않은 경우 기본값으로 설정
+      imgElement.src = ""; // 이미지 없음
+      imgElement.alt = ""; // 이미지 없음
+      titleElement.innerText = "No Title";
+      writerElement.innerText = "";
+      modalElement.setAttribute("onclick", "");
+      contentElement.innerText = "게시물이 아직 존재하지 않습니다.";
     }
+    index++;
+  }
+}
 
-    function nextFood() {
-      if (currentFoodIdx === foodList.length - 1) {
-        showFood(0);
-      } else {
-        showFood(currentFoodIdx + 1);
-      }
-    }
-    /* -------------------------------------------------- */
-    
-    /* Attraction --------------------------------------- */
-    var currentAttrIdx = 0;
-    var AttrListJson = '${AttrListJson}'; // JSON 형태의 문자열로 가져오기
-    var AttrList = JSON.parse(AttrListJson); // JSON 문자열을 JavaScript 객체로 변환
+function previousAttr() {
+  if (currentAttrIdx === 0) {
+    showAttr(AttrList.length - 1);
+  } else {
+    showAttr(currentAttrIdx - 1);
+  }
+}
 
-    function showAttr(index) {
-      currentAttrIdx = index;
+function nextAttr() {
+  if (currentAttrIdx === AttrList.length - 1) {
+    showAttr(0);
+  } else {
+    showAttr(currentAttrIdx + 1);
+  }
+}
 
-      for (var i = 0; i < 5; i++) {
-        index = index % AttrList.length;
-        var imgElement = document.getElementById("attr_slideshow-image" + i);
-        var titleElement = document.getElementById("attr_card-title" + i);
-        var writerElement = document.getElementById("attr_card-writer" + i);
-        var contentElement = document.getElementById("attr_card-text" + i);
-        var modalElement = document.getElementById("attr_post-modal" + i);
-        var ImageUrl = AttrList[index].imgUrls;
-        var urlList = ImageUrl.split(',');
-        if (urlList.length > 1) {
-        	ImageUrl=urlList[0];
-        }
-        imgElement.src = "${request.contextPath}/images/board/Upload/" + ImageUrl;
-        titleElement.innerText = AttrList[index].title;
-        writerElement.innerText = "[" + AttrList[index].writer + "]"; 
-        modalElement.setAttribute("onclick", "openBoardModal("+AttrList[index].postNo+")");
-        contentElement.innerText = AttrList[index++].content;
-      }
-    }
+  
+  /* -------------------------------------------------- */
+  
+  /* Photoshot --------------------------------------- */
+  var currentPhotoSpotIdx = 0;
+var PhotoSpotListJson = '${PhotoSpotListJson}'; // JSON 형태의 문자열로 가져오기
+var PhotoSpotList = JSON.parse(PhotoSpotListJson); // JSON 문자열을 JavaScript 객체로 변환
 
-    function previousAttr() {
-      if (currentAttrIdx === 0) {
-        showAttr(AttrList.length - 1);
-      } else {
-    	  showAttr(currentAttrIdx - 1);
-      }
-    }
+function showPhotoSpot(index) {
+  currentPhotoSpotIdx = index;
 
-    function nextAttr() {
-      if (currentAttrIdx === AttrList.length - 1) {
-    	  showAttr(0);
-      } else {
-    	  showAttr(currentAttrIdx + 1);
-      }
-    }
-    /* -------------------------------------------------- */
-    
-    /* Photoshot --------------------------------------- */
-    var currentPhotoSpotIdx = 0;
-	var PhotoSpotListJson = '${PhotoSpotListJson}'; // JSON 형태의 문자열로 가져오기
-	var PhotoSpotList = JSON.parse(PhotoSpotListJson); // JSON 문자열을 JavaScript 객체로 변환
-	
-	function showPhotoSpot(index) {
-	  currentPhotoSpotIdx = index;
-	
 	  for (var i = 0; i < 5; i++) {
 	    index = index % PhotoSpotList.length;
 	    var imgElement = document.getElementById("photospot_slideshow-image" + i);
@@ -117,18 +155,32 @@
 	    var writerElement = document.getElementById("photospot_card-writer" + i);
 	    var contentElement = document.getElementById("photospot_card-text" + i);
 	    var modalElement = document.getElementById("photospot_post-modal" + i);
-	    var ImageUrl = PhotoSpotList[index].imgUrls;
-	    var urlList = ImageUrl.split(',');
-	    if (urlList.length > 1) {
-	    	ImageUrl=urlList[0];
+
+	    // PhotoSpotList 배열의 요소에 imgUrls 속성이 제대로 정의되어 있는지 확인
+	    if (PhotoSpotList[index] && PhotoSpotList[index].imgUrls) {
+	      var ImageUrl = PhotoSpotList[index].imgUrls;
+	      var urlList = ImageUrl.split(',');
+	      if (urlList.length > 1) {
+	        ImageUrl = urlList[0];
+	      }
+	      imgElement.src = "${request.contextPath}/images/board/Upload/" + ImageUrl;
+	      titleElement.innerText = PhotoSpotList[index].title;
+	      writerElement.innerText = "[" + PhotoSpotList[index].writer + "]";
+	      modalElement.setAttribute("onclick", "openBoardModal("+PhotoSpotList[index].postNo+")");
+	      contentElement.innerText = PhotoSpotList[index].content;
+	    } else {
+	      // imgUrls 속성이 정의되지 않은 경우 기본값으로 설정
+	      imgElement.src = ""; // 이미지 없음
+	      titleElement.innerText = "No Title";
+	      writerElement.innerText = "";
+	      modalElement.setAttribute("onclick", "");
+	      contentElement.innerText = "";
 	    }
-	    imgElement.src = "${request.contextPath}/images/board/Upload/" + ImageUrl;
-	    titleElement.innerText = PhotoSpotList[index].title;
-	    writerElement.innerText = "[" + PhotoSpotList[index].writer + "]";
-	    modalElement.setAttribute("onclick", "openBoardModal("+PhotoSpotList[index].postNo+")");
-	    contentElement.innerText = PhotoSpotList[index++].content;
+	    index++;
 	  }
 	}
+
+
 	
 	function previousPhotoSpot() {
 	  if (currentPhotoSpotIdx === 0) {
@@ -145,9 +197,11 @@
 		  showPhotoSpot(currentPhotoSpotIdx + 1);
 	  }
 	}
-    /* -------------------------------------------------- */
-    
-    function openBoardModal(postNo) {
+  /* -------------------------------------------------- */
+  
+  
+  
+  function openBoardModal(postNo) {
 	  $.ajax({
 	    url: '/boardShow',
 	    type: 'GET',
@@ -168,7 +222,7 @@
 	      $('#boardShowModal .modal-body').html(response);
 	      loadScript('/js/board/boardShow.js', jsonString, commentJson);
 	      
-	      console.log($('#boardShowModal'));
+	      //console.log($('#boardShowModal'));
 	      
 	      /* var deleteBtn = document.getElementById("delete-btn");
 	    	deleteBtn.setAttribute("onclick", "deletePost("+postNo+")")
@@ -177,88 +231,89 @@
 	      jQuery('#boardShowModal').modal('show');
 	    },
 	    error: function(xhr, status, error) {
-	      console.log(error);
+	    console.log(error);
 	    }
 	  });
-	}
-    
-    function loadScript(url, jsonString, commentJson) {
-    	  var script = document.createElement('script');
-    	  script.src = url;
-    	  script.setAttribute('jsonString', jsonString);
-    	  script.setAttribute('commentJson', commentJson);
-    	  document.head.appendChild(script);
-    	  var bodyTag = document.getElementById("bodyTag");
-    	  bodyTag.setAttribute("onload","putImage(0)");
-    	  bodyTag.setAttribute("onload","putComment(commentList)");
-    	}
-    
-    window.onload = function() {
-          showFood(0);
-          showAttr(0);
-          showPhotoSpot(0);
-      };
-      
-      function openEditor(postNo){
-    	  $("#closePostModal").click();
-    	  $("#editPostModal").show();
-    	  $.ajax({
-    		    url: '/editPost',
-    		    type: 'GET',
-    		    data: {
-    		      postNo: postNo
-    		    },
-    		    cache: false,
-    		    success: function(response) {
-    		      $('#editPostModal .modal-body').html(response);
-    		      loadScript2('/js/board/boardEdit.js');
-    		      
-    		      console.log($('#editPostModal'));	     	
-    		      jQuery('#editPostModal').modal('show');
-    		    },
-    		    error: function(xhr, status, error) {
-    		      console.log(error);
-    		    }
-    		  });
-    }//openEditor
-    
-    function loadScript2(url) {
-  	  var script = document.createElement('script');
-  	  script.src = url;
-  	  script.setAttribute('commentJson', commentJson);
-  	  document.head.appendChild(script);
-  	  var bodyTag = document.getElementById("bodyTag");
-  	}
+	}// openBoardModal
+  
+	function loadScript(url, jsonString, commentJson) {
+		  var script = document.createElement('script');
+		  script.src = url;
+		  script.setAttribute('jsonString', jsonString);
+		  script.setAttribute('commentJson', commentJson);
+		  script.onload = function() {
+		    putImage(0);
+		    putComment(commentList);
+		  };
+		  document.head.appendChild(script);
+		  var bodyTag = document.getElementById("bodyTag");
+		}
 
-      function closeEditor(){
-    	  $("#editPostModal").hide();
-      }
-      
-      
-      function deletePost(TargetPostNo){
-  		console.log(TargetPostNo);
-  		$.ajax({
-  			type: 'POST',
-  			url: '/postDelete',
-  			data: 'targetPostNo='+TargetPostNo,
-  			success: function(res){
-  				alert("성공적으로 삭제되었습니다.");
-  				window.location.href = res.url;
-  			},
-  			
-  			error: function(e){
-  				alert(e.status);
-  			}
-  		})
-  	}
+  
+    
+ function openEditor(postNo){
+	  $("#closePostModal").click();
+	  $("#editPostModal").show();
+	  $.ajax({
+		    url: '/editPost',
+		    type: 'GET',
+		    data: {
+		      postNo: postNo
+		    },
+		    cache: false,
+		    success: function(response) {
+		      $('#editPostModal .modal-body').html(response);
+		      loadScript2('/js/board/boardEdit.js');
+		      
+		      console.log($('#editPostModal'));	     	
+		      jQuery('#editPostModal').modal('show');
+		    },
+		    error: function(xhr, status, error) {
+		      console.log(error);
+		    }
+		});
+  }//openEditor
+  
+  function loadScript2(url) {
+	  var script = document.createElement('script');
+	  script.src = url;
+	  script.setAttribute('commentJson', commentJson);
+	  document.head.appendChild(script);
+	  var bodyTag = document.getElementById("bodyTag");
+	}// loadScript2
 
-      function closeBackdrop() {
-    	    var backdrop = document.querySelector('.modal-backdrop');
-    	    if (backdrop) {
-    	      backdrop.classList.remove('show');
-    	      backdrop.parentNode.removeChild(backdrop);
-    	    }
-    	  }
+  function closeEditor(){
+ 	  $("#editPostModal").hide();
+	}// closeEditor
+    
+    
+  function deletePost(TargetPostNo){
+		console.log(TargetPostNo);
+		$.ajax({
+			type: 'POST',
+			url: '/postDelete',
+			data: 'targetPostNo='+TargetPostNo,
+			success: function(res){
+				alert("성공적으로 삭제되었습니다.");
+				window.location.href = res.url;
+				},
+			
+			error: function(e){
+				alert(e.status);
+				}
+		})
+	}// deletePost
+
+	function closeBackdrop() {
+	  var backdrop = document.querySelector('.modal-backdrop');
+	  if (backdrop) {
+	    backdrop.classList.remove('show');
+	    backdrop.parentNode.removeChild(backdrop);
+	  }
+	}// closeBackdrop
+	
+	
+	
 
   </script>
 </head>
@@ -268,11 +323,8 @@
 	<%@ include file="/inc/top.jspf"%>
 </div>
   <div id="page-wrap">
-  <!-- <h1>Photo Slideshow</h1>
-
-  <div>
-    <h1>Board Title</h1>
-  </div> -->
+ 
+<!-- 모달들 -->
 
  <!-- 게시글 추가하는 modal ------------------- -->
   <!-- 모달 버튼 -->
@@ -327,7 +379,6 @@
 </div>
 <!-- ------------------------------------- -->
 
-
 <div id="wrap">
 	<!-- 맛집 ================================================ -->
     <div id="food">
@@ -343,7 +394,7 @@
 				
 					<div class="card-body">
 					    <h5 id="food_card-title<%=i%>" class="food_card-title card-title"></h5>
-					    <p id="food_card-writer<%=i%>" class="card-writer"></p>
+					    <p id="food_card-writer<%=i%>" class="food_card-writer card-writer"></p>
 					    <p id="food_card-text<%=i%>" class="food_card-text"></p>
 					    <!-- 버튼을 클릭하면 모달 창이 나타나도록 하는 버튼 -->
 						<a id="food_post-modal<%=i%>" data-toggle="modal" data-target="#viewPostModal" class="btn btn-warning detail-btn">게시글 보기</a>
@@ -370,7 +421,7 @@
 	          <img id="attr_slideshow-image<%=i%>" class="card-img-top img-wrapper" src="" alt="Slideshow Image" />
 	          <div class="card-body">
 	            <h5 id="attr_card-title<%=i%>" class="attr_card-title card-title"></h5>
-	            <p id="attr_card-writer<%=i%>" class="card-writer"></p>
+	            <p id="attr_card-writer<%=i%>" class="attr_card-writer card-writer"></p>
 	            <p id="attr_card-text<%=i%>" class="attr_card-text"></p>
 	            <a id="attr_post-modal<%=i%>" class="btn btn-warning detail-btn">게시글 보기</a>
 	          </div>
@@ -396,7 +447,7 @@
 				
 					<div class="card-body">
 					    <h5 id="photospot_card-title<%=i%>" class="photospot_card-title card-title"></h5>
-					    <p id="photospot_card-writer<%=i%>" class="card-writer"></p>
+					    <p id="photospot_card-writer<%=i%>" class="photospot_card-writer card-writer"></p>
 					    <p id="photospot_card-text<%=i%>" class="photospot_card-text"></p>
 					    <a id="photospot_post-modal<%=i%>" class="btn btn-warning detail-btn">게시글 보기</a>
 					</div>
