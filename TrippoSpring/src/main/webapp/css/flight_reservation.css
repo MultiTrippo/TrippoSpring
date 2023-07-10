@@ -1,28 +1,35 @@
 * {
   box-sizing: border-box;
+  font-family: 'IBM Plex Sans KR', sans-serif;
 }
+
 body {
   margin: 0;
   background: #eaedf1;
   font-family: 'Lato', sans-serif;
 }
+
 .header {
   background: white;
   padding: 30px;
   text-align: center;
 }
+
 .header h1 {
   font-weight: 300;
   display: inline;
 }
+
 h2 {
   color: #89867e;
   text-align: center;
   font-weight: 300;
 }
+
 strong{
 	font-weight:300;
 }
+
 .pl{
     width: 200px;
     border: 1px solid #C4C4C4;
@@ -43,13 +50,16 @@ strong{
     outline: 3px solid #F8E4FF;
     border-radius: 10px;
 }
+
 .container{
 	background-color: gray;
 }
+
 .color {
   width: 350px;
   margin: 0 auto;
 }
+
 .color li {
   margin: 0 15px 0 0;
   width: 30px;
@@ -57,6 +67,7 @@ strong{
   display: inline-block;
   border-radius: 100%;
 }
+
 .color .red    {background: #fa5a5a;}
 .color .yellow {background: #f0d264;}
 .color .green  {background: #82c8a0;}
@@ -69,14 +80,17 @@ strong{
 .content-3d {
   margin: 40px auto;
 }
+
 .content {
   width: 80%;
   max-width: 700px;
 }
+
 .content-3d {
   width: 50%;
   max-width: 300px;
 }
+
 pre {
   width: 100%;
   padding: 30px;
@@ -90,6 +104,7 @@ pre {
   white-space: -o-pre-wrap; /* Opera 7 */
   word-wrap: break-word; /* Internet Explorer 5.5+ */
 }
+
 pre .bt  {color: #f8f8f2;} /* <> */
 pre .anc {color: #f92672;} /* anchor tag */
 pre .att {color: #a6a926;} /* attribute */
@@ -101,16 +116,19 @@ pre .val {color: #e6db74;} /* value */
   text-align: center;
   margin-bottom: 40px;
 }
+
 .container h2 {
   padding-top: 30px;
   font-weight: 300;
 }
+
 .btn, .btn-two {
   margin: 9px;
 }
 .btn-gradient {
   margin: 5px;
 }
+
 a[class*="btn"] {text-decoration: none;}
 input[class*="btn"], 
 button[class*="btn"] {border: 0;}
@@ -122,6 +140,7 @@ button[class*="btn"] {border: 0;}
   padding: 20px 40px; 
   font-size: 22px;
 }
+
 .btn.small, 
 .btn-two.small, 
 .btn-gradient.small, 
@@ -129,6 +148,7 @@ button[class*="btn"] {border: 0;}
   padding: 8px 18px;  
   font-size: 14px;
 }
+
 .btn.mini, 
 .btn-two.mini, 
 .btn-gradient.mini, 
@@ -136,6 +156,7 @@ button[class*="btn"] {border: 0;}
   padding: 4px 12px;  
   font-size: 12px;
 }
+
 .btn.block, 
 .btn-two.block, 
 .btn-gradient.block, 
@@ -146,6 +167,7 @@ button[class*="btn"] {border: 0;}
   margin-right: auto;
   text-align: center;
 }
+
 .btn-gradient.large {
   padding: 15px 45px; 
   font-size: 22px;
@@ -162,9 +184,11 @@ button[class*="btn"] {border: 0;}
 .rounded {
   border-radius: 10px;
 }
+
 .bordered {
   border: 1px soild black;
 }
+
 .notBordered{
 	outline: none;
 }
@@ -273,6 +297,7 @@ button[class*="btn"] {border: 0;}
   background: -o-linear-gradient(rgba(255,105,30,1) 0%, rgba(230,95,28,1) 100%);
   background: linear-gradient(rgba(255,105,30,1) 0%, rgba(230,95,28,1) 100%);
 }
+
 .btn-gradient.blue {
   background: rgba(102,152,203,1);
   background: -moz-linear-gradient(top, rgba(102,152,203,1) 0%, rgba(92,138,184,1) 100%);
@@ -325,10 +350,12 @@ button[class*="btn"] {border: 0;}
 .flight_set{
 	background-color : #9BD4DB;
 }
+
 .bordering{
 	border-bottom: 0.5px solid gray;
     padding: 15px;
 }
+
 #flight-details {
   width: 400px;
   margin: 20px;
@@ -351,4 +378,19 @@ button[class*="btn"] {border: 0;}
   max-width: 200px;
   height: auto;
   margin-top: 10px;
+}
+
+.searchBtn {
+	background-color: #C6D7F3;
+	width: 130px;
+	height: 40px;
+	border: none;
+	border-radius: 10px;
+	box-shadow: 3px 3px 3px rgb(109, 109, 109);
+	transition: 0.3s;
+}
+
+.searchBtn:hover {
+	box-shadow: none;
+  	transition: 0.3s;
 }

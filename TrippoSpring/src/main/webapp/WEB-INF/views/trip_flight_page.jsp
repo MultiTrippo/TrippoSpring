@@ -1,17 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page import="com.google.gson.Gson" %>
-<%@ page import="com.google.gson.JsonArray" %>
-<%@ page import="com.google.gson.JsonElement" %>
-<%@ page import="com.google.gson.JsonObject" %>
-<%@ page import="java.util.HashMap" %>
-<%@ page import="java.util.List" %>
-
-<%@ page import="org.json.JSONObject" %>
-<%@ page import="org.json.JSONArray" %>
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="EUC-KR">
 <link rel="stylesheet" type="text/css" href="css/flight_reservation.css">
 <!-- Bootstrap css -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
@@ -30,85 +21,6 @@
 <title>Flight Reservation_two</title>
 
 </head>
-<script>
-$(document).ready(function(){
-	
-function setDropdownDep(){
-	$.ajax({
-		url: '/resources/trip_flight/major_airport_final.json',
-		dataType: 'json',
-		success: function(data){
-
-			 var airportCodes = [];
-			 var cities = [];
-             var countries = [];
-             for(var i=0; i<data.length; i++){
-           
-            	 var airportCode= data[i].공항코드;
-            	 var city= data[i].공항명;
-            	 var country= data[i].구분;
-            	 
-
-           		countries.push(country); 
-           		cities.push(city);
-           		airportCodes.push(airportCode);
-             }// for
-            //드롭다운 설정 
-            var countryDD = document.getElementById("airport_dep");
-             for(var i=0; i<countries.length; i++){
-            	 var option=document.createElement("option");
-            	 option.innerText =  cities[i]+", "+countries[i];
-            	 option.value= airportCodes[i];
-            	 console.log(option.value);
-            	 countryDD.appendChild(option);
-             }//for
-            
-		},
-		error: function(){
-			console.log('JSON 파일을 불러오는데 실패했습니다.');
-			}
-		})
-	};// setDropdown()
-setDropdownDep();
-	
-function setDropdownArr(){
-	$.ajax({
-		url: '/resources/trip_flight/major_airport_final.json',
-		dataType: 'json',
-		success: function(data){
-			 var airportCodes = [];
-			 var cities = [];
-             var countries = [];
-             for(var i=0; i<data.length; i++){
-           
-            	 var airportCode= data[i].공항코드;
-            	 var city= data[i].공항명;
-            	 var country= data[i].구분;
-            	 
-
-           		countries.push(country); 
-           		cities.push(city);
-           		airportCodes.push(airportCode);
-             }// for
-            //드롭다운 설정
-            var countryDD = document.getElementById("airport_arr");
-             for(var i=0; i<countries.length; i++){
-            	 var option=document.createElement("option");
-            	 option.innerText =  cities[i]+", "+countries[i];
-            	 option.value= airportCodes[i];
-            	 console.log(option.value);
-            	 countryDD.appendChild(option);
-             }//for
-            
-		},
-		error: function(){
-			console.log('JSON 파일을 불러오는데 실패했습니다.');
-			}
-		})
-	};// setDropdown()
-setDropdownArr();
-});
-</script>
 <body>
 <%@ include file="/inc/top.jspf" %>
 <!-- Bootstrap js -->
@@ -130,18 +42,16 @@ setDropdownArr();
 			<input type='button' class="btn-two small rounded"  value="왕복" style="background-color:white; color:black" onclick="toggleFlightType('ROUND_TRIP')">		</div>	
 		<br>
 			<div id="container_two">
-			<span class="btn-two rounded" ><img src="/images/flightImages/plane.png" width=30px; height=30px;> 
-			<select id="airport_dep" class="airport_dep" style="border:none;border-right:0px;border-top:0px;border-left:0px;">
-			<option selected>출발지를 선택하세요</option>
-			</select></span>
-			<span class="btn-two rounded"><img src="/images/flightImages/plane.png" width=30px; height=30px;> 
-			<select id="airport_arr" class="airport_dep" style="border:none;border-right:0px;border-top:0px;border-left:0px;">
-			<option selected>도착지를 선택하세요</option>
-			</select></span>
+<span class="btn-two rounded" ><img src="images/flightImages/plane.png" width=30px; height=30px;> <input id="airport_dep" style="border:none;border-right:0px;border-top:0px;border-left:0px;" type="text" onchange="getAirport_dep(this.value)"></span>
+<!--  <button id="swap-button" type="button" style="background-color:#9BD4DB">전환</button> -->
+
+			<span class="btn-two rounded"><img src="/images/flightImages/plane.png" width=30px; height=30px;> <input id="airport_arr"  style="border:none;border-right:0px;border-top:0px;border-left:0px;" type="text" value="" onchange="getAirport_arr(this.value)"></span>
 			<span class="btn-two"><img src="/images/flightImages/calenderImg.png" width=30px; height=30px;> <input type="text" id="datepicker" style="border:0"></span>
-			<span class="btn-two" id=dateCome><img src="/images/flightImages/calenderImg.png" width=30px; height=30px;> <input type="text" id="datepicker_round" style="border:0"></span><br>
+			<span class="btn-two" id=dateCome><img src="/images/flightImages/calenderImg.png" width=30px; height=30px;> <input type="text" id="datepicker_round" style="border:0"></span>
 				<select class="pl" name="ppl" id="ppl">
 				<option >인원 수</option>
+
+
 		 	   	 <option value="1">1</option>
 				  <option value="2">2</option>
 				  <option value="3">3</option>
@@ -166,9 +76,7 @@ setDropdownArr();
 <div id="flight-details" style="width: 40%; height: 80%; align:center; text-align:center; margin:auto; ">
   <p></p>
 </div>
-
 	<script>
-
 	let ticketType = ""; // 편도OR왕복
 	window.onload = function() {
 	  ticketTypeByColor();
@@ -200,7 +108,25 @@ setDropdownArr();
 	let round_time;
 	let val_dep="";
 	let val_arr="";
-	
+	function getAirport_dep(val){
+		const settings = {
+				async: true,
+				crossDomain: true,
+				url: `https://tripadvisor16.p.rapidapi.com/api/v1/flights/searchAirport?query=\${val}`,
+				method: 'GET',
+				headers: {
+					'X-RapidAPI-Key': '96189eb4d6msh3bf15acb83294b1p13772cjsnf682bafc6b9c',
+					'X-RapidAPI-Host': 'tripadvisor16.p.rapidapi.com'
+				}
+			};
+			$.ajax(settings).done(function (response) {
+				console.log(response.data[0].airportCode);
+				val_dep=response.data[0].airportCode;
+				airport_departure=val_dep;
+			});
+		//console.log(val);
+		//test2(val);
+	}//출발공항
 	function getAirport_arr(val){
 		const settings = {
 				async: true,
@@ -248,8 +174,8 @@ setDropdownArr();
 	}
 	
 	function init(){
-		airport_departure=$('#airport_dep').val();
-		airport_arrival=$('#airport_arr').val();
+		//airport_departure=$('#airport_dep').val().toUpperCase();
+		//airport_arrival=$('#airport_arr').val().toUpperCase();
 		ppl=$('#ppl').val();
 		seat_class=$('#seat_class').val();
 		oneway_time=$('#datepicker').val();
