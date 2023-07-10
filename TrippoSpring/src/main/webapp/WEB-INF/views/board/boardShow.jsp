@@ -13,6 +13,10 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css"
 	href="./../../../css/board/boardShow.css">
+
+<script></script>
+
+	
 <script>
 	var postJson = '${postJson}'; // JSON 형태의 문자열로 가져오기
 	var vo = JSON.parse(postJson); // JSON 문자열을 JavaScript 객체로 변환
@@ -21,6 +25,13 @@
 	var commentJson = '${commentJson}';
 	var commentList = JSON.parse(commentJson);
 	//alert(vo.city);
+	var uid = sessionStorage.getItem('uid');
+	var usernameBox = document.getElementById("username");
+	if (uid === null) {
+	    usernameBox.value = "로그인 후 이용 가능합니다.";
+	} else {
+	    usernameBox.value = uid;
+	}
 
 	function putComment(commentList) {
 		var commentBox = document.getElementById('commentBox');
