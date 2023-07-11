@@ -257,7 +257,7 @@ function deletePreviewImage(img) {
 		
 		// Convert the Map to JSON format
 		var imageMapJson = JSON.stringify(Array.from(imageMap.entries()));
-		
+
 		if (category === ''){
 			alert('카테고리를 선택해주세요.')
 			return false;
