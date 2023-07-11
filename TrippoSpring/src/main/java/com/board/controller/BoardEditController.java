@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -76,9 +77,14 @@ public class BoardEditController {
 			    Object img_uri = entry.getValue();
 			    imgUrlsSet.add(file_name); // 중복을 허용하지 않는 Set에 파일 이름 추가
 				System.out.println(file_name);
-				if (originalImages.contains(file_name)) {
+				for(String img:originalImages) {
+					System.out.println(img);
+				}
+				System.out.println("---------------------");
+				if (originalImages.contains(file_name) || ((String) img_uri).split(",").length<=1) {
 					originalImages.remove(file_name);
 				}
+				
 				else {
 					String[] strings = ((String) img_uri).split(",");
 					String extension;
@@ -109,7 +115,7 @@ public class BoardEditController {
 						System.out.println("addPost 5");
 						outputStream.write(data);
 					} catch (IOException e) {
-						//e.printStackTrace();
+						e.printStackTrace();
 					}//try n catch
 				}
 			}//for ----------
